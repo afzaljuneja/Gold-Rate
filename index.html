@@ -1,56 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="auto">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Gold Rate OMR - Muscat</title>
+  <title>Live Gold Rates - Muscat</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 30px; background: #fff; color: #333; }
-    h1 { color: #b8860b; margin-bottom: 20px; }
-    .rate-box { font-size: 1.8em; margin: 15px 0; font-weight: bold; }
-    .karat { color: #d4af37; }
-    #time { font-size: 1em; color: #666; margin-top: 30px; }
-    #error { color: red; font-weight: bold; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(to bottom, #fff, #f8f0e3);
+      color: #333;
+      margin: 0;
+    }
+    h1 {
+      color: #b8860b;
+      font-size: 2.2em;
+      margin: 10px 0;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .arabic {
+      font-family: 'Traditional Arabic', 'Arial', sans-serif;
+      direction: rtl;
+      font-size: 1.4em;
+      margin: 5px 0;
+    }
+    .ounce {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #006400;
+      background: #fff;
+      padding: 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin: 20px auto;
+      max-width: 90%;
+    }
+    .rate-box {
+      font-size: 2em;
+      margin: 15px 0;
+      font-weight: bold;
+      background: #fff;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .karat {
+      color: #d4af37;
+    }
+    #time {
+      font-size: 1.1em;
+      color: #555;
+      margin-top: 25px;
+    }
+    #error {
+      color: red;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin: 20px 0;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
   </style>
 </head>
 <body>
-  <h1>Live Gold Rates in OMR</h1>
-  
-  <div class="rate-box"><span class="karat">22K:</span> <span id="g22">Loading...</span></div>
-  <div class="rate-box"><span class="karat">21K:</span> <span id="g21">Loading...</span></div>
-  <div class="rate-box"><span class="karat">18K:</span> <span id="g18">Loading...</span></div>
-  
-  <p id="time">Fetching latest price...</p>
-  <p id="error"></p>
+  <div class="container">
+    <h1>Live Gold Rates in OMR</h1>
+    <div class="arabic">أسعار الذهب الحية بالريال العماني</div>
+
+    <div class="ounce" id="ounce">Gold per Ounce (USD): Loading...</div>
+    <div class="arabic" id="ounce_ar">سعر الأونصة بالدولار الأمريكي: جاري التحميل...</div>
+
+    <div class="rate-box"><span class="karat">22K:</span> <span id="g22">Loading...</span></div>
+    <div class="arabic rate-box"><span class="karat">٢٢ قيراط:</span> <span id="g22_ar">جاري التحميل...</span></div>
+
+    <div class="rate-box"><span class="karat">21K:</span> <span id="g21">Loading...</span></div>
+    <div class="arabic rate-box"><span class="karat">٢١ قيراط:</span> <span id="g21_ar">جاري التحميل...</span></div>
+
+    <div class="rate-box"><span class="karat">18K:</span> <span id="g18">Loading...</span></div>
+    <div class="arabic rate-box"><span class="karat">١٨ قيراط:</span> <span id="g18_ar">جاري التحميل...</span></div>
+
+    <p id="time">Fetching latest price...</p>
+    <p id="time_ar" class="arabic">جاري جلب السعر الأخير...</p>
+
+    <p id="error"></p>
+  </div>
 
   <script>
-  const API_KEY = "goldapi-1xyh19mkymkg2y-io";  // Naya key yahan daala hai
+  const API_KEY = "goldapi-1xyh19mkymkg2y-io";
 
   async function loadGoldPrice() {
     const errorEl = document.getElementById("error");
-    errorEl.innerText = "";  // Clear old error
+    errorEl.innerText = "";
 
     try {
       const res = await fetch("https://www.goldapi.io/api/XAU/USD", {
+        method: "GET",
         headers: {
-          "x-access-token": API_KEY  // Yeh header sahi hai (sab examples mein yahi)
+          "x-access-token": API_KEY
         }
       });
 
       if (!res.ok) {
-        throw new Error(`API error: ${res.status} - ${res.status === 403 ? 'Invalid or expired API key' : 'Check connection/key'}`);
+        throw new Error(`API error: ${res.status}`);
       }
 
       const data = await res.json();
 
-      if (!data.price || isNaN(data.price)) {
-        throw new Error("No valid price data in response");
+      if (!data.price || typeof data.price !== 'number') {
+        throw new Error("No valid price");
       }
 
-      let ounceUSD = data.price;
+      let ounceUSD = data.price.toFixed(2);
 
-      // TERA ORIGINAL FORMULA - bilkul unchanged
-      let gold24 = (ounceUSD * 1.4485 + 20) / 116.64;
+      // Ounce display
+      document.getElementById("ounce").innerText = `Gold per Ounce (USD): ${ounceUSD}`;
+      document.getElementById("ounce_ar").innerText = `سعر الأونصة بالدولار: ${ounceUSD}`;
+
+      // TERA FORMULA
+      let gold24 = (data.price * 1.4485 + 20) / 116;
 
       let gold22 = gold24 * 0.920;
       let gold21 = gold24 * 0.879;
@@ -60,19 +133,30 @@
       document.getElementById("g21").innerText = gold21.toFixed(2) + " OMR";
       document.getElementById("g18").innerText = gold18.toFixed(2) + " OMR";
 
-      document.getElementById("time").innerText = "Last updated: " + new Date().toLocaleString("en-US", { timeZone: "Asia/Muscat" });
+      document.getElementById("g22_ar").innerText = gold22.toFixed(2) + " ر.ع";
+      document.getElementById("g21_ar").innerText = gold21.toFixed(2) + " ر.ع";
+      document.getElementById("g18_ar").innerText = gold18.toFixed(2) + " ر.ع";
+
+      const now = new Date().toLocaleString("en-US", { timeZone: "Asia/Muscat" });
+      document.getElementById("time").innerText = "Last updated: " + now;
+      document.getElementById("time_ar").innerText = "آخر تحديث: " + now;
 
     } catch (err) {
-      console.error("Gold API Error:", err);
-      errorEl.innerText = "Error: " + err.message + " (F12 console check kar)";
+      console.error(err);
+      errorEl.innerText = "Error loading price - Check API key";
+      document.getElementById("ounce").innerText = "Gold per Ounce (USD): N/A";
+      document.getElementById("ounce_ar").innerText = "سعر الأونصة: غير متاح";
       document.getElementById("g22").innerText = "N/A";
       document.getElementById("g21").innerText = "N/A";
       document.getElementById("g18").innerText = "N/A";
+      document.getElementById("g22_ar").innerText = "غير متاح";
+      document.getElementById("g21_ar").innerText = "غير متاح";
+      document.getElementById("g18_ar").innerText = "غير متاح";
     }
   }
 
-  loadGoldPrice();                    // Pehli baar call
-  setInterval(loadGoldPrice, 60000);  // Har 1 min update
+  loadGoldPrice();
+  setInterval(loadGoldPrice, 60000);
   </script>
 </body>
 </html>
