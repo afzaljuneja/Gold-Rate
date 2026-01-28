@@ -14,15 +14,37 @@
 <p id="time"></p>
 
 <script>
-function loadGoldPrice() {
-  let gold24 = 70; // Demo price
+const API_KEY = "goldapi-h1s19mkylgyry-io";
 
-  document.getElementById("g22").innerText = (gold24 * 0.916).toFixed(2) + " OMR";
-  document.getElementById("g21").innerText = (gold24 * 0.875).toFixed(2) + " OMR";
-  document.getElementById("g18").innerText = (gold24 * 0.75).toFixed(2) + " OMR";
+async function loadGoldPrice() {
+  try {
+    const res = await fetch("https://www.goldapi.io/api/XAU/OMR", {
+      headers: {
+        "x-access-token": API_KEY,
+        "Content-Type": "application/json"
+      }
+    });
 
-  document.getElementById("time").innerText =
-    "Last updated: " + new Date().toLocaleTimeString();
+    const data = await res.json();
+
+    // Gold price per ounce → per gram
+    let gold24 = data.price / 31.1035;
+
+    document.getElementById("g22").innerText =
+      (gold24 * 0.916).toFixed(2) + " OMR";
+
+    document.getElementById("g21").innerText =
+      (gold24 * 0.875).toFixed(2) + " OMR";
+
+    document.getElementById("g18").innerText =
+      (gold24 * 0.75).toFixed(2) + " OMR";
+
+    document.getElementById("time").innerText =
+      "Last updated: " + new Date().toLocaleTimeString();
+
+  } catch (e) {
+    document.getElementById("time").innerText = "Error loading price";
+  }
 }
 
 loadGoldPrice();
