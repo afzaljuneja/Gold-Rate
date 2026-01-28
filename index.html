@@ -8,7 +8,7 @@
     body {
       margin: 0;
       padding: 20px;
-      background: #0f3d6e; /* Light blue theme background */
+      background: #0f3d6e; /* Light blue theme */
       color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
@@ -19,7 +19,7 @@
     }
     .star {
       font-size: 5em;
-      color: #ffd700; /* Gold star */
+      color: #ffd700;
       margin: 0;
     }
     .as {
@@ -28,7 +28,7 @@
       margin: -20px 0 0 0;
     }
     h1 {
-      color: #00d4ff; /* Bright cyan/blue highlight */
+      color: #00d4ff;
       font-size: 2.2em;
       margin: 10px 0;
     }
@@ -73,7 +73,7 @@
       max-width: 500px;
       margin: 20px auto;
       border-collapse: collapse;
-      background: #1a5276; /* Slightly darker light blue for table */
+      background: #1a5276;
       border: 2px solid #00d4ff;
       border-radius: 10px;
       overflow: hidden;
@@ -169,15 +169,14 @@
   <p id="error"></p>
 
   <script>
-  const API_KEY = "af3068f83fceab0d91c4343e24568dba";
+  const API_KEY = "YOUR_METALPRICEAPI_KEY_HERE";  // ← yahan apna naya key paste kar (jo tune liya)
 
   async function loadGoldPrice() {
     document.getElementById("error").innerText = "";
 
     try {
-      const res = await fetch(`https://www.goldapi.io/api/XAU/USD`, {
-        headers: { "x-access-token": API_KEY }
-      });
+      const url = `https://api.metalpriceapi.com/v1/latest?api_key=${API_KEY}&base=USD&currencies=XAU`;
+      const res = await fetch(url);
 
       if (!res.ok) {
         throw new Error(`API error: ${res.status} - Check key or quota`);
@@ -185,11 +184,11 @@
 
       const data = await res.json();
 
-      if (!data.price || isNaN(data.price)) {
-        throw new Error("No valid price data");
+      if (!data.success || !data.rates || !data.rates.USDXAU) {
+        throw new Error("No valid gold price data");
       }
 
-      let ounceUSD = data.price;
+      let ounceUSD = data.rates.USDXAU;  // Yeh gold price per ounce USD mein hai
       document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
 
       // Tera original formula for 24K OMR per gm
@@ -199,7 +198,7 @@
       let gold21gm = gold24gm * 0.879;
       let gold18gm = gold24gm * 0.754;
 
-      // 21K Tola: 21K gm rate × 11.664
+      // 21K Tola exact 11.664 gm
       let tola21 = gold21gm * 11.664;
 
       // Ginni approx 8 gm
@@ -217,7 +216,7 @@
 
     } catch (err) {
       console.error("Error:", err);
-      document.getElementById("error").innerText = "Error loading prices – API key issue or no internet. Try refresh.";
+      document.getElementById("error").innerText = "Error loading prices – Check API key, quota, or internet. Try refresh or new key.";
       document.getElementById("ounceUSD").innerText = "Gold per Ounce (USD): N/A";
     }
   }
