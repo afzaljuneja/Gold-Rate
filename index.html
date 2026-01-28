@@ -8,7 +8,7 @@
     body {
       margin: 0;
       padding: 20px;
-      background: #001f3f; /* Deep blue background */
+      background: #0f3d6e; /* Light blue theme background */
       color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
@@ -28,18 +28,18 @@
       margin: -20px 0 0 0;
     }
     h1 {
-      color: #ffd700;
+      color: #00d4ff; /* Bright cyan/blue highlight */
       font-size: 2.2em;
       margin: 10px 0;
     }
     .arabic {
       font-size: 1.9em;
-      color: #00bfff; /* Bright blue highlight */
+      color: #00d4ff;
       margin: 5px 0;
     }
     .insta {
       font-size: 1.4em;
-      color: #00bfff;
+      color: #00d4ff;
       margin: 10px 0;
     }
     .whatsapp {
@@ -73,8 +73,8 @@
       max-width: 500px;
       margin: 20px auto;
       border-collapse: collapse;
-      background: #002b55; /* Darker blue */
-      border: 2px solid #00bfff;
+      background: #1a5276; /* Slightly darker light blue for table */
+      border: 2px solid #00d4ff;
       border-radius: 10px;
       overflow: hidden;
     }
@@ -85,20 +85,20 @@
       font-size: 1.3em;
     }
     th {
-      background: #003366;
-      color: #00bfff;
+      background: #0a3d5e;
+      color: #00d4ff;
     }
     .karat {
       color: #ffd700;
       font-weight: bold;
     }
     .updated {
-      color: #aaa;
+      color: #ddd;
       font-size: 1.1em;
       margin-top: 30px;
     }
     #error {
-      color: #ff4500;
+      color: #ffcc00;
       font-weight: bold;
       margin: 10px 0;
     }
@@ -112,13 +112,18 @@
   </div>
 
   <h1>SATTARDINA JEWELLERY</h1>
-  <div class="arabic">مجوهریات ستاردینا</div>
   <div class="arabic">مجوهرات ستاردينا</div>
+  <div class="arabic">مجوهریات ستاردینا</div>
 
   <div class="insta">@sattardina_jewellery</div>
 
-  <div class="whatsapp">WHATSAPP: [95449739]<br>واتساب: [95449739]</div>
+  <div class="whatsapp">WHATSAPP: 95449739<br>واتساب: 95449739</div>
 
+  <div class="buy-msg">
+    WE BUY GOLD & SILVER!<br>
+    لديك ذهب أو فضة؟ نشتري بأفضل الأسعار!<br>
+    Contact now for best rates
+  </div>
 
   <div id="ounceUSD">Gold per Ounce (USD): Loading...</div>
 
@@ -141,7 +146,7 @@
     <tr>
       <td class="karat">21K</td>
       <td>1 gm / جرام</td>
-      <td id="g21">Loading...</td>
+      <td id="g21gm">Loading...</td>
     </tr>
     <tr>
       <td class="karat">18K</td>
@@ -150,8 +155,76 @@
     </tr>
     <tr>
       <td class="karat">21K</td>
-      <td>1 Tola / تولة</td>
+      <td>1 Tola / تولة (11.664 gm)</td>
       <td id="tola21">Loading...</td>
     </tr>
     <tr>
-      <td class="karat
+      <td class="karat">21K</td>
+      <td>1 Ginni / جنية (~8 gm)</td>
+      <td id="ginni21">Loading...</td>
+    </tr>
+  </table>
+
+  <p class="updated" id="time">Last updated: Loading... (Muscat Time)</p>
+  <p id="error"></p>
+
+  <script>
+  const API_KEY = "af3068f83fceab0d91c4343e24568dba";
+
+  async function loadGoldPrice() {
+    document.getElementById("error").innerText = "";
+
+    try {
+      const res = await fetch(`https://www.goldapi.io/api/XAU/USD`, {
+        headers: { "x-access-token": API_KEY }
+      });
+
+      if (!res.ok) {
+        throw new Error(`API error: ${res.status} - Check key or quota`);
+      }
+
+      const data = await res.json();
+
+      if (!data.price || isNaN(data.price)) {
+        throw new Error("No valid price data");
+      }
+
+      let ounceUSD = data.price;
+      document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
+
+      // Tera original formula for 24K OMR per gm
+      let gold24gm = (ounceUSD * 1.4485 + 20) / 116;
+
+      let gold22gm = gold24gm * 0.920;
+      let gold21gm = gold24gm * 0.879;
+      let gold18gm = gold24gm * 0.754;
+
+      // 21K Tola: 21K gm rate × 11.664
+      let tola21 = gold21gm * 11.664;
+
+      // Ginni approx 8 gm
+      let ginni21 = gold21gm * 8;
+
+      document.getElementById("g24").innerText = gold24gm.toFixed(3);
+      document.getElementById("g22").innerText = gold22gm.toFixed(3);
+      document.getElementById("g21gm").innerText = gold21gm.toFixed(3);
+      document.getElementById("g18").innerText = gold18gm.toFixed(3);
+      document.getElementById("tola21").innerText = tola21.toFixed(3);
+      document.getElementById("ginni21").innerText = ginni21.toFixed(3);
+
+      document.getElementById("time").innerText = 
+        "Last updated: " + new Date().toLocaleString("en-US", { timeZone: "Asia/Muscat", dateStyle: "medium", timeStyle: "short" }) + " (Muscat Time)";
+
+    } catch (err) {
+      console.error("Error:", err);
+      document.getElementById("error").innerText = "Error loading prices – API key issue or no internet. Try refresh.";
+      document.getElementById("ounceUSD").innerText = "Gold per Ounce (USD): N/A";
+    }
+  }
+
+  loadGoldPrice();
+  setInterval(loadGoldPrice, 60000); // Har 1 min update
+  </script>
+
+</body>
+</html>
