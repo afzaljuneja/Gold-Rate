@@ -14,11 +14,23 @@
       text-align: center;
     }
     .logo-container { margin: 20px 0; }
-    .star { font-size: 5em; color: #ffd700; margin: 0; }
-    .as { font-size: 2.5em; color: #ffd700; margin: -20px 0 0 0; }
-    h1 { color: #00d4ff; font-size: 2.2em; margin: 10px 0; }
-    .arabic { font-size: 1.9em; color: #00d4ff; margin: 5px 0; }
-    .insta { font-size: 1.4em; color: #00d4ff; margin: 10px 0; }
+    .logo-img {
+      width: 180px; /* Bada aur HD feel */
+      height: auto;
+      border-radius: 50%;
+      border: 4px solid #ffd700;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+      margin-bottom: 10px;
+    }
+    h1 { color: #00d4ff; font-size: 2.4em; margin: 10px 0; }
+    .arabic {
+      font-size: 2.5em; /* Thoda bada kiya */
+      color: #00d4ff;
+      margin: 8px 0;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .insta { font-size: 1.5em; color: #00d4ff; margin: 15px 0; }
     .whatsapp {
       background: #25D366;
       color: #000;
@@ -69,13 +81,13 @@
 <body>
 
   <div class="logo-container">
-    <div class="star">★</div>
-    <div class="as">AS</div>
+    <!-- Real HD logo daal dena (Instagram se profile pic ka direct link) -->
+    <img src="https://via.placeholder.com/200x200/ffd700/0f3d6e?text=Sattardina+Logo" alt="Sattardina Jewellery Logo" class="logo-img">
+    <!-- Ya actual link: https://instagram.f... (apne Insta se download kar ke host kar) -->
   </div>
 
   <h1>SATTARDINA JEWELLERY</h1>
   <div class="arabic">مجوهرات ستاردينا</div>
-  <div class="arabic">مجوهریات ستاردینا</div>
 
   <div class="insta">@sattardina_jewellery</div>
 
@@ -103,7 +115,7 @@
   <p id="error"></p>
 
   <script>
-    const API_KEY = "goldapi-1xyh19mkymkg2y-io"; // Apna real key yahan daal dena
+    const API_KEY = "goldapi-1xyh19mkymkg2y-io"; // Apna key yahan
 
     const refreshBtn = document.getElementById("refreshBtn");
     let isLoading = false;
@@ -120,26 +132,24 @@
       try {
         const res = await fetch("https://www.goldapi.io/api/XAU/USD", {
           method: "GET",
-          headers: {
-            "x-access-token": API_KEY
-          }
+          headers: { "x-access-token": API_KEY }
         });
 
         if (!res.ok) {
           const errText = await res.text();
-          throw new Error(`API error: ${res.status} - ${errText || 'Invalid key or quota exceeded'}`);
+          throw new Error(`API error: ${res.status} - ${errText || 'Invalid key or quota'}`);
         }
 
         const data = await res.json();
 
         if (!data.price || isNaN(data.price)) {
-          throw new Error("No valid price received from API");
+          throw new Error("No valid price received");
         }
 
         const ounceUSD = data.price;
         document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
 
-        // Custom formula (Oman/Muscat local adjustment)
+        // Custom formula
         const gold24gm = (ounceUSD * 1.4485 + 20) / 116;
 
         const gold22gm = gold24gm * 0.920;
@@ -167,7 +177,7 @@
 
       } catch (err) {
         console.error(err);
-        errorEl.innerText = "Error loading prices: " + err.message + " (Check API key or internet)";
+        errorEl.innerText = "Error: " + err.message + " (Check API/internet)";
         document.getElementById("ounceUSD").innerText = "Gold per Ounce (USD): Error";
       } finally {
         isLoading = false;
@@ -176,13 +186,13 @@
       }
     }
 
-    // Page load pe pehli baar call
+    // Sirf page load pe ek baar
     window.addEventListener('load', loadGoldPrice);
 
-    // Refresh button click pe call
+    // Refresh button se
     refreshBtn.addEventListener('click', loadGoldPrice);
 
-    // Optional: Auto-refresh har 10 minute mein (600000 ms)
+    // Auto-refresh band hai (comment out)
     // setInterval(loadGoldPrice, 600000);
   </script>
 
