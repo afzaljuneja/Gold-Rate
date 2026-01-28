@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Gold Rate</title>
+</head>
+<body>
+
+<h2>Live Gold Price (per gram)</h2>
+
+<p>22K Gold: <span id="g22">Loading...</span></p>
+<p>21K Gold: <span id="g21">Loading...</span></p>
+<p>18K Gold: <span id="g18">Loading...</span></p>
+
+<p id="time"></p>
+
+<script>
+function loadGoldPrice() {
+  let gold24 = 70; // Demo price
+
+  document.getElementById("g22").innerText = (gold24 * 0.916).toFixed(2) + " OMR";
+  document.getElementById("g21").innerText = (gold24 * 0.875).toFixed(2) + " OMR";
+  document.getElementById("g18").innerText = (gold24 * 0.75).toFixed(2) + " OMR";
+
+  document.getElementById("time").innerText =
+    "Last updated: " + new Date().toLocaleTimeString();
+}
+
+loadGoldPrice();
+setInterval(loadGoldPrice, 60000);
+</script>
+
+</body>
+</html>
