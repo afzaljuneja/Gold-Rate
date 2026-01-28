@@ -1,43 +1,78 @@
-<script>
-const API_KEY = "goldapi-hs19mkgllgry-io";  // yeh tera key hai, agar galat to sahi daal dena
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Gold Rate OMR - Muscat</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 30px; background: #fff; color: #333; }
+    h1 { color: #b8860b; margin-bottom: 20px; }
+    .rate-box { font-size: 1.8em; margin: 15px 0; font-weight: bold; }
+    .karat { color: #d4af37; }
+    #time { font-size: 1em; color: #666; margin-top: 30px; }
+    #error { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Live Gold Rates in OMR</h1>
+  
+  <div class="rate-box"><span class="karat">22K:</span> <span id="g22">Loading...</span></div>
+  <div class="rate-box"><span class="karat">21K:</span> <span id="g21">Loading...</span></div>
+  <div class="rate-box"><span class="karat">18K:</span> <span id="g18">Loading...</span></div>
+  
+  <p id="time">Fetching latest price...</p>
+  <p id="error"></p>
 
-async function loadGoldPrice() {
-  try {
-    const res = await fetch("https://www.goldapi.io/api/XAU/USD", {
-      headers: {
-        "access_token": API_KEY
+  <script>
+  const API_KEY = "goldapi-hs19mkgllgry-io";  // Agar yeh invalid hai, https://www.goldapi.io/ se naya free key le (dashboard mein "API Token" ya "access token")
+
+  async function loadGoldPrice() {
+    const errorEl = document.getElementById("error");
+    errorEl.innerText = "";  // clear previous error
+
+    try {
+      const res = await fetch("https://www.goldapi.io/api/XAU/USD", {
+        headers: {
+          "access_token": API_KEY  // GoldAPI docs ke hisab se yeh header sahi hai (x-access-token purana ho sakta hai)
+        }
+      });
+
+      if (!res.ok) {
+        throw new Error(`API error: ${res.status} - Check your API key`);
       }
-    });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    let ounceUSD = data.price;
+      if (!data.price) {
+        throw new Error("No price data in response");
+      }
 
-    // TUMHARA FORMULA (24K) bilkul same rakha
-    let gold24 = (ounceUSD * 1.4485 + 20) / 116.64;
+      let ounceUSD = data.price;
 
-    // Jewellery karat prices
-    let gold22 = gold24 * 0.920;
-    let gold21 = gold24 * 0.879;
-    let gold18 = gold24 * 0.754;
+      // TERA ORIGINAL FORMULA - bilkul unchanged
+      let gold24 = (ounceUSD * 1.4485 + 20) / 116.64;
 
-    document.getElementById("g22").innerText = gold22.toFixed(2) + " OMR";
-    document.getElementById("g21").innerText = gold21.toFixed(2) + " OMR";
-    document.getElementById("g18").innerText = gold18.toFixed(2) + " OMR";
+      let gold22 = gold24 * 0.920;
+      let gold21 = gold24 * 0.879;
+      let gold18 = gold24 * 0.754;
 
-    document.getElementById("time").innerText = "Last updated: " + new Date().toLocaleString();
+      document.getElementById("g22").innerText = gold22.toFixed(2) + " OMR";
+      document.getElementById("g21").innerText = gold21.toFixed(2) + " OMR";
+      document.getElementById("g18").innerText = gold18.toFixed(2) + " OMR";
 
-  } catch (err) {
-    console.log(err);
-    document.getElementById("time").innerText = "Price load error";
+      document.getElementById("time").innerText = "Last updated: " + new Date().toLocaleString("en-US", { timeZone: "Asia/Muscat" });
+
+    } catch (err) {
+      console.error("Gold API Error:", err);
+      errorEl.innerText = "Error: " + err.message + " (Check console F12 for details)";
+      document.getElementById("g22").innerText = "N/A";
+      document.getElementById("g21").innerText = "N/A";
+      document.getElementById("g18").innerText = "N/A";
+    }
   }
-}
 
-loadGoldPrice();
-setInterval(loadGoldPrice, 60000);
-</script>
-
-    
-
+  loadGoldPrice();  // First load
+  setInterval(loadGoldPrice, 60000);  // Update every 60 seconds
+  </script>
 </body>
 </html>
