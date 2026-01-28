@@ -12,36 +12,13 @@
       color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
-      direction: ltr;
     }
-    .logo-container {
-      margin: 20px 0;
-    }
-    .star {
-      font-size: 5em;
-      color: #ffd700;
-      margin: 0;
-    }
-    .as {
-      font-size: 2.5em;
-      color: #ffd700;
-      margin: -20px 0 0 0;
-    }
-    h1 {
-      color: #00d4ff;
-      font-size: 2.2em;
-      margin: 10px 0;
-    }
-    .arabic {
-      font-size: 1.9em;
-      color: #00d4ff;
-      margin: 5px 0;
-    }
-    .insta {
-      font-size: 1.4em;
-      color: #00d4ff;
-      margin: 10px 0;
-    }
+    .logo-container { margin: 20px 0; }
+    .star { font-size: 5em; color: #ffd700; margin: 0; }
+    .as { font-size: 2.5em; color: #ffd700; margin: -20px 0 0 0; }
+    h1 { color: #00d4ff; font-size: 2.2em; margin: 10px 0; }
+    .arabic { font-size: 1.9em; color: #00d4ff; margin: 5px 0; }
+    .insta { font-size: 1.4em; color: #00d4ff; margin: 10px 0; }
     .whatsapp {
       background: #25D366;
       color: #000;
@@ -50,24 +27,12 @@
       padding: 15px;
       margin: 25px auto;
       border-radius: 15px;
-      display: inline-block;
       width: 90%;
       max-width: 400px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
-    .buy-msg {
-      color: #ffcc00;
-      font-size: 1.5em;
-      margin: 20px 0;
-      font-weight: bold;
-      line-height: 1.4;
-    }
-    #ounceUSD {
-      font-size: 1.7em;
-      color: #00ff7f;
-      margin: 25px 0;
-      font-weight: bold;
-    }
+    .buy-msg { color: #ffcc00; font-size: 1.5em; margin: 20px 0; font-weight: bold; line-height: 1.4; }
+    #ounceUSD { font-size: 1.7em; color: #00ff7f; margin: 25px 0; font-weight: bold; }
     table {
       width: 100%;
       max-width: 500px;
@@ -78,30 +43,11 @@
       border-radius: 10px;
       overflow: hidden;
     }
-    th, td {
-      padding: 14px;
-      border: 1px solid #004080;
-      text-align: center;
-      font-size: 1.3em;
-    }
-    th {
-      background: #0a3d5e;
-      color: #00d4ff;
-    }
-    .karat {
-      color: #ffd700;
-      font-weight: bold;
-    }
-    .updated {
-      color: #ddd;
-      font-size: 1.1em;
-      margin-top: 30px;
-    }
-    #error {
-      color: #ffcc00;
-      font-weight: bold;
-      margin: 10px 0;
-    }
+    th, td { padding: 14px; border: 1px solid #004080; text-align: center; font-size: 1.3em; }
+    th { background: #0a3d5e; color: #00d4ff; }
+    .karat { color: #ffd700; font-weight: bold; }
+    .updated { color: #ddd; font-size: 1.1em; margin-top: 30px; }
+    #error { color: #ffcc00; font-weight: bold; margin: 10px 0; }
   </style>
 </head>
 <body>
@@ -133,97 +79,57 @@
       <th>Unit / وحدة</th>
       <th>Price OMR / سعر ر.ع</th>
     </tr>
-    <tr>
-      <td class="karat">24K</td>
-      <td>1 gm / جرام</td>
-      <td id="g24">Loading...</td>
-    </tr>
-    <tr>
-      <td class="karat">22K</td>
-      <td>1 gm / جرام</td>
-      <td id="g22">Loading...</td>
-    </tr>
-    <tr>
-      <td class="karat">21K</td>
-      <td>1 gm / جرام</td>
-      <td id="g21gm">Loading...</td>
-    </tr>
-    <tr>
-      <td class="karat">18K</td>
-      <td>1 gm / جرام</td>
-      <td id="g18">Loading...</td>
-    </tr>
-    <tr>
-      <td class="karat">21K</td>
-      <td>1 Tola / تولة (11.664 gm)</td>
-      <td id="tola21">Loading...</td>
-    </tr>
-    <tr>
-      <td class="karat">21K</td>
-      <td>1 Ginni / جنية (~8 gm)</td>
-      <td id="ginni21">Loading...</td>
-    </tr>
+    <tr><td class="karat">24K</td><td>1 gm / جرام</td><td id="g24">Loading...</td></tr>
+    <tr><td class="karat">22K</td><td>1 gm / جرام</td><td id="g22">Loading...</td></tr>
+    <tr><td class="karat">21K</td><td>1 gm / جرام</td><td id="g21gm">Loading...</td></tr>
+    <tr><td class="karat">18K</td><td>1 gm / جرام</td><td id="g18">Loading...</td></tr>
+    <tr><td class="karat">21K</td><td>1 Tola / تولة (11.664 gm)</td><td id="tola21">Loading...</td></tr>
+    <tr><td class="karat">21K</td><td>1 Ginni / جنية (~8 gm)</td><td id="ginni21">Loading...</td></tr>
   </table>
 
   <p class="updated" id="time">Last updated: Loading... (Muscat Time)</p>
   <p id="error"></p>
 
   <script>
-  const API_KEY = "YOUR_METALPRICEAPI_KEY_HERE";  // ← yahan apna naya key paste kar (jo tune liya)
+  const API_KEY = "goldapi-1xyh19mkymkg2y-io";
 
   async function loadGoldPrice() {
     document.getElementById("error").innerText = "";
 
     try {
-      const url = `https://api.metalpriceapi.com/v1/latest?api_key=${API_KEY}&base=USD&currencies=XAU`;
-      const res = await fetch(url);
+      const res = await fetch("https://www.goldapi.io/api/XAU/USD", {
+        method: "GET",
+        headers: {
+          "x-access-token": API_KEY
+        }
+      });
 
       if (!res.ok) {
-        throw new Error(`API error: ${res.status} - Check key or quota`);
+        const errText = await res.text();
+        throw new Error(`API error: ${res.status} - ${errText || 'Invalid key/quota'}`);
       }
 
       const data = await res.json();
 
-      if (!data.success || !data.rates || !data.rates.USDXAU) {
-        throw new Error("No valid gold price data");
+      if (!data.price || isNaN(data.price)) {
+        throw new Error("No valid price in response");
       }
 
-      let ounceUSD = data.rates.USDXAU;  // Yeh gold price per ounce USD mein hai
+      let ounceUSD = data.price;
       document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
 
-      // Tera original formula for 24K OMR per gm
+      // Tera formula for 24K OMR per gm
       let gold24gm = (ounceUSD * 1.4485 + 20) / 116;
 
       let gold22gm = gold24gm * 0.920;
       let gold21gm = gold24gm * 0.879;
       let gold18gm = gold24gm * 0.754;
 
-      // 21K Tola exact 11.664 gm
-      let tola21 = gold21gm * 11.664;
-
-      // Ginni approx 8 gm
+      let tola21 = gold21gm * 11.664; // exact 11.664 gm
       let ginni21 = gold21gm * 8;
 
       document.getElementById("g24").innerText = gold24gm.toFixed(3);
       document.getElementById("g22").innerText = gold22gm.toFixed(3);
       document.getElementById("g21gm").innerText = gold21gm.toFixed(3);
       document.getElementById("g18").innerText = gold18gm.toFixed(3);
-      document.getElementById("tola21").innerText = tola21.toFixed(3);
-      document.getElementById("ginni21").innerText = ginni21.toFixed(3);
-
-      document.getElementById("time").innerText = 
-        "Last updated: " + new Date().toLocaleString("en-US", { timeZone: "Asia/Muscat", dateStyle: "medium", timeStyle: "short" }) + " (Muscat Time)";
-
-    } catch (err) {
-      console.error("Error:", err);
-      document.getElementById("error").innerText = "Error loading prices – Check API key, quota, or internet. Try refresh or new key.";
-      document.getElementById("ounceUSD").innerText = "Gold per Ounce (USD): N/A";
-    }
-  }
-
-  loadGoldPrice();
-  setInterval(loadGoldPrice, 60000); // Har 1 min update
-  </script>
-
-</body>
-</html>
+      document.getElementById("tola21").innerText = to
