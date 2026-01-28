@@ -24,27 +24,27 @@
   <p id="error"></p>
 
   <script>
-  const API_KEY = "goldapi-1xyh19mkymkg2y-io";  // Agar yeh invalid hai, https://www.goldapi.io/ se naya free key le (dashboard mein "API Token" ya "access token")
+  const API_KEY = "goldapi-1xyh19mkymkg2y-io";  // Naya key yahan daala hai
 
   async function loadGoldPrice() {
     const errorEl = document.getElementById("error");
-    errorEl.innerText = "";  // clear previous error
+    errorEl.innerText = "";  // Clear old error
 
     try {
       const res = await fetch("https://www.goldapi.io/api/XAU/USD", {
         headers: {
-          "access_token": API_KEY  // GoldAPI docs ke hisab se yeh header sahi hai (x-access-token purana ho sakta hai)
+          "x-access-token": API_KEY  // Yeh header sahi hai (sab examples mein yahi)
         }
       });
 
       if (!res.ok) {
-        throw new Error(`API error: ${res.status} - Check your API key`);
+        throw new Error(`API error: ${res.status} - ${res.status === 403 ? 'Invalid or expired API key' : 'Check connection/key'}`);
       }
 
       const data = await res.json();
 
-      if (!data.price) {
-        throw new Error("No price data in response");
+      if (!data.price || isNaN(data.price)) {
+        throw new Error("No valid price data in response");
       }
 
       let ounceUSD = data.price;
@@ -64,15 +64,15 @@
 
     } catch (err) {
       console.error("Gold API Error:", err);
-      errorEl.innerText = "Error: " + err.message + " (Check console F12 for details)";
+      errorEl.innerText = "Error: " + err.message + " (F12 console check kar)";
       document.getElementById("g22").innerText = "N/A";
       document.getElementById("g21").innerText = "N/A";
       document.getElementById("g18").innerText = "N/A";
     }
   }
 
-  loadGoldPrice();  // First load
-  setInterval(loadGoldPrice, 60000);  // Update every 60 seconds
+  loadGoldPrice();                    // Pehli baar call
+  setInterval(loadGoldPrice, 60000);  // Har 1 min update
   </script>
 </body>
 </html>
