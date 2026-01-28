@@ -8,11 +8,10 @@
     body {
       margin: 0;
       padding: 20px;
-      background: #0f3d6e; /* Light blue theme background */
+      background: #0f3d6e; /* Light blue theme */
       color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
-      direction: ltr;
     }
     .logo-container { margin: 20px 0; }
     .star { font-size: 5em; color: #ffd700; margin: 0; }
@@ -32,7 +31,23 @@
       max-width: 400px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
-    .buy-msg { color: #ffcc00; font-size: 1.5em; margin: 20px 0; font-weight: bold; line-height: 1.4; }
+    .refresh-btn {
+      background: #00d4ff;
+      color: #000;
+      font-size: 1.6em;
+      font-weight: bold;
+      padding: 15px;
+      margin: 30px auto 20px;
+      border: none;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: background 0.3s;
+    }
+    .refresh-btn:hover { background: #00b7d4; }
+    .refresh-btn:disabled { background: #666; cursor: not-allowed; }
     #ounceUSD { font-size: 1.7em; color: #00ff7f; margin: 25px 0; font-weight: bold; }
     table {
       width: 100%;
@@ -49,19 +64,6 @@
     .karat { color: #ffd700; font-weight: bold; }
     .updated { color: #ddd; font-size: 1.1em; margin-top: 30px; }
     #error { color: #ffcc00; font-weight: bold; margin: 10px 0; }
-    #refreshBtn {
-      background: #00d4ff;
-      color: #000;
-      font-size: 1.4em;
-      font-weight: bold;
-      padding: 12px 30px;
-      border: none;
-      border-radius: 10px;
-      margin-top: 20px;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    }
-    #refreshBtn:hover { background: #00bfff; }
   </style>
 </head>
 <body>
@@ -79,10 +81,110 @@
 
   <div class="whatsapp">WHATSAPP: 95449739<br>واتساب: 95449739</div>
 
-  <div class="buy-msg">
-    WE BUY GOLD & SILVER!<br>
-    لديك ذهب أو فضة؟ نشتري بأفضل الأسعار!<br>
-    Contact now for best rates
-  </div>
+  <div id="ounceUSD">Gold per Ounce (USD): Loading...</div>
 
-  <div id="ounceUSD">Gold per Ounce (USD
+  <table>
+    <tr>
+      <th>Karat / كarat</th>
+      <th>Unit / وحدة</th>
+      <th>Price OMR / سعر ر.ع</th>
+    </tr>
+    <tr><td class="karat">24K</td><td>1 gm / جرام</td><td id="g24">Loading...</td></tr>
+    <tr><td class="karat">22K</td><td>1 gm / جرام</td><td id="g22">Loading...</td></tr>
+    <tr><td class="karat">21K</td><td>1 gm / جرام</td><td id="g21gm">Loading...</td></tr>
+    <tr><td class="karat">18K</td><td>1 gm / جرام</td><td id="g18">Loading...</td></tr>
+    <tr><td class="karat">21K</td><td>1 Tola / تولة (11.664 gm)</td><td id="tola21">Loading...</td></tr>
+    <tr><td class="karat">21K</td><td>1 Ginni / جنية (~8 gm)</td><td id="ginni21">Loading...</td></tr>
+  </table>
+
+  <button class="refresh-btn" id="refreshBtn">Refresh Rates</button>
+
+  <p class="updated" id="time">Last updated: Loading... (Muscat Time)</p>
+  <p id="error"></p>
+
+  <script>
+    const API_KEY = "goldapi-1xyh19mkymkg2y-io"; // Apna real key yahan daal dena
+
+    const refreshBtn = document.getElementById("refreshBtn");
+    let isLoading = false;
+
+    async function loadGoldPrice() {
+      const errorEl = document.getElementById("error");
+      errorEl.innerText = "";
+
+      if (isLoading) return;
+      isLoading = true;
+      refreshBtn.disabled = true;
+      refreshBtn.innerText = "Refreshing...";
+
+      try {
+        const res = await fetch("https://www.goldapi.io/api/XAU/USD", {
+          method: "GET",
+          headers: {
+            "x-access-token": API_KEY
+          }
+        });
+
+        if (!res.ok) {
+          const errText = await res.text();
+          throw new Error(`API error: ${res.status} - ${errText || 'Invalid key or quota exceeded'}`);
+        }
+
+        const data = await res.json();
+
+        if (!data.price || isNaN(data.price)) {
+          throw new Error("No valid price received from API");
+        }
+
+        const ounceUSD = data.price;
+        document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
+
+        // Custom formula (Oman/Muscat local adjustment)
+        const gold24gm = (ounceUSD * 1.4485 + 20) / 116;
+
+        const gold22gm = gold24gm * 0.920;
+        const gold21gm = gold24gm * 0.879;
+        const gold18gm = gold24gm * 0.754;
+
+        const tola21 = gold21gm * 11.664;
+        const ginni21 = gold21gm * 8;
+
+        document.getElementById("g24").innerText = gold24gm.toFixed(3);
+        document.getElementById("g22").innerText = gold22gm.toFixed(3);
+        document.getElementById("g21gm").innerText = gold21gm.toFixed(3);
+        document.getElementById("g18").innerText = gold18gm.toFixed(3);
+        document.getElementById("tola21").innerText = tola21.toFixed(2);
+        document.getElementById("ginni21").innerText = ginni21.toFixed(2);
+
+        // Muscat time
+        const now = new Date();
+        const muscatTime = now.toLocaleString('en-US', {
+          timeZone: 'Asia/Muscat',
+          dateStyle: 'medium',
+          timeStyle: 'short'
+        });
+        document.getElementById("time").innerText = `Last updated: ${muscatTime} (Muscat Time)`;
+
+      } catch (err) {
+        console.error(err);
+        errorEl.innerText = "Error loading prices: " + err.message + " (Check API key or internet)";
+        document.getElementById("ounceUSD").innerText = "Gold per Ounce (USD): Error";
+      } finally {
+        isLoading = false;
+        refreshBtn.disabled = false;
+        refreshBtn.innerText = "Refresh Rates";
+      }
+    }
+
+    // Page load pe pehli baar call
+    window.addEventListener('load', loadGoldPrice);
+
+    // Refresh button click pe call
+    refreshBtn.addEventListener('click', loadGoldPrice);
+
+    // Optional: Auto-refresh har 10 minute mein (600000 ms)
+    // setInterval(loadGoldPrice, 600000);
+  </script>
+
+</body>
+</html>
