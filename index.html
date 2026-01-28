@@ -1,13 +1,11 @@
 <script>
-const API_KEY = "goldapi-h1s19mkylgyry-io";
+const API_KEY = "goldapi-hs19mkgllgry-io";  // yeh tera key hai, agar galat to sahi daal dena
 
 async function loadGoldPrice() {
   try {
-    // Gold ounce price in USD
     const res = await fetch("https://www.goldapi.io/api/XAU/USD", {
       headers: {
-        "x-access-token": API_KEY,
-        "Content-Type": "application/json"
+        "access_token": API_KEY
       }
     });
 
@@ -15,30 +13,23 @@ async function loadGoldPrice() {
 
     let ounceUSD = data.price;
 
-    // 👉 TUMHARA FORMULA (24K)
-    let gold24 =
-      (ounceUSD * 1.4485 + 20) / 116.64;
+    // TUMHARA FORMULA (24K) bilkul same rakha
+    let gold24 = (ounceUSD * 1.4485 + 20) / 116.64;
 
     // Jewellery karat prices
     let gold22 = gold24 * 0.920;
     let gold21 = gold24 * 0.879;
     let gold18 = gold24 * 0.754;
 
-    document.getElementById("g22").innerText =
-      gold22.toFixed(2) + " OMR";
+    document.getElementById("g22").innerText = gold22.toFixed(2) + " OMR";
+    document.getElementById("g21").innerText = gold21.toFixed(2) + " OMR";
+    document.getElementById("g18").innerText = gold18.toFixed(2) + " OMR";
 
-    document.getElementById("g21").innerText =
-      gold21.toFixed(2) + " OMR";
-
-    document.getElementById("g18").innerText =
-      gold18.toFixed(2) + " OMR";
-
-    document.getElementById("time").innerText =
-      "Last updated: " + new Date().toLocaleTimeString();
+    document.getElementById("time").innerText = "Last updated: " + new Date().toLocaleString();
 
   } catch (err) {
-    document.getElementById("time").innerText =
-      "Price load error";
+    console.log(err);
+    document.getElementById("time").innerText = "Price load error";
   }
 }
 
