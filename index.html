@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Live Gold Rate</title>
-</head>
-<body>
-
-<h2>Live Gold Price (per gram)</h2>
-
-<p>22K Gold: <span id="g22">Loading...</span></p>
-<p>21K Gold: <span id="g21">Loading...</span></p>
-<p>18K Gold: <span id="g18">Loading...</span></p>
-
-<p id="time"></p>
-
 <script>
 const API_KEY = "goldapi-h1s19mkylgyry-io";
 
 async function loadGoldPrice() {
   try {
-    const res = await fetch("https://www.goldapi.io/api/XAU/OMR", {
+    // Gold ounce price in USD
+    const res = await fetch("https://www.goldapi.io/api/XAU/USD", {
       headers: {
         "x-access-token": API_KEY,
         "Content-Type": "application/json"
@@ -27,29 +13,40 @@ async function loadGoldPrice() {
 
     const data = await res.json();
 
-    // Gold price per ounce → per gram
-    let gold24 = data.price / 31.1035;
+    let ounceUSD = data.price;
+
+    // 👉 TUMHARA FORMULA (24K)
+    let gold24 =
+      (ounceUSD * 1.4485 + 20) / 116.64;
+
+    // Jewellery karat prices
+    let gold22 = gold24 * 0.920;
+    let gold21 = gold24 * 0.879;
+    let gold18 = gold24 * 0.754;
 
     document.getElementById("g22").innerText =
-      (gold24 * 0.916).toFixed(2) + " OMR";
+      gold22.toFixed(2) + " OMR";
 
     document.getElementById("g21").innerText =
-      (gold24 * 0.875).toFixed(2) + " OMR";
+      gold21.toFixed(2) + " OMR";
 
     document.getElementById("g18").innerText =
-      (gold24 * 0.75).toFixed(2) + " OMR";
+      gold18.toFixed(2) + " OMR";
 
     document.getElementById("time").innerText =
       "Last updated: " + new Date().toLocaleTimeString();
 
-  } catch (e) {
-    document.getElementById("time").innerText = "Error loading price";
+  } catch (err) {
+    document.getElementById("time").innerText =
+      "Price load error";
   }
 }
 
 loadGoldPrice();
 setInterval(loadGoldPrice, 60000);
 </script>
+
+    
 
 </body>
 </html>
