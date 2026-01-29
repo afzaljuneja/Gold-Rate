@@ -8,7 +8,7 @@
     body {
       margin: 0;
       padding: 20px;
-      background: #001122; /* Dark navy blue – logo ke background se match karega */
+      background: #001122; /* Logo ke blue background se match – deep navy blue */
       color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
@@ -18,15 +18,15 @@
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      border: 5px solid #ffd700; /* Golden border */
-      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3); /* Soft gold glow */
+      border: 5px solid #ffd700;
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
       object-fit: contain;
-      background: #001122; /* Seamless blend with body */
+      background: #001122; /* Same color for perfect blend */
     }
     h1 { color: #00d4ff; font-size: 2.5em; margin: 10px 0; }
     .arabic {
       font-size: 2.6em;
-      color: #ffd700; /* Gold for Arabic text */
+      color: #ffd700;
       margin: 10px 0;
       font-weight: bold;
       letter-spacing: 1px;
@@ -87,13 +87,13 @@
       max-width: 500px;
       margin: 20px auto;
       border-collapse: collapse;
-      background: #001233; /* Slightly lighter for table */
+      background: #001f3a; /* Thoda lighter blue shade table ke liye contrast */
       border: 2px solid #00d4ff;
       border-radius: 10px;
       overflow: hidden;
     }
     th, td { padding: 14px; border: 1px solid #004080; text-align: center; font-size: 1.3em; }
-    th { background: #000a1f; color: #00d4ff; }
+    th { background: #000d24; color: #00d4ff; }
     .karat { color: #ffd700; font-weight: bold; }
     .updated { color: #ccc; font-size: 1.1em; margin-top: 30px; }
     #error { color: #ffcc00; font-weight: bold; margin: 10px 0; }
@@ -139,7 +139,7 @@
   <p id="error"></p>
 
   <script>
-    const API_KEY = "goldapi-1xyh19mkymkg2y-io"; // Apna real API key yahan daal dena
+    const API_KEY = "goldapi-1xyh19mkymkg2y-io"; // ← Apna real key daal dena
 
     const refreshBtn = document.getElementById("refreshBtn");
     let isLoading = false;
@@ -181,26 +181,11 @@
         document.getElementById("tola21").innerText = tola21.toFixed(2);
 
         const now = new Date();
-        const muscatTime = now.toLocaleString('en-US', {
-          timeZone: 'Asia/Muscat',
-          dateStyle: 'medium',
-          timeStyle: 'short'
-        });
+        const muscatTime = now.toLocaleString('en-US', { timeZone: 'Asia/Muscat', dateStyle: 'medium', timeStyle: 'short' });
         document.getElementById("time").innerText = `Last updated: ${muscatTime} (Muscat Time)`;
 
       } catch (err) {
-        errorEl.innerText = "Error loading prices: " + err.message + " (API key ya internet check karo)";
-        document.getElementById("ounceUSD").innerText = "Gold per Ounce (USD): Error";
+        errorEl.innerText = "Error: " + err.message;
+        document.getElementById("ounceUSD").innerText = "Error";
       } finally {
-        isLoading = false;
-        refreshBtn.disabled = false;
-        refreshBtn.innerText = "Refresh Rates";
-      }
-    }
-
-    window.addEventListener('load', loadGoldPrice);
-    refreshBtn.addEventListener('click', loadGoldPrice);
-  </script>
-
-</body>
-</html>
+        isLoading = false
