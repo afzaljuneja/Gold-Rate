@@ -152,21 +152,15 @@
       refreshBtn.innerText = "Refreshing...";
 
       try {
-        // Kitco live gold page
-        const res = await fetch("https://www.kitco.com/charts/livegold.html");
+        // Free keyless API (metalpriceapi free tier - low usage mein chal jaata hai)
+        const res = await fetch("https://api.metalpriceapi.com/v1/latest?base=USD&currencies=XAU");
 
-        if (!res.ok) throw new Error("Kitco page unavailable");
+        if (!res.ok) throw new Error("API unavailable");
 
-        const text = await res.text();
+        const data = await res.json();
+        const ounceUSD = data.rates?.XAU;
 
-        // Improved regex to match current price (Kitco uses different classes sometimes)
-        const priceMatch = text.match(/<span class="quote[^>]*>([\d,.]+)<\/span>/i) ||
-                           text.match(/Bid[^>]*>[\s]*([\d,.]+)/i) ||
-                           text.match(/([\d,]+\.\d{2})\s*USD/i);
-
-        const ounceUSD = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
-
-        if (!ounceUSD || isNaN(ounceUSD)) throw new Error("No valid price found on Kitco");
+        if (!ounceUSD || isNaN(ounceUSD)) throw new Error("No valid price");
 
         document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
 
@@ -192,7 +186,7 @@
 
       } catch (err) {
         console.error(err);
-        errorEl.innerText = "Kitco se price load nahi ho raha. Thodi der baad refresh try karo ya internet check karo.";
+        errorEl.innerText = "API busy hai ya limit khatam. Thodi der baad refresh try karo ya internet check karo.";
         document.getElementById("ounceUSD").innerText = "Gold per Ounce (USD): Error";
       } finally {
         isLoading = false;
