@@ -152,21 +152,15 @@
       refreshBtn.innerText = "Refreshing...";
 
       try {
-        // Goldprice.org se live gold price fetch (no key needed)
-        const res = await fetch("https://goldprice.org/spot-gold-price.html");
+        // CoinGecko free API (no key needed, live gold price)
+        const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=gold&vs_currencies=usd");
 
-        if (!res.ok) throw new Error("Goldprice.org unavailable");
+        if (!res.ok) throw new Error("API unavailable");
 
-        const text = await res.text();
+        const data = await res.json();
+        const ounceUSD = data.gold?.usd;
 
-        // Price nikaalne ka regex (Bid price ya current price)
-        const priceMatch = text.match(/Bid:\s*\$?([\d,]+\.\d{2})/i) ||
-                           text.match(/([\d,]+\.\d{2})\s*USD/i) ||
-                           text.match(/Current Gold Price.*\$?([\d,]+\.\d{2})/i);
-
-        const ounceUSD = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
-
-        if (!ounceUSD || isNaN(ounceUSD)) throw new Error("No valid price found");
+        if (!ounceUSD || isNaN(ounceUSD)) throw new Error("No valid price");
 
         document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
 
@@ -192,7 +186,7 @@
 
       } catch (err) {
         console.error(err);
-        errorEl.innerText = "Price load nahi ho raha. Thodi der baad refresh karo ya internet check karo.";
+        errorEl.innerText = "API busy hai. Thodi der baad refresh karo ya internet check karo.";
         document.getElementById("ounceUSD").innerText = "Gold per Ounce (USD): Error";
       } finally {
         isLoading = false;
@@ -204,7 +198,7 @@
     window.addEventListener('load', loadGoldPrice);
     refreshBtn.addEventListener('click', loadGoldPrice);
 
-    // Auto refresh har 5 min mein
+    // Auto refresh har 5 min mein (live update ke liye)
     setInterval(loadGoldPrice, 5 * 60 * 1000);
   </script>
 
