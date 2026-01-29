@@ -5,20 +5,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Live Gold Rates - SATTARDINA JEWELLERY</title>
   <style>
-    body { margin: 0; padding: 20px; background: #000833; color: #fff; font-family: Arial, sans-serif; text-align: center; }
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #000833;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
     .logo-container { margin: 20px 0; }
-    .logo-img { width: 220px; height: 220px; border-radius: 50%; border: 5px solid #ffd700; box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3); object-fit: contain; background: #000833; }
+    .logo-img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 5px solid #ffd700;
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+      object-fit: contain;
+      background: #000833;
+    }
     h1 { color: #00d4ff; font-size: 2.5em; margin: 10px 0; }
-    .arabic { font-size: 2.6em; color: #ffd700; margin: 10px 0; font-weight: bold; letter-spacing: 1px; }
-    .social { display: flex; justify-content: center; align-items: center; gap: 12px; margin: 20px 0; font-size: 1.6em; }
-    .social img { width: 45px; height: 45px; vertical-align: middle; }
-    .whatsapp-container { background: #25D366; color: #000; font-size: 1.8em; font-weight: bold; padding: 15px; margin: 25px auto; border-radius: 15px; width: 90%; max-width: 400px; box-shadow: 0 4px 12px rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; gap: 15px; }
-    .whatsapp-container img { width: 55px; height: 55px; }
-    .refresh-btn { background: #00d4ff; color: #000; font-size: 1.6em; font-weight: bold; padding: 15px; margin: 30px auto 20px; border: none; border-radius: 15px; width: 90%; max-width: 400px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,212,255,0.5); transition: background 0.3s; }
+    .arabic {
+      font-size: 2.6em;
+      color: #ffd700;
+      margin: 10px 0;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .social {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      font-size: 1.6em;
+    }
+    .social img {
+      width: 45px;
+      height: 45px;
+      vertical-align: middle;
+    }
+    .whatsapp-container {
+      background: #25D366;
+      color: #000;
+      font-size: 1.8em;
+      font-weight: bold;
+      padding: 15px;
+      margin: 25px auto;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .whatsapp-container img {
+      width: 55px;
+      height: 55px;
+    }
+    .refresh-btn {
+      background: #00d4ff;
+      color: #000;
+      font-size: 1.6em;
+      font-weight: bold;
+      padding: 15px;
+      margin: 30px auto 20px;
+      border: none;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,212,255,0.5);
+      transition: background 0.3s;
+    }
     .refresh-btn:hover { background: #00aaff; }
     .refresh-btn:disabled { background: #444; cursor: not-allowed; }
     #ounceUSD { font-size: 1.7em; color: #00ff7f; margin: 25px 0; font-weight: bold; }
-    table { width: 100%; max-width: 500px; margin: 20px auto; border-collapse: collapse; background: #001144; border: 2px solid #00d4ff; border-radius: 10px; overflow: hidden; }
+    table {
+      width: 100%;
+      max-width: 500px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: #001144;
+      border: 2px solid #00d4ff;
+      border-radius: 10px;
+      overflow: hidden;
+    }
     th, td { padding: 14px; border: 1px solid #004080; text-align: center; font-size: 1.3em; }
     th { background: #00061a; color: #00d4ff; }
     .karat { color: #ffd700; font-weight: bold; }
@@ -45,8 +118,7 @@
     WHATSAPP: 95449739
   </div>
 
-  <!-- Current real gold price (Jan 29, 2026) -->
-  <div id="ounceUSD">Gold per Ounce (USD): 5335.00 (current market)</div>
+  <div id="ounceUSD">Gold per Ounce (USD): Loading...</div>
 
   <table>
     <tr>
@@ -54,17 +126,77 @@
       <th>وحدة / Unit</th>
       <th>سعر ر.ع / Price OMR</th>
     </tr>
-    <tr><td class="karat">24K</td><td>1 gm / جرام</td><td id="g24">68.48</td></tr>
-    <tr><td class="karat">22K</td><td>1 gm / جرام</td><td id="g22">63.07</td></tr>
-    <tr><td class="karat">21K</td><td>1 gm / جرام</td><td id="g21gm">60.26</td></tr>
-    <tr><td class="karat">18K</td><td>1 gm / جرام</td><td id="g18">51.70</td></tr>
-    <tr><td class="karat">21K</td><td>1 Tola / تولة (11.664 gm)</td><td id="tola21">702.88</td></tr>
+    <tr><td class="karat">24K</td><td>1 gm / جرام</td><td id="g24">Loading...</td></tr>
+    <tr><td class="karat">22K</td><td>1 gm / جرام</td><td id="g22">Loading...</td></tr>
+    <tr><td class="karat">21K</td><td>1 gm / جرام</td><td id="g21gm">Loading...</td></tr>
+    <tr><td class="karat">18K</td><td>1 gm / جرام</td><td id="g18">Loading...</td></tr>
+    <tr><td class="karat">21K</td><td>1 Tola / تولة (11.664 gm)</td><td id="tola21">Loading...</td></tr>
   </table>
 
-  <button class="refresh-btn" id="refreshBtn" onclick="location.reload();">Refresh Page (Live Update Soon)</button>
+  <button class="refresh-btn" id="refreshBtn">Refresh Rates</button>
 
-  <p class="updated" id="time">Last updated: January 29, 2026 (Muscat Time) - approx market price</p>
-  <p id="error">Live API abhi down hai. Using current market price. Will fix soon!</p>
+  <p class="updated" id="time">Last updated: Loading... (Muscat Time)</p>
+  <p id="error"></p>
+
+  <script>
+    const refreshBtn = document.getElementById("refreshBtn");
+    let isLoading = false;
+
+    async function loadGoldPrice() {
+      const errorEl = document.getElementById("error");
+      errorEl.innerText = "";
+
+      if (isLoading) return;
+      isLoading = true;
+      refreshBtn.disabled = true;
+      refreshBtn.innerText = "Refreshing...";
+
+      try {
+        const res = await fetch("https://api.gold-api.com/v1/spot/XAU");
+
+        if (!res.ok) throw new Error("API unavailable");
+
+        const data = await res.json();
+        const ounceUSD = data.price;
+
+        if (!ounceUSD || isNaN(ounceUSD)) throw new Error("No valid price");
+
+        document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
+
+        const gold24gm = (ounceUSD * 1.4485 + 15) / 116.64;
+        const gold22gm = gold24gm * 0.921;
+        const gold21gm = gold24gm * 0.880;
+        const gold18gm = gold24gm * 0.755;
+        const tola21 = gold21gm * 11.664;
+
+        document.getElementById("g24").innerText = gold24gm.toFixed(3);
+        document.getElementById("g22").innerText = gold22gm.toFixed(3);
+        document.getElementById("g21gm").innerText = gold21gm.toFixed(3);
+        document.getElementById("g18").innerText = gold18gm.toFixed(3);
+        document.getElementById("tola21").innerText = tola21.toFixed(2);
+
+        const now = new Date();
+        const muscatTime = now.toLocaleString("en-US", {
+          timeZone: "Asia/Muscat",
+          dateStyle: "medium",
+          timeStyle: "short"
+        });
+        document.getElementById("time").innerText = `Last updated: ${muscatTime} (Muscat Time)`;
+
+      } catch (err) {
+        console.error(err);
+        errorEl.innerText = "Price load nahi ho raha. Thodi der baad refresh karo.";
+        document.getElementById("ounceUSD").innerText = "Gold per Ounce (USD): Error";
+      } finally {
+        isLoading = false;
+        refreshBtn.disabled = false;
+        refreshBtn.innerText = "Refresh Rates";
+      }
+    }
+
+    window.addEventListener('load', loadGoldPrice);
+    refreshBtn.addEventListener('click', loadGoldPrice);
+  </script>
 
 </body>
 </html>
