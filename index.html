@@ -5,93 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Live Gold Rates - SATTARDINA JEWELLERY</title>
   <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      background: #000833;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
+    body { margin: 0; padding: 20px; background: #000833; color: #fff; font-family: Arial, sans-serif; text-align: center; }
     .logo-container { margin: 20px 0; }
-    .logo-img {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      border: 5px solid #ffd700;
-      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
-      object-fit: contain;
-      background: #000833;
-    }
+    .logo-img { width: 220px; height: 220px; border-radius: 50%; border: 5px solid #ffd700; box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3); object-fit: contain; background: #000833; }
     h1 { color: #00d4ff; font-size: 2.5em; margin: 10px 0; }
-    .arabic {
-      font-size: 2.6em;
-      color: #ffd700;
-      margin: 10px 0;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .social {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      margin: 20px 0;
-      font-size: 1.6em;
-    }
-    .social img {
-      width: 45px;
-      height: 45px;
-      vertical-align: middle;
-    }
-    .whatsapp-container {
-      background: #25D366;
-      color: #000;
-      font-size: 1.8em;
-      font-weight: bold;
-      padding: 15px;
-      margin: 25px auto;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-    }
-    .whatsapp-container img {
-      width: 55px;
-      height: 55px;
-    }
-    .refresh-btn {
-      background: #00d4ff;
-      color: #000;
-      font-size: 1.6em;
-      font-weight: bold;
-      padding: 15px;
-      margin: 30px auto 20px;
-      border: none;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 400px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,212,255,0.5);
-      transition: background 0.3s;
-    }
+    .arabic { font-size: 2.6em; color: #ffd700; margin: 10px 0; font-weight: bold; letter-spacing: 1px; }
+    .social { display: flex; justify-content: center; align-items: center; gap: 12px; margin: 20px 0; font-size: 1.6em; }
+    .social img { width: 45px; height: 45px; vertical-align: middle; }
+    .whatsapp-container { background: #25D366; color: #000; font-size: 1.8em; font-weight: bold; padding: 15px; margin: 25px auto; border-radius: 15px; width: 90%; max-width: 400px; box-shadow: 0 4px 12px rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; gap: 15px; }
+    .whatsapp-container img { width: 55px; height: 55px; }
+    .refresh-btn { background: #00d4ff; color: #000; font-size: 1.6em; font-weight: bold; padding: 15px; margin: 30px auto 20px; border: none; border-radius: 15px; width: 90%; max-width: 400px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,212,255,0.5); transition: background 0.3s; }
     .refresh-btn:hover { background: #00aaff; }
     .refresh-btn:disabled { background: #444; cursor: not-allowed; }
     #ounceUSD { font-size: 1.7em; color: #00ff7f; margin: 25px 0; font-weight: bold; }
-    table {
-      width: 100%;
-      max-width: 500px;
-      margin: 20px auto;
-      border-collapse: collapse;
-      background: #001144;
-      border: 2px solid #00d4ff;
-      border-radius: 10px;
-      overflow: hidden;
-    }
+    table { width: 100%; max-width: 500px; margin: 20px auto; border-collapse: collapse; background: #001144; border: 2px solid #00d4ff; border-radius: 10px; overflow: hidden; }
     th, td { padding: 14px; border: 1px solid #004080; text-align: center; font-size: 1.3em; }
     th { background: #00061a; color: #00d4ff; }
     .karat { color: #ffd700; font-weight: bold; }
@@ -152,7 +79,7 @@
       refreshBtn.innerText = "Refreshing...";
 
       try {
-        // Goldpricez.com free live endpoint (no key)
+        // Goldpricez.com free JSON endpoint (no key needed)
         const res = await fetch("https://goldpricez.com/api/rates/currency/usd/measure/ounce");
 
         if (!res.ok) throw new Error("API unavailable");
@@ -186,7 +113,7 @@
 
       } catch (err) {
         console.error(err);
-        errorEl.innerText = "Price load nahi ho raha. Thodi der baad refresh karo.";
+        errorEl.innerText = "Price load nahi ho raha. Thodi der baad refresh karo ya internet check karo.";
         document.getElementById("ounceUSD").innerText = "Gold per Ounce (USD): Error";
       } finally {
         isLoading = false;
