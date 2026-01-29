@@ -152,15 +152,20 @@
       refreshBtn.innerText = "Refreshing...";
 
       try {
-        // Free keyless API (metalpriceapi free tier - low usage mein chal jaata hai)
-        const res = await fetch("https://api.metalpriceapi.com/v1/latest?base=USD&currencies=XAU");
+        // Goldprice.org se live gold price fetch (no key needed)
+        const res = await fetch("https://goldprice.org/spot-gold-price.html");
 
-        if (!res.ok) throw new Error("API unavailable");
+        if (!res.ok) throw new Error("Goldprice.org unavailable");
 
-        const data = await res.json();
-        const ounceUSD = data.rates?.XAU;
+        const text = await res.text();
 
-        if (!ounceUSD || isNaN(ounceUSD)) throw new Error("No valid price");
+        // Gold price nikaalne ka regex (current Bid price)
+        const priceMatch = text.match(/Bid:\s*\$([\d,]+\.\d{2})/i) ||
+                           text.match(/\$([\d,]+\.\d{2})/i);
+
+        const ounceUSD = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
+
+        if (!ounceUSD || isNaN(ounceUSD)) throw new Error("No valid price found");
 
         document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
 
@@ -186,7 +191,7 @@
 
       } catch (err) {
         console.error(err);
-        errorEl.innerText = "API busy hai ya limit khatam. Thodi der baad refresh try karo ya internet check karo.";
+        errorEl.innerText = "Price load nahi ho raha. Thodi der baad refresh try karo ya internet check karo.";
         document.getElementById("ounceUSD").innerText = "Gold per Ounce (USD): Error";
       } finally {
         isLoading = false;
