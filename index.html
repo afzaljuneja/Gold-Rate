@@ -152,14 +152,18 @@
       refreshBtn.innerText = "Refreshing...";
 
       try {
-        // Kitco se gold price fetch (no key needed)
+        // Kitco live gold page
         const res = await fetch("https://www.kitco.com/charts/livegold.html");
 
         if (!res.ok) throw new Error("Kitco page unavailable");
 
         const text = await res.text();
-        // Kitco page mein price <span class="quote"> mein hota hai
-        const priceMatch = text.match(/<span class="quote">([\d,.]+)<\/span>/);
+
+        // Improved regex to match current price (Kitco uses different classes sometimes)
+        const priceMatch = text.match(/<span class="quote[^>]*>([\d,.]+)<\/span>/i) ||
+                           text.match(/Bid[^>]*>[\s]*([\d,.]+)/i) ||
+                           text.match(/([\d,]+\.\d{2})\s*USD/i);
+
         const ounceUSD = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
 
         if (!ounceUSD || isNaN(ounceUSD)) throw new Error("No valid price found on Kitco");
@@ -188,7 +192,7 @@
 
       } catch (err) {
         console.error(err);
-        errorEl.innerText = "Error loading prices from Kitco. Try refresh again.";
+        errorEl.innerText = "Kitco se price load nahi ho raha. Thodi der baad refresh try karo ya internet check karo.";
         document.getElementById("ounceUSD").innerText = "Gold per Ounce (USD): Error";
       } finally {
         isLoading = false;
