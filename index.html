@@ -187,21 +187,19 @@
       refreshBtn.innerText = "Refreshing...";
 
       try {
-        // gold-api.com se live fetch (no key, no limit)
-        const res = await fetch("https://gold-api.com/v1/price/XAU/USD");
+        // goldprice.org ka reliable free endpoint (no key needed)
+        const res = await fetch("https://api.goldprice.org/v1/goldprice/live/usd/ounce");
 
-        if (!res.ok) throw new Error(`API error: ${res.status} - ${res.statusText}`);
+        if (!res.ok) throw new Error(`API error: ${res.status}`);
 
         const data = await res.json();
 
-        if (!data.price || isNaN(parseFloat(data.price))) {
-          throw new Error("No valid price in response");
-        }
+        if (!data.price || isNaN(data.price)) throw new Error("No valid price");
 
         const ounceUSD = parseFloat(data.price);
         document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
 
-        // Tere original formula se table update (bilkul wahi)
+        // Tere original formula (bilkul same)
         const gold24gm = (ounceUSD * 1.4485 + 15) / 116.64;
         const gold22gm = gold24gm * 0.921;
         const gold21gm = gold24gm * 0.880;
@@ -222,10 +220,10 @@
         });
         document.getElementById("time").innerText = `Last updated: ${muscatTime} (Muscat Time)`;
 
-        errorEl.innerText = "";  // Success
+        errorEl.innerText = "";
 
       } catch (err) {
-        errorEl.innerText = "Error: " + err.message + " (Internet check karo ya refresh try karo)";
+        errorEl.innerText = "Error: " + err.message + " (Internet check karo ya 1 min baad refresh try karo)";
         document.getElementById("ounceUSD").innerText = "Error fetching price";
       } finally {
         isLoading = false;
