@@ -3,63 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>No-Key Gold Price Test - SATTARDINA</title>
+  <title>No-Key Gold Price Test (Only Free Sources)</title>
   <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      background: #000833;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    h1 {
-      color: #00d4ff;
-    }
-    #results {
-      max-width: 700px;
-      margin: 30px auto;
-      text-align: left;
-    }
-    .source {
-      margin: 15px 0;
-      padding: 12px;
-      border: 1px solid #00d4ff;
-      border-radius: 8px;
-      background: #001a3a;
-    }
-    .source-name {
-      color: #ffd700;
-      font-weight: bold;
-      font-size: 1.1em;
-    }
-    .price {
-      color: #00ff7f;
-      font-size: 1.2em;
-    }
-    .error {
-      color: #ffcc00;
-    }
-    button {
-      background: #00d4ff;
-      color: #000;
-      font-size: 1.3em;
-      font-weight: bold;
-      padding: 12px 30px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin: 20px 0;
-    }
-    button:hover {
-      background: #00aaff;
-    }
+    body { margin: 0; padding: 20px; background: #000833; color: #fff; font-family: Arial; text-align: center; }
+    h1 { color: #00d4ff; }
+    #results { max-width: 700px; margin: 30px auto; text-align: left; }
+    .source { margin: 15px 0; padding: 12px; border: 1px solid #00d4ff; border-radius: 8px; background: #001a3a; }
+    .source-name { color: #ffd700; font-weight: bold; font-size: 1.1em; }
+    .price { color: #00ff7f; font-size: 1.2em; }
+    .error { color: #ffcc00; }
+    button { background: #00d4ff; color: #000; font-size: 1.3em; font-weight: bold; padding: 12px 30px; border: none; border-radius: 10px; cursor: pointer; margin: 20px 0; }
+    button:hover { background: #00aaff; }
   </style>
 </head>
 <body>
 
   <h1>No-Key Live Gold Price Test (Ounce USD)</h1>
-  <p>Ye 7 sources bilkul free hain, koi key nahi chahiye. Button daba ke check kar ki kaunsa sahi chal raha hai.</p>
+  <p>Ye 8 sources bilkul free hain – koi key nahi chahiye. Button daba ke check kar ki kaunsa sahi chal raha hai (green mein price = success).</p>
 
   <button onclick="fetchAllPrices()">Fetch All Prices</button>
 
@@ -68,11 +28,11 @@
   <script>
     async function fetchAllPrices() {
       const results = document.getElementById("results");
-      results.innerHTML = "Fetching...";
+      results.innerHTML = "Fetching... (wait 5-10 sec)";
 
       const sources = [
         {
-          name: "gold-api.com (most reliable, no limit)",
+          name: "gold-api.com (most reliable no-key)",
           url: "https://gold-api.com/v1/price/XAU/USD",
           parse: data => data?.price
         },
@@ -82,17 +42,12 @@
           parse: data => data?.price
         },
         {
-          name: "goldpricez.com public fallback (no key)",
-          url: "https://goldpricez.com/api/rates/currency/usd/measure/ounce",
-          parse: data => data?.ounce_price_usd || data?.Price_OZ
-        },
-        {
-          name: "metals.live (public endpoint)",
+          name: "metals.live (public spot)",
           url: "https://api.metals.live/v1/spot",
           parse: data => data?.[0]?.gold
         },
         {
-          name: "goldpriceapi.net (no key)",
+          name: "goldpriceapi.net (no-key fallback)",
           url: "https://www.goldpriceapi.net/api/v1/spot/XAUUSD",
           parse: data => data?.price
         },
@@ -102,9 +57,19 @@
           parse: data => data?.price
         },
         {
-          name: "api.metals.dev public fallback",
+          name: "api.metals.dev public (no-key fallback)",
           url: "https://api.metals.dev/v1/spot",
           parse: data => data?.gold?.usd
+        },
+        {
+          name: "freegoldapi.com historical/live (no-key)",
+          url: "https://freegoldapi.com/api/v1/latest",
+          parse: data => data?.data?.price
+        },
+        {
+          name: "commoditypriceapi.com fallback (no-key)",
+          url: "https://commoditypriceapi.com/api/v2/latest?symbols=XAU",
+          parse: data => data?.rates?.XAU
         }
       ];
 
@@ -119,7 +84,7 @@
           const price = src.parse(data);
 
           if (typeof price !== 'number' || isNaN(price) || price < 1000) {
-            throw new Error("Invalid price");
+            throw new Error("Invalid or no price");
           }
 
           const div = document.createElement("div");
