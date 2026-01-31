@@ -1,68 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proxy Gold Price Test</title>
+  <title>Live Gold Rates - SATTARDINA JEWELLERY (TV)</title>
   <style>
-    body { margin: 0; padding: 20px; background: #000833; color: #fff; font-family: Arial; text-align: center; }
-    h1 { color: #00d4ff; }
-    #results { max-width: 700px; margin: 30px auto; text-align: left; }
-    .source { margin: 15px 0; padding: 12px; border: 1px solid #00d4ff; border-radius: 8px; background: #001a3a; }
-    .source-name { color: #ffd700; font-weight: bold; }
-    .price { color: #00ff7f; font-size: 1.2em; }
-    .error { color: #ffcc00; }
-    button { background: #00d4ff; color: #000; font-size: 1.3em; padding: 12px 30px; border: none; border-radius: 10px; cursor: pointer; }
+    body {
+      margin: 0;
+      padding: 30px;
+      background: #000833;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      min-height: 100vh;
+      overflow: hidden; /* TV pe scroll mat hone do */
+    }
+    .logo-container {
+      margin: 30px 0;
+    }
+    .logo-img {
+      width: clamp(180px, 40vw, 300px);
+      height: clamp(180px, 40vw, 300px);
+      border-radius: 50%;
+      border: 6px solid #ffd700;
+      box-shadow: 0 10px 30px rgba(255,215,0,0.5);
+      object-fit: contain;
+      background: #000833;
+    }
+    h1 {
+      color: #00d4ff;
+      font-size: clamp(3em, 8vw, 5em); /* TV ke liye bada */
+      margin: 20px 0 10px;
+    }
+    .arabic {
+      font-size: clamp(2.5em, 7vw, 4em);
+      color: #ffd700;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    #ounceUSD {
+      font-size: clamp(2.5em, 6vw, 4em);
+      color: #00ff7f;
+      margin: 40px 0 30px;
+      font-weight: bold;
+    }
+    table {
+      width: 90%;
+      max-width: 1200px; /* TV ke liye wide */
+      margin: 0 auto 40px;
+      border-collapse: collapse;
+      background: #001a3a;
+      border: 4px solid #00d4ff;
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: clamp(1.5em, 4vw, 2.5em); /* bada font TV pe */
+    }
+    th, td {
+      padding: 20px;
+      border: 2px solid #004080;
+      text-align: center;
+    }
+    th {
+      background: #000d24;
+      color: #00d4ff;
+      font-size: 1.2em;
+    }
+    .karat {
+      color: #ffd700;
+      font-weight: bold;
+    }
+    .updated-time {
+      font-size: clamp(1.5em, 4vw, 2.5em);
+      color: #ccc;
+      margin: 30px 0;
+    }
+    .social {
+      font-size: clamp(2em, 5vw, 3em);
+      margin: 40px 0;
+    }
+    .social img {
+      width: 60px;
+      height: 60px;
+      vertical-align: middle;
+      margin-right: 15px;
+    }
+    .whatsapp-container {
+      background: #25D366;
+      color: #000;
+      font-size: clamp(2.5em, 6vw, 4em);
+      font-weight: bold;
+      padding: 30px;
+      margin: 40px auto;
+      border-radius: 20px;
+      max-width: 800px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    }
+    .whatsapp-container img {
+      width: 80px;
+      height: 80px;
+    }
+    .refresh-btn {
+      background: #00d4ff;
+      color: #000;
+      font-size: clamp(2em, 5vw, 3.5em);
+      font-weight: bold;
+      padding: 30px 60px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,212,255,0.5);
+    }
+    .refresh-btn:hover { background: #00aaff; }
+    #error {
+      font-size: clamp(2em, 5vw, 3em);
+      color: #ffcc00;
+      margin: 20px 0;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Proxy se Gold Price Test (Block Bypass)</h1>
+  <div class="logo-container">
+    <img src="https://i.ibb.co/pBK5Zct0/file-00000000e73c7246bafe41f8ba02719e.png" alt="Sattardina Jewellery Logo" class="logo-img">
+  </div>
 
-  <button onclick="fetchWithProxy()">Fetch with Proxy</button>
+  <h1>SATTARDINA JEWELLERY</h1>
+  <div class="arabic">مجوهرات ستاردينا</div>
 
-  <div id="results">Results yahan aayenge...</div>
+  <div id="ounceUSD">Gold per Ounce (USD): 4894.33</div>
 
-  <script>
-    async function fetchWithProxy() {
-      const results = document.getElementById("results");
-      results.innerHTML = "Fetching via proxy...";
+  <table>
+    <tr>
+      <th>عيار / Aiyar</th>
+      <th>وحدة / Unit</th>
+      <th>سعر ر.ع / Price OMR</th>
+    </tr>
+    <tr><td class="karat">24K</td><td>1 gm / جرام</td><td id="g24">23.450 OMR</td></tr>
+    <tr><td class="karat">22K</td><td>1 gm / جرام</td><td id="g22">21.574 OMR</td></tr>
+    <tr><td class="karat">21K</td><td>1 gm / جرام</td><td id="g21gm">20.636 OMR</td></tr>
+    <tr><td class="karat">18K</td><td>1 gm / جرام</td><td id="g18">17.705 OMR</td></tr>
+    <tr><td class="karat">21K</td><td>1 Tola / تولة (11.664 gm)</td><td id="tola21">240.70 OMR</td></tr>
+  </table>
 
-      // Free public CORS proxy (all-origins.win ya corsproxy.io)
-      const proxy = "https://api.allorigins.win/raw?url=";
+  <p class="updated-time" id="time">Last updated: Jan 31, 2026, 2:09 AM (Muscat Time)</p>
 
-      const sources = [
-        { name: "gold-api.com", url: "https://gold-api.com/v1/price/XAU/USD", parse: d => d.price },
-        { name: "goldprice.org", url: "https://api.goldprice.org/v1/goldprice/live/usd/ounce", parse: d => d.price },
-        { name: "metals.live", url: "https://api.metals.live/v1/spot", parse: d => d?.[0]?.gold }
-      ];
+  <div class="social">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    @sattardina_jewellery
+  </div>
 
-      results.innerHTML = "";
+  <div class="whatsapp-container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    WHATSAPP: 71171790
+  </div>
 
-      for (const src of sources) {
-        try {
-          const proxyUrl = proxy + encodeURIComponent(src.url);
-          const res = await fetch(proxyUrl);
-          if (!res.ok) throw new Error(`Proxy error ${res.status}`);
+  <button class="refresh-btn" id="refreshBtn">Refresh Rates</button>
 
-          const data = await res.json();
-          const price = src.parse(data);
+  <p id="error"></p>
 
-          if (isNaN(price) || price < 1000) throw new Error("Invalid price");
-
-          const div = document.createElement("div");
-          div.className = "source";
-          div.innerHTML = `<div class="source-name">\( {src.name}</div><div class="price"> \){price.toFixed(2)} USD</div>`;
-          results.appendChild(div);
-
-        } catch (err) {
-          const div = document.createElement("div");
-          div.className = "source";
-          div.innerHTML = `<div class="source-name">${src.name}</div><div class="error">Failed: ${err.message}</div>`;
-          results.appendChild(div);
-        }
-      }
-    }
-  </script>
 </body>
 </html>
