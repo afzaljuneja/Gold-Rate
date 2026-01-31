@@ -3,105 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>No-Key Gold Price Test (Only Free Sources)</title>
+  <title>Proxy Gold Price Test</title>
   <style>
     body { margin: 0; padding: 20px; background: #000833; color: #fff; font-family: Arial; text-align: center; }
     h1 { color: #00d4ff; }
     #results { max-width: 700px; margin: 30px auto; text-align: left; }
     .source { margin: 15px 0; padding: 12px; border: 1px solid #00d4ff; border-radius: 8px; background: #001a3a; }
-    .source-name { color: #ffd700; font-weight: bold; font-size: 1.1em; }
+    .source-name { color: #ffd700; font-weight: bold; }
     .price { color: #00ff7f; font-size: 1.2em; }
     .error { color: #ffcc00; }
-    button { background: #00d4ff; color: #000; font-size: 1.3em; font-weight: bold; padding: 12px 30px; border: none; border-radius: 10px; cursor: pointer; margin: 20px 0; }
-    button:hover { background: #00aaff; }
+    button { background: #00d4ff; color: #000; font-size: 1.3em; padding: 12px 30px; border: none; border-radius: 10px; cursor: pointer; }
   </style>
 </head>
 <body>
 
-  <h1>No-Key Live Gold Price Test (Ounce USD)</h1>
-  <p>Ye 8 sources bilkul free hain – koi key nahi chahiye. Button daba ke check kar ki kaunsa sahi chal raha hai (green mein price = success).</p>
+  <h1>Proxy se Gold Price Test (Block Bypass)</h1>
 
-  <button onclick="fetchAllPrices()">Fetch All Prices</button>
+  <button onclick="fetchWithProxy()">Fetch with Proxy</button>
 
-  <div id="results">Prices yahan aayenge...</div>
+  <div id="results">Results yahan aayenge...</div>
 
   <script>
-    async function fetchAllPrices() {
+    async function fetchWithProxy() {
       const results = document.getElementById("results");
-      results.innerHTML = "Fetching... (wait 5-10 sec)";
+      results.innerHTML = "Fetching via proxy...";
+
+      // Free public CORS proxy (all-origins.win ya corsproxy.io)
+      const proxy = "https://api.allorigins.win/raw?url=";
 
       const sources = [
-        {
-          name: "gold-api.com (most reliable no-key)",
-          url: "https://gold-api.com/v1/price/XAU/USD",
-          parse: data => data?.price
-        },
-        {
-          name: "goldprice.org (simple & fast)",
-          url: "https://api.goldprice.org/v1/goldprice/live/usd/ounce",
-          parse: data => data?.price
-        },
-        {
-          name: "metals.live (public spot)",
-          url: "https://api.metals.live/v1/spot",
-          parse: data => data?.[0]?.gold
-        },
-        {
-          name: "goldpriceapi.net (no-key fallback)",
-          url: "https://www.goldpriceapi.net/api/v1/spot/XAUUSD",
-          parse: data => data?.price
-        },
-        {
-          name: "goldrate.live (public JSON)",
-          url: "https://goldrate.live/api/v1/gold/spot/usd",
-          parse: data => data?.price
-        },
-        {
-          name: "api.metals.dev public (no-key fallback)",
-          url: "https://api.metals.dev/v1/spot",
-          parse: data => data?.gold?.usd
-        },
-        {
-          name: "freegoldapi.com historical/live (no-key)",
-          url: "https://freegoldapi.com/api/v1/latest",
-          parse: data => data?.data?.price
-        },
-        {
-          name: "commoditypriceapi.com fallback (no-key)",
-          url: "https://commoditypriceapi.com/api/v2/latest?symbols=XAU",
-          parse: data => data?.rates?.XAU
-        }
+        { name: "gold-api.com", url: "https://gold-api.com/v1/price/XAU/USD", parse: d => d.price },
+        { name: "goldprice.org", url: "https://api.goldprice.org/v1/goldprice/live/usd/ounce", parse: d => d.price },
+        { name: "metals.live", url: "https://api.metals.live/v1/spot", parse: d => d?.[0]?.gold }
       ];
 
       results.innerHTML = "";
 
       for (const src of sources) {
         try {
-          const res = await fetch(src.url, { cache: 'no-store' });
-          if (!res.ok) throw new Error(`Status ${res.status}`);
+          const proxyUrl = proxy + encodeURIComponent(src.url);
+          const res = await fetch(proxyUrl);
+          if (!res.ok) throw new Error(`Proxy error ${res.status}`);
 
           const data = await res.json();
           const price = src.parse(data);
 
-          if (typeof price !== 'number' || isNaN(price) || price < 1000) {
-            throw new Error("Invalid or no price");
-          }
+          if (isNaN(price) || price < 1000) throw new Error("Invalid price");
 
           const div = document.createElement("div");
           div.className = "source";
-          div.innerHTML = `
-            <div class="source-name">${src.name}</div>
-            <div class="price">${price.toFixed(2)} USD</div>
-          `;
+          div.innerHTML = `<div class="source-name">\( {src.name}</div><div class="price"> \){price.toFixed(2)} USD</div>`;
           results.appendChild(div);
 
         } catch (err) {
           const div = document.createElement("div");
           div.className = "source";
-          div.innerHTML = `
-            <div class="source-name">${src.name}</div>
-            <div class="error">Failed: ${err.message}</div>
-          `;
+          div.innerHTML = `<div class="source-name">${src.name}</div><div class="error">Failed: ${err.message}</div>`;
           results.appendChild(div);
         }
       }
