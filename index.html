@@ -187,19 +187,21 @@
       refreshBtn.innerText = "Refreshing...";
 
       try {
-        // gold-api.com se live ounce price fetch (no key needed)
+        // gold-api.com se live fetch (no key, no limit)
         const res = await fetch("https://gold-api.com/v1/price/XAU/USD");
 
-        if (!res.ok) throw new Error(`API error: ${res.status}`);
+        if (!res.ok) throw new Error(`API error: ${res.status} - ${res.statusText}`);
 
         const data = await res.json();
 
-        if (!data.price || isNaN(data.price)) throw new Error("No valid price");
+        if (!data.price || isNaN(parseFloat(data.price))) {
+          throw new Error("No valid price in response");
+        }
 
         const ounceUSD = parseFloat(data.price);
         document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
 
-        // Tere original formula se table update
+        // Tere original formula se table update (bilkul wahi)
         const gold24gm = (ounceUSD * 1.4485 + 15) / 116.64;
         const gold22gm = gold24gm * 0.921;
         const gold21gm = gold24gm * 0.880;
@@ -218,13 +220,13 @@
           dateStyle: 'medium', 
           timeStyle: 'short' 
         });
-        document.getElementById("time").innerText = `Last updated: ${muscatTime}`;
+        document.getElementById("time").innerText = `Last updated: ${muscatTime} (Muscat Time)`;
 
         errorEl.innerText = "";  // Success
 
       } catch (err) {
-        errorEl.innerText = "Error fetching live price: " + err.message + " (Try refresh or check internet)";
-        document.getElementById("ounceUSD").innerText = "Live price unavailable";
+        errorEl.innerText = "Error: " + err.message + " (Internet check karo ya refresh try karo)";
+        document.getElementById("ounceUSD").innerText = "Error fetching price";
       } finally {
         isLoading = false;
         refreshBtn.disabled = false;
