@@ -77,7 +77,6 @@
       color: #00ff7f;
       margin: 18px 0 12px;
       font-weight: bold;
-      min-height: 120px;
     }
     table {
       width: 90%;
@@ -143,21 +142,7 @@
   <h1>SATTARDINA JEWELLERY</h1>
   <div class="arabic">مجوهرات ستاردينا</div>
 
-  <!-- TradingView Widget – live ounce price yahan se aayega -->
-  <div id="ounceUSD">
-    <div class="tradingview-widget-container" style="height: 120px; width: 100%; max-width: 400px; margin: 0 auto;">
-      <div class="tradingview-widget-container__widget"></div>
-      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-      {
-        "symbol": "OANDA:XAUUSD",
-        "width": "100%",
-        "colorTheme": "dark",
-        "isTransparent": true,
-        "locale": "en"
-      }
-      </script>
-    </div>
-  </div>
+  <div id="ounceUSD">Gold per Ounce (USD): Loading...</div>
 
   <table>
     <tr>
@@ -192,69 +177,63 @@
     const refreshBtn = document.getElementById("refreshBtn");
     let isLoading = false;
 
-    function updateTableFromWidget() {
+    async function loadGoldPrice() {
       const errorEl = document.getElementById("error");
-      errorEl.innerText = "Fetching live price...";
+      errorEl.innerText = "";
 
-      // Widget load hone ke baad price nikaalne ke liye delay
-      setTimeout(() => {
-        try {
-          // TradingView widget ke price element ko target kar rahe hain
-          const priceElement = document.querySelector('.tv-single-quote-widget__price-value');
-          
-          if (!priceElement) {
-            throw new Error("Widget price element not found");
-          }
+      if (isLoading) return;
+      isLoading = true;
+      refreshBtn.disabled = true;
+      refreshBtn.innerText = "Refreshing...";
 
-          let priceText = priceElement.innerText.trim().replace(/,/g, '');
-          const ounceUSD = parseFloat(priceText);
+      try {
+        // gold-api.com se live ounce price fetch (no key needed)
+        const res = await fetch("https://gold-api.com/v1/price/XAU/USD");
 
-          if (isNaN(ounceUSD) || ounceUSD <= 0) {
-            throw new Error("Invalid price from widget");
-          }
+        if (!res.ok) throw new Error(`API error: ${res.status}`);
 
-          // Ounce price update
-          document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
+        const data = await res.json();
 
-          // Tere original formula se table update
-          const gold24gm = (ounceUSD * 1.4485 + 15) / 116.64;
-          const gold22gm = gold24gm * 0.921;
-          const gold21gm = gold24gm * 0.880;
-          const gold18gm = gold24gm * 0.755;
-          const tola21 = gold21gm * 11.664;
+        if (!data.price || isNaN(data.price)) throw new Error("No valid price");
 
-          document.getElementById("g24").innerText = gold24gm.toFixed(3) + " OMR";
-          document.getElementById("g22").innerText = gold22gm.toFixed(3) + " OMR";
-          document.getElementById("g21gm").innerText = gold21gm.toFixed(3) + " OMR";
-          document.getElementById("g18").innerText = gold18gm.toFixed(3) + " OMR";
-          document.getElementById("tola21").innerText = tola21.toFixed(2) + " OMR";
+        const ounceUSD = parseFloat(data.price);
+        document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
 
-          // Time update
-          const now = new Date();
-          const muscatTime = now.toLocaleString('en-US', { 
-            timeZone: 'Asia/Muscat', 
-            dateStyle: 'medium', 
-            timeStyle: 'short' 
-          });
-          document.getElementById("time").innerText = `Last updated: ${muscatTime}`;
+        // Tere original formula se table update
+        const gold24gm = (ounceUSD * 1.4485 + 15) / 116.64;
+        const gold22gm = gold24gm * 0.921;
+        const gold21gm = gold24gm * 0.880;
+        const gold18gm = gold24gm * 0.755;
+        const tola21 = gold21gm * 11.664;
 
-          errorEl.innerText = "";  // Success - error clear
+        document.getElementById("g24").innerText = gold24gm.toFixed(3) + " OMR";
+        document.getElementById("g22").innerText = gold22gm.toFixed(3) + " OMR";
+        document.getElementById("g21gm").innerText = gold21gm.toFixed(3) + " OMR";
+        document.getElementById("g18").innerText = gold18gm.toFixed(3) + " OMR";
+        document.getElementById("tola21").innerText = tola21.toFixed(2) + " OMR";
 
-        } catch (err) {
-          errorEl.innerText = "Error fetching live price: " + err.message + " (Trying again on refresh)";
-          // Optional fallback agar widget fail ho
-          document.getElementById("ounceUSD").innerText = "Live price unavailable";
-        }
-      }, 6000); // 6 seconds delay - widget ko load hone ka time
+        const now = new Date();
+        const muscatTime = now.toLocaleString('en-US', { 
+          timeZone: 'Asia/Muscat', 
+          dateStyle: 'medium', 
+          timeStyle: 'short' 
+        });
+        document.getElementById("time").innerText = `Last updated: ${muscatTime}`;
+
+        errorEl.innerText = "";  // Success
+
+      } catch (err) {
+        errorEl.innerText = "Error fetching live price: " + err.message + " (Try refresh or check internet)";
+        document.getElementById("ounceUSD").innerText = "Live price unavailable";
+      } finally {
+        isLoading = false;
+        refreshBtn.disabled = false;
+        refreshBtn.innerText = "Refresh Rates";
+      }
     }
 
-    window.addEventListener('load', () => {
-      updateTableFromWidget(); // Pehli baar call
-    });
-
-    refreshBtn.addEventListener('click', () => {
-      updateTableFromWidget(); // Refresh pe dobara try
-    });
+    window.addEventListener('load', loadGoldPrice);
+    refreshBtn.addEventListener('click', loadGoldPrice);
   </script>
 </body>
 </html>
