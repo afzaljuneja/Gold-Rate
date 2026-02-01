@@ -1,203 +1,93 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gold Rates TV - SATTARDINA JEWELLERY</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #000833;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .container {
-      width: 90%;
-      max-width: 1800px;
-      margin: auto;
-    }
-    .logo-img {
-      width: clamp(200px, 30vw, 400px);
-      height: clamp(200px, 30vw, 400px);
-      border-radius: 50%;
-      border: 8px solid #ffd700;
-      box-shadow: 0 15px 40px rgba(255,215,0,0.6);
-      margin-bottom: 30px;
-    }
-    h1 {
-      font-size: clamp(4em, 10vw, 8em);
-      color: #00d4ff;
-      margin: 20px 0 10px;
-      text-shadow: 0 5px 15px rgba(0,212,255,0.5);
-    }
-    .arabic {
-      font-size: clamp(3.5em, 9vw, 7em);
-      color: #ffd700;
-      margin: 20px 0;
-      font-weight: bold;
-    }
-    .price-box {
-      font-size: clamp(5em, 12vw, 10em);
-      color: #00ff7f;
-      margin: 40px 0;
-      font-weight: bold;
-      text-shadow: 0 5px 20px rgba(0,255,127,0.7);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #001a3a;
-      border: 6px solid #00d4ff;
-      border-radius: 15px;
-      overflow: hidden;
-      font-size: clamp(2.5em, 6vw, 5em);
-      margin: 40px 0;
-    }
-    th, td {
-      padding: 30px;
-      border: 3px solid #004080;
-      text-align: center;
-    }
-    th {
-      background: #000d24;
-      color: #00d4ff;
-    }
-    .karat {
-      color: #ffd700;
-      font-weight: bold;
-    }
-    .social {
-      font-size: clamp(3em, 7vw, 6em);
-      margin: 50px 0 30px;
-    }
-    .social img {
-      width: 100px;
-      height: 100px;
-      vertical-align: middle;
-      margin-right: 30px;
-    }
-    .whatsapp {
-      font-size: clamp(4em, 9vw, 8em);
-      background: #25D366;
-      color: #000;
-      padding: 40px;
-      border-radius: 30px;
-      margin: 50px auto;
-      max-width: 1200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
-      box-shadow: 0 15px 50px rgba(0,0,0,0.8);
-    }
-    .whatsapp img {
-      width: 120px;
-      height: 120px;
-    }
-    .time {
-      font-size: clamp(2.5em, 6vw, 5em);
-      color: #ccc;
-      margin-top: 60px;
-    }
-    .hidden {
-      display: none;
-    }
-  </style>
-</head>
+<!-- ... Head aur styles same rahega ... -->
+
 <body>
 
-  <!-- English Display -->
-  <div id="english" class="container">
-    <div class="logo-container">
-      <img src="https://i.ibb.co/pBK5Zct0/file-00000000e73c7246bafe41f8ba02719e.png" alt="Logo" class="logo-img">
-    </div>
-    <h1>SATTARDINA JEWELLERY</h1>
-    <div class="arabic">مجوهرات ستاردينا</div>
-    <div class="price-box">Gold per Ounce (USD): 4894.33</div>
-    <table>
-      <tr>
-        <th>Karat / عيار</th>
-        <th>Unit / وحدة</th>
-        <th>Price OMR / سعر ر.ع</th>
-      </tr>
-      <tr><td class="karat">24K</td><td>1 gm / جرام</td><td>23.450 OMR</td></tr>
-      <tr><td class="karat">22K</td><td>1 gm / جرام</td><td>21.574 OMR</td></tr>
-      <tr><td class="karat">21K</td><td>1 gm / جرام</td><td>20.636 OMR</td></tr>
-      <tr><td class="karat">18K</td><td>1 gm / جرام</td><td>17.705 OMR</td></tr>
-      <tr><td class="karat">21K</td><td>1 Tola (11.664 gm) / تولة</td><td>240.70 OMR</td></tr>
-    </table>
-    <p class="time">Last updated: Jan 31, 2026, 2:09 AM (Muscat Time)</p>
-    <div class="social">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-      @sattardina_jewellery
-    </div>
-    <div class="whatsapp">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-      WHATSAPP: 71171790
+  <div class="logo-container">
+    <img src="https://i.ibb.co/pBK5Zct0/file-00000000e73c7246bafe41f8ba02719e.png" alt="Sattardina Jewellery Logo" class="logo-img">
+  </div>
+
+  <h1>SATTARDINA JEWELLERY</h1>
+  <div class="arabic">مجوهرات ستاردينا</div>
+
+  <!-- Yeh old ounce section hata sakte ho ya rakho as fallback -->
+  <div id="ounceUSD">Gold per Ounce (USD): Loading via widget...</div>
+
+  <table>
+    <!-- Table same rahega, lekin ab widget live dikhaayega to optional -->
+    <tr>
+      <th>عيار / Karat</th>
+      <th>وحدة / Unit</th>
+      <th>سعر ر.ع / Price OMR</th>
+    </tr>
+    <!-- ... baaki rows same ... -->
+  </table>
+
+  <p class="updated-time" id="time">Last updated: Live via IFC Markets</p>
+
+  <!-- Widget yahan daal rahe hain – table ke niche acha lagega -->
+  <div style="margin: 30px auto; max-width: 400px; background: #001a3a; padding: 15px; border-radius: 10px; border: 2px solid #00d4ff;">
+    <h3 style="color: #00d4ff; margin: 10px 0;">Live Gold Quotes (Real-Time)</h3>
+    
+    <!-- IFC Widget Code – tune jo diya tha wahi -->
+    <link rel="stylesheet" type="text/css" media="screen" href="https://www.ifcmarkets.com/css/widget/live_quotes_ifc_widget.css" />
+    <script type="text/javascript">
+      var lang = 'en';
+      var hname = "www.ifcmarkets.com";
+      var bid = 'Bid';
+      var ask = 'Ask';
+      var vi = document.createElement('script');
+      vi.type = 'text/javascript';
+      vi.async = true;
+      vi.src = 'https://www.ifcmarkets.com/js/live_quotes_ifc_widget.js';
+      var instrument_list = "XAUSnP";  // Yeh change kar sakta hai agar XAUUSD chahiye to "XAUUSD"
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(vi, s);
+    </script>
+    <div id="ifc_widgetlivequotes" class="ifc_widgetlivequotes"></div>
+    <div id="ifc_nedlivequotes" class="ifc_nedlivequotes">
+      <a href="https://www.ifcmarkets.com/en/informers" target="_blank" rel="nofollow">Provided by IFC Markets</a>
     </div>
   </div>
 
-  <!-- Arabic Display -->
-  <div id="arabic" class="container hidden">
-    <div class="logo-container">
-      <img src="https://i.ibb.co/pBK5Zct0/file-00000000e73c7246bafe41f8ba02719e.png" alt="Logo" class="logo-img">
-    </div>
-    <h1>مجوهرات ستاردينا</h1>
-    <div class="arabic">SATTARDINA JEWELLERY</div>
-    <div class="price-box">سعر الذهب للأونصة (دولار أمريكي): 4894.33</div>
-    <table>
-      <tr>
-        <th>عيار / Karat</th>
-        <th>وحدة / Unit</th>
-        <th>سعر ر.ع / Price OMR</th>
-      </tr>
-      <tr><td class="karat">24K</td><td>1 جرام / gm</td><td>23.450 ر.ع</td></tr>
-      <tr><td class="karat">22K</td><td>1 جرام / gm</td><td>21.574 ر.ع</td></tr>
-      <tr><td class="karat">21K</td><td>1 جرام / gm</td><td>20.636 ر.ع</td></tr>
-      <tr><td class="karat">18K</td><td>1 جرام / gm</td><td>17.705 ر.ع</td></tr>
-      <tr><td class="karat">21K</td><td>1 تولة (11.664 جرام) / Tola</td><td>240.70 ر.ع</td></tr>
-    </table>
-    <p class="time">آخر تحديث: 31 يناير 2026، 2:09 صباحًا (وقت مسقط)</p>
-    <div class="social">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-      @sattardina_jewellery
-    </div>
-    <div class="whatsapp">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-      واتساب: 71171790
-    </div>
+  <!-- Disclaimer add kar diya -->
+  <p style="font-size: 0.9em; color: #ffcc66; margin: 20px auto; max-width: 400px; text-align: center;">
+    ये कीमतें लाइव मार्केट रेट्स हैं (indicative only). फाइनल बिल में मेकिंग चार्जेस, वेस्टेज आदि शामिल हो सकते हैं। सटीक जानकारी के लिए व्हाट्सएप करें।
+  </p>
+
+  <div class="social">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    @sattardina_jewellery
   </div>
+
+  <div class="whatsapp-container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    WHATSAPP: 71171790
+  </div>
+
+  <button class="refresh-btn" id="refreshBtn">Refresh Page</button>
+
+  <p id="error"></p>
 
   <script>
-    const englishDiv = document.getElementById("english");
-    const arabicDiv = document.getElementById("arabic");
+    // Ab purana goldapi code hata diya – widget khud live hai
+    // Refresh button ab page reload karega (widget reload ke liye)
+    const refreshBtn = document.getElementById("refreshBtn");
+    refreshBtn.addEventListener('click', () => {
+      location.reload();  // Simple reload – widget fir se load hoga
+    });
 
-    let showEnglish = true;
-
-    function toggleDisplay() {
-      if (showEnglish) {
-        englishDiv.classList.remove("hidden");
-        arabicDiv.classList.add("hidden");
-      } else {
-        englishDiv.classList.add("hidden");
-        arabicDiv.classList.remove("hidden");
-      }
-      showEnglish = !showEnglish;
+    // Optional: Muscat time update (widget live hai to yeh secondary)
+    function updateTime() {
+      const now = new Date();
+      const muscatTime = now.toLocaleString('en-US', { 
+        timeZone: 'Asia/Muscat', 
+        dateStyle: 'medium', 
+        timeStyle: 'short' 
+      });
+      document.getElementById("time").innerText = `Last refreshed: ${muscatTime}`;
     }
-
-    // Har 30 seconds mein swipe
-    setInterval(toggleDisplay, 30000);
-
-    // Pehli baar English se start
-    toggleDisplay();
+    setInterval(updateTime, 60000); // Har minute update
+    updateTime(); // Initial call
   </script>
 </body>
 </html>
