@@ -80,50 +80,65 @@
       margin: 18px 0 12px;
       font-weight: bold;
     }
-    table {
+    .table-container {
       width: 90%;
       max-width: 420px;
       margin: 0 auto 24px;
-      border-collapse: separate;
-      border-spacing: 0;
-      background: #001122;
-      border: 3px solid #00d4ff;
-      border-radius: 12px;
+    }
+    .rate-row {
+      background: #001a3a;
+      border: 2px solid #004080;
+      border-radius: 16px;          /* Rounded corners for each row */
+      margin-bottom: 12px;          /* Space between rows */
       overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,212,255,0.3);
-      font-size: clamp(0.95em, 3.4vw, 1.05em);
+      box-shadow: 0 4px 12px rgba(0,212,255,0.15);
     }
-    th, td {
-      padding: 12px 10px;
-      border-bottom: 1px solid #004080;
-      text-align: center;
+    .rate-row:last-child {
+      margin-bottom: 0;
     }
-    th {
+    .row-header {
       background: #000d24;
       color: #00d4ff;
       font-weight: bold;
       font-size: 1.1em;
+      padding: 10px;
+      border-bottom: 1px solid #004080;
+    }
+    .row-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 10px;
     }
     .karat {
       color: #ffd700;
       font-weight: bold;
-      font-size: 1.35em;
-      background: rgba(0,212,255,0.06);
+      font-size: 1.4em;
+      min-width: 80px;
+      text-align: left;
+    }
+    .unit {
+      color: #b3e5fc;
+      font-size: 1em;
+      text-align: center;
+      flex: 1;
     }
     .price {
       color: #ffffff;
       font-weight: bold;
-    }
-    .trend-up {
-      color: #00ff00;
-      font-weight: bold;
-      background: rgba(0,255,0,0.12);
       font-size: 1.2em;
+      text-align: right;
+      min-width: 120px;
     }
     @media (max-width: 600px) {
-      body { padding: 6px; }
-      table { width: 100%; }
-      th, td { padding: 10px 8px; }
+      .row-content {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .karat, .unit, .price {
+        text-align: center;
+        min-width: auto;
+      }
     }
   </style>
 </head>
@@ -138,18 +153,48 @@
 
   <div id="ounceUSD">Gold per Ounce (USD): — (manual update)</div>
 
-  <table>
-    <tr>
-      <th>عيار / Karat</th>
-      <th>وحدة / Unit</th>
-      <th>سعر ر.ع / Price OMR</th>
-    </tr>
-    <tr><td class="karat">24K</td><td>1 gm / جرام</td><td id="g24" class="price">61.10 OMR</td></tr>
-    <tr><td class="karat">22K</td><td>1 gm / جرام</td><td id="g22" class="price">57.05 OMR</td></tr>
-    <tr><td class="karat">21K</td><td>1 gm / جرام</td><td id="g21gm" class="price">54.45 OMR</td></tr>
-    <tr><td class="karat">18K</td><td>1 gm / جرام</td><td id="g18" class="price">45.80 OMR</td></tr>
-    <tr><td class="karat">21K</td><td>1 Tola / تولة (11.664 gm)</td><td id="tola21" class="price">635.00 OMR</td></tr>
-  </table>
+  <div class="table-container">
+    <div class="rate-row">
+      <div class="row-header">عيار / Karat</div>
+      <div class="row-content">
+        <div class="karat">24K</div>
+        <div class="unit">1 gm / جرام</div>
+        <div class="price">61.10 OMR</div>
+      </div>
+    </div>
+
+    <div class="rate-row">
+      <div class="row-content">
+        <div class="karat">22K</div>
+        <div class="unit">1 gm / جرام</div>
+        <div class="price">57.05 OMR</div>
+      </div>
+    </div>
+
+    <div class="rate-row">
+      <div class="row-content">
+        <div class="karat">21K</div>
+        <div class="unit">1 gm / جرام</div>
+        <div class="price">54.45 OMR</div>
+      </div>
+    </div>
+
+    <div class="rate-row">
+      <div class="row-content">
+        <div class="karat">18K</div>
+        <div class="unit">1 gm / جرام</div>
+        <div class="price">45.80 OMR</div>
+      </div>
+    </div>
+
+    <div class="rate-row">
+      <div class="row-content">
+        <div class="karat">21K</div>
+        <div class="unit">1 Tola / تولة (11.664 gm)</div>
+        <div class="price">635.00 OMR</div>
+      </div>
+    </div>
+  </div>
 
   <p class="updated-time" id="time">Last updated: Manual — Please update prices manually</p>
 
