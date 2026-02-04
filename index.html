@@ -3,202 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Live Gold Rates - SATTARDINA JEWELLERY</title>
+  <title>Live Gold Rates - DUBAI GOLD AND DIAMONDS</title>
   <style>
     body {
       margin: 0;
       padding: 10px;
-      background: #000833;
+      background: #0a0e2e;
       color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
       min-height: 100vh;
     }
-    .logo-container {
-      margin: 12px 0;
+    .header {
+      margin: 15px 0;
     }
-    .logo-img {
-      width: clamp(110px, 35vw, 126px);
-      height: clamp(110px, 35vw, 126px);
-      border-radius: 50%;
-      border: 3px solid #ffd700;
-      box-shadow: 0 5px 12px rgba(255,215,0,0.3);
-      object-fit: contain;
-      background: #000833;
+    .logo {
+      font-size: 2.8em;
+      color: #c71585; /* Purple like in image */
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .subtitle {
+      font-size: 1.4em;
+      color: #ffd700;
+      margin: 5px 0;
     }
     h1 {
-      color: #00d4ff;
-      font-size: clamp(1.8em, 6vw, 2.4em);
-      margin: 8px 0 4px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-shadow: 
-        0 1px 0 #000,
-        0 2px 0 #000,
-        0 3px 0 #000,
-        0 4px 0 #000,
-        0 5px 0 #000,
-        0 6px 0 #000,
-        0 7px 0 #000,
-        3px 8px 5px rgba(0,0,0,0.6),
-        0 10px 10px rgba(0,0,0,0.4);
+      color: #00ff9d;
+      font-size: 2.2em;
+      margin: 10px 0;
+      text-shadow: 0 0 10px #00ff9d;
     }
-    .arabic {
-      font-size: clamp(1.7em, 4.8vw, 2.2em);
-      color: #ffd700;
-      margin: 4px 0;
-      font-weight: bold;
-    }
-    .social {
-      margin: 16px 0 12px;
-      font-size: clamp(1em, 3.8vw, 1.2em);
-    }
-    .social img {
-      width: 32px;
-      height: 32px;
-      vertical-align: middle;
-      margin-right: 7px;
-    }
-    .updated-time {
-      font-size: clamp(0.9em, 3vw, 1em);
+    .date-time {
+      font-size: 1.2em;
       color: #ccc;
-      margin: 0 0 16px;
-      font-weight: normal;
-    }
-    .whatsapp-container {
-      background: #25D366;
-      color: #000;
-      font-size: clamp(1.2em, 4.5vw, 1.5em);
-      font-weight: bold;
-      padding: 10px;
-      margin: 12px auto;
-      border-radius: 10px;
-      max-width: 360px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.5);
-    }
-    .whatsapp-container img {
-      width: 40px;
-      height: 40px;
-    }
-    #ounceUSD {
-      font-size: clamp(1.3em, 4.8vw, 1.5em);
-      color: #00ff7f;
-      margin: 18px 0 12px;
-      font-weight: bold;
+      margin: 10px 0;
     }
     table {
-      width: 90%;
-      max-width: 400px;
-      margin: 0 auto 24px;
+      width: 95%;
+      max-width: 500px;
+      margin: 20px auto;
       border-collapse: collapse;
-      background: #001a3a;
-      border: 2px solid #00d4ff;
-      border-radius: 8px;
+      background: #001122;
+      border: 2px solid #00ff9d;
+      border-radius: 10px;
       overflow: hidden;
-      font-size: clamp(0.9em, 3.3vw, 1.05em);
+      font-size: 1.1em;
     }
     th, td {
-      padding: 9px;
-      border: 1px solid #004080;
+      padding: 12px;
+      border: 1px solid #004d40;
       text-align: center;
     }
     th {
       background: #000d24;
-      color: #00d4ff;
+      color: #00ff9d;
+      font-weight: bold;
     }
     .karat {
       color: #ffd700;
       font-weight: bold;
+      font-size: 1.3em;
     }
-    .refresh-btn {
-      background: #00d4ff;
+    .rate {
+      color: #ffffff;
+      font-weight: bold;
+    }
+    .trend-up {
+      color: #00ff00;
+      font-weight: bold;
+    }
+    .trend-icon {
+      color: #00ff00;
+    }
+    .silver {
+      background: #e0f7fa;
       color: #000;
-      font-size: clamp(1.1em, 4.5vw, 1.4em);
-      font-weight: bold;
-      padding: 10px;
-      margin: 25px auto 15px;
-      border: none;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 360px;
-      cursor: pointer;
-      box-shadow: 0 3px 8px rgba(0,212,255,0.5);
     }
-    .refresh-btn:hover { background: #00aaff; }
-    .refresh-btn:disabled { background: #555; cursor: not-allowed; }
-    #error {
-      font-size: clamp(0.85em, 2.8vw, 0.95em);
-      margin: 8px 0;
-      color: #ffcc00;
-      font-weight: bold;
-    }
-
     @media (max-width: 600px) {
-      body { padding: 6px; }
-      .logo-img { width: clamp(100px, 32vw, 115px); height: clamp(100px, 32vw, 115px); }
-      table { width: 100%; font-size: 0.9em; }
-      th, td { padding: 7px; }
+      table { font-size: 1em; }
+      th, td { padding: 8px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="logo-container">
-    <img src="https://i.ibb.co/pBK5Zct0/file-00000000e73c7246bafe41f8ba02719e.png" alt="Sattardina Jewellery Logo" class="logo-img">
+  <div class="header">
+    <div class="logo">D</div>
+    <div class="subtitle">DUBAI GOLD AND DIAMONDS</div>
+    <div class="subtitle">PRIDE OF GENERATIONS</div>
   </div>
 
-  <h1>SATTARDINA JEWELLERY</h1>
-  <div class="arabic">مجوهرات ستاردينا</div>
+  <h1>ALL KERALA BOARD RATE</h1>
 
-  <div id="ounceUSD">Gold per Ounce (USD): — (manual update)</div>
+  <div class="date-time">WEDNESDAY, FEBRUARY 04, 2026 • 09:20 AM</div>
 
   <table>
     <tr>
-      <th>عيار / Karat</th>
-      <th>وحدة / Unit</th>
-      <th>سعر ر.ع / Price OMR</th>
+      <th>KARAT</th>
+      <th>RATE</th>
+      <th>TREND</th>
     </tr>
-    <tr><td class="karat">24K</td><td>1 gm / جرام</td><td id="g24">61.10 OMR</td></tr>
-    <tr><td class="karat">22K</td><td>1 gm / جرام</td><td id="g22">57.05 OMR</td></tr>
-    <tr><td class="karat">21K</td><td>1 gm / جرام</td><td id="g21gm">54.45 OMR</td></tr>
-    <tr><td class="karat">18K</td><td>1 gm / جرام</td><td id="g18">45.80 OMR</td></tr>
-    <tr><td class="karat">21K</td><td>1 Tola / تولة (11.664 gm)</td><td id="tola21">635.00 OMR</td></tr>
+    <tr>
+      <td class="karat">22K</td>
+      <td>
+        <span class="rate">1G 14,715</span><br>
+        <span class="rate">8G 1,17,720</span>
+      </td>
+      <td class="trend-up">▲ ₹605</td>
+    </tr>
+    <tr>
+      <td class="karat">18K</td>
+      <td>
+        <span class="rate">1G 12,090</span><br>
+        <span class="rate">8G 96,720</span>
+      </td>
+      <td class="trend-up">▲ ₹495</td>
+    </tr>
+    <tr>
+      <td class="karat">14K</td>
+      <td>
+        <span class="rate">1G 9,415</span><br>
+        <span class="rate">8G 75,320</span>
+      </td>
+      <td class="trend-up">▲ ₹385</td>
+    </tr>
+    <tr>
+      <td class="karat">9K</td>
+      <td>
+        <span class="rate">1G 6,070</span><br>
+        <span class="rate">8G 48,560</span>
+      </td>
+      <td class="trend-up">▲ ₹250</td>
+    </tr>
+    <tr class="silver">
+      <td class="karat">SILVER</td>
+      <td>
+        <span class="rate">1G 320</span><br>
+        <span class="rate">10G 3,200</span>
+      </td>
+      <td></td>
+    </tr>
   </table>
 
-  <p class="updated-time" id="time">Last updated: Manual — Please update prices manually</p>
-
-  <p style="font-size: clamp(0.95em, 3.2vw, 1.05em); color: #ffcc66; margin: 8px 0 20px; font-weight: bold; text-align: center;">
-    ملاحظة: أسعار الذهب قابلة للتغيير باستمرار – يرجى التحديث يدويًا
+  <p style="color: #00ff9d; font-size: 1.1em; margin-top: 20px;">
+    Prices are indicative - Market rates change frequently. Contact for latest making charges.
   </p>
 
-  <div class="social">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-    @sattardina_jewellery
-  </div>
-
-  <div class="whatsapp-container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    WHATSAPP: 71171790
-  </div>
-
-  <button class="refresh-btn" id="refreshBtn" disabled>Refresh Removed (Manual Update Only)</button>
-
-  <p id="error"></p>
-
-  <script>
-    // No more API calls — prices are now static
-    // You can change the values directly in the HTML table above
-    const now = new Date();
-    const muscatTime = now.toLocaleString('en-US', { 
-      timeZone: 'Asia/Muscat', 
-      dateStyle: 'medium', 
-      timeStyle: 'short' 
-    });
-    document.getElementById("time").innerText = `Last updated: ${muscatTime} (manual)`;
-  </script>
 </body>
 </html>
