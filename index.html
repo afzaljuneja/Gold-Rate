@@ -80,65 +80,59 @@
       margin: 18px 0 12px;
       font-weight: bold;
     }
-    .table-container {
+    table {
       width: 90%;
       max-width: 420px;
-      margin: 0 auto 24px;
+      margin: 20px auto 24px;
+      border-collapse: separate;
+      border-spacing: 0 12px;   /* Rows ke beech vertical space */
+      font-size: clamp(0.95em, 3.4vw, 1.05em);
     }
-    .rate-row {
-      background: #001a3a;
-      border: 2px solid #004080;
-      border-radius: 16px;          /* Rounded corners for each row */
-      margin-bottom: 12px;          /* Space between rows */
+    tr {
+      background: #001a3a;              /* Dark blue row bg */
+      border-radius: 12px;              /* Rounded corners har row pe */
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,212,255,0.15);
+      box-shadow: 0 2px 8px rgba(0,212,255,0.15);
     }
-    .rate-row:last-child {
-      margin-bottom: 0;
+    th, td {
+      padding: 12px 10px;
+      text-align: center;
+      border: none;
     }
-    .row-header {
+    th {
       background: #000d24;
       color: #00d4ff;
       font-weight: bold;
       font-size: 1.1em;
-      padding: 10px;
-      border-bottom: 1px solid #004080;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
     }
-    .row-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 10px;
+    td {
+      border-bottom: 1px solid #004080; /* Light separator inside row */
+    }
+    td:first-child {
+      border-bottom-left-radius: 12px;
+    }
+    td:last-child {
+      border-bottom-right-radius: 12px;
     }
     .karat {
       color: #ffd700;
       font-weight: bold;
-      font-size: 1.4em;
-      min-width: 80px;
-      text-align: left;
+      font-size: 1.35em;
     }
     .unit {
       color: #b3e5fc;
       font-size: 1em;
-      text-align: center;
-      flex: 1;
     }
     .price {
       color: #ffffff;
       font-weight: bold;
       font-size: 1.2em;
-      text-align: right;
-      min-width: 120px;
     }
     @media (max-width: 600px) {
-      .row-content {
-        flex-direction: column;
-        gap: 8px;
-      }
-      .karat, .unit, .price {
-        text-align: center;
-        min-width: auto;
-      }
+      table { width: 100%; }
+      th, td { padding: 10px 8px; }
     }
   </style>
 </head>
@@ -153,48 +147,38 @@
 
   <div id="ounceUSD">Gold per Ounce (USD): — (manual update)</div>
 
-  <div class="table-container">
-    <div class="rate-row">
-      <div class="row-header">عيار / Karat</div>
-      <div class="row-content">
-        <div class="karat">24K</div>
-        <div class="unit">1 gm / جرام</div>
-        <div class="price">61.10 OMR</div>
-      </div>
-    </div>
-
-    <div class="rate-row">
-      <div class="row-content">
-        <div class="karat">22K</div>
-        <div class="unit">1 gm / جرام</div>
-        <div class="price">57.05 OMR</div>
-      </div>
-    </div>
-
-    <div class="rate-row">
-      <div class="row-content">
-        <div class="karat">21K</div>
-        <div class="unit">1 gm / جرام</div>
-        <div class="price">54.45 OMR</div>
-      </div>
-    </div>
-
-    <div class="rate-row">
-      <div class="row-content">
-        <div class="karat">18K</div>
-        <div class="unit">1 gm / جرام</div>
-        <div class="price">45.80 OMR</div>
-      </div>
-    </div>
-
-    <div class="rate-row">
-      <div class="row-content">
-        <div class="karat">21K</div>
-        <div class="unit">1 Tola / تولة (11.664 gm)</div>
-        <div class="price">635.00 OMR</div>
-      </div>
-    </div>
-  </div>
+  <table>
+    <tr>
+      <th>عيار / Karat</th>
+      <th>وحدة / Unit</th>
+      <th>سعر ر.ع / Price OMR</th>
+    </tr>
+    <tr>
+      <td class="karat">24K</td>
+      <td class="unit">1 gm / جرام</td>
+      <td class="price">61.10 OMR</td>
+    </tr>
+    <tr>
+      <td class="karat">22K</td>
+      <td class="unit">1 gm / جرام</td>
+      <td class="price">57.05 OMR</td>
+    </tr>
+    <tr>
+      <td class="karat">21K</td>
+      <td class="unit">1 gm / جرام</td>
+      <td class="price">54.45 OMR</td>
+    </tr>
+    <tr>
+      <td class="karat">18K</td>
+      <td class="unit">1 gm / جرام</td>
+      <td class="price">45.80 OMR</td>
+    </tr>
+    <tr>
+      <td class="karat">21K</td>
+      <td class="unit">1 Tola / تولة (11.664 gm)</td>
+      <td class="price">635.00 OMR</td>
+    </tr>
+  </table>
 
   <p class="updated-time" id="time">Last updated: Manual — Please update prices manually</p>
 
