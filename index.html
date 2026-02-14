@@ -5,157 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Live Gold Rates - SATTARDINA JEWELLERY</title>
   <style>
-    body {
-      margin: 0;
-      padding: 15px 10px;
-      background: linear-gradient(135deg, #000d24 0%, #000833 100%);
-      color: #e0f7fa;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      text-align: center;
-      min-height: 100vh;
-      line-height: 1.5;
-    }
-    .logo-container {
-      margin: 20px 0 15px;
-    }
-    .logo-img {
-      width: clamp(100px, 30vw, 130px);
-      height: clamp(100px, 30vw, 130px);
-      border-radius: 50%;
-      border: 4px solid #00eaff;
-      box-shadow: 0 0 25px rgba(0, 234, 255, 0.35);
-      object-fit: contain;
-      background: #000d24;
-    }
-    h1 {
-      color: #00eaff;
-      font-size: clamp(2em, 7vw, 2.6em);
-      margin: 10px 0 6px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-shadow: 0 3px 15px rgba(0, 234, 255, 0.4);
-    }
-    .arabic {
-      font-size: clamp(1.6em, 5vw, 2.1em);
-      color: #80deea;
-      margin: 5px 0 20px;
-      font-weight: 600;
-    }
-    #ounceUSD {
-      font-size: clamp(1.3em, 4.5vw, 1.6em);
-      color: #4fc3f7;
-      margin: 20px 0 25px;
-      font-weight: 600;
-      background: rgba(0, 212, 255, 0.08);
-      padding: 10px;
-      border-radius: 12px;
-      max-width: 420px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    table {
-      width: 92%;
-      max-width: 440px;
-      margin: 0 auto 30px;
-      border-collapse: separate;
-      border-spacing: 0 10px;
-    }
-    tr {
-      background: #001a3a;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-    tr:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 234, 255, 0.2);
-    }
-    th, td {
-      padding: 14px 12px;
-      text-align: center;
-      border: none;
-    }
-    th {
-      background: #000d24;
-      color: #00eaff;
-      font-size: 1.15em;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    }
-    td {
-      font-size: 1.1em;
-    }
-    .karat {
-      color: #ffeb3b;
-      font-weight: 700;
-      font-size: 1.4em;
-    }
-    .unit {
-      color: #b3e5fc;
-      font-size: 1em;
-    }
-    .price {
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 1.25em;
-      letter-spacing: 0.5px;
-    }
-    .updated-time {
-      font-size: 1.05em;
-      color: #81d4fa;
-      margin: 10px 0 25px;
-      font-style: italic;
-    }
-    .note {
-      font-size: 1em;
-      color: #4fc3f7;
-      margin: 15px 0 30px;
-      font-weight: 500;
-      max-width: 420px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .social {
-      margin: 20px 0 15px;
-      font-size: 1.1em;
-      color: #e0f7fa;
-    }
-    .social img {
-      width: 36px;
-      height: 36px;
-      vertical-align: middle;
-      margin-right: 10px;
-      border-radius: 8px;
-    }
-    .whatsapp-container {
-      background: linear-gradient(90deg, #25D366, #128C7E);
-      color: white;
-      font-size: 1.4em;
-      font-weight: bold;
-      padding: 14px;
-      margin: 20px auto;
-      border-radius: 15px;
-      max-width: 380px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-    }
-    .whatsapp-container img {
-      width: 48px;
-      height: 48px;
-    }
-    @media (max-width: 500px) {
-      body { padding: 10px; }
-      table { width: 100%; }
-      th, td { padding: 12px 8px; }
-      .karat { font-size: 1.3em; }
-      .price { font-size: 1.15em; }
-    }
+    body { margin: 0; padding: 10px; background: #0a3d1a; color: #fff; font-family: Arial, sans-serif; text-align: center; min-height: 100vh; }
+    .logo-container { margin: 12px 0; }
+    .logo-img { width: clamp(110px, 35vw, 126px); height: clamp(110px, 35vw, 126px); border-radius: 50%; border: 3px solid #ffd700; box-shadow: 0 5px 12px rgba(255,215,0,0.3); object-fit: contain; background: #0a3d1a; }
+    h1 { color: #00ffcc; font-size: clamp(1.7em, 5.5vw, 2.1em); margin: 8px 0 4px; }
+    .arabic { font-size: clamp(1.7em, 4.8vw, 2.2em); color: #ffd700; margin: 4px 0; font-weight: bold; }
+    .social { margin: 16px 0 12px; font-size: clamp(1em, 3.8vw, 1.2em); }
+    .social img { width: 32px; height: 32px; vertical-align: middle; margin-right: 7px; }
+    .updated-time { font-size: clamp(0.9em, 3vw, 1em); color: #ccc; margin: 0 0 16px; font-weight: normal; }
+    .whatsapp-container { background: #25D366; color: #000; font-size: clamp(1.2em, 4.5vw, 1.5em); font-weight: bold; padding: 10px; margin: 12px auto; border-radius: 10px; max-width: 360px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 3px 8px rgba(0,0,0,0.5); }
+    .whatsapp-container img { width: 40px; height: 40px; }
+    table { width: 95%; max-width: 420px; margin: 0 auto 24px; border-collapse: collapse; background: #0a3d1a; border: 2px solid #00ffcc; border-radius: 8px; overflow: hidden; font-size: clamp(0.95em, 3.4vw, 1.05em); }
+    th, td { padding: 10px; border: 1px solid #004d33; text-align: center; }
+    th { background: #002b1a; color: #00ffcc; font-weight: bold; }
+    .karat { color: #ffd700; font-weight: bold; }
+    .rate { color: #ffffff; }
+    .trend-up { color: #00ff7f; }
+    .trend { font-size: 0.9em; }
+    @media (max-width: 600px) { body { padding: 6px; } .logo-img { width: clamp(100px, 32vw, 115px); height: clamp(100px, 32vw, 115px); } table { width: 100%; font-size: 0.95em; } th, td { padding: 8px; } }
   </style>
 </head>
 <body>
@@ -167,50 +34,52 @@
   <h1>SATTARDINA JEWELLERY</h1>
   <div class="arabic">مجوهرات ستاردينا</div>
 
-  <div id="ounceUSD">Gold per Ounce (USD): — (manual update)</div>
+  <p style="font-size: clamp(1.2em, 4.5vw, 1.4em); color: #00ff7f; margin: 18px 0 12px; font-weight: bold;">
+    Gold per Ounce (USD): 2,950.00
+  </p>
+
+  <p style="font-size: clamp(1.1em, 4vw, 1.3em); color: #ffffff; margin: 0 0 16px;">
+    ALL KERALA GENERATIONS BOARD RATE
+  </p>
+
+  <p style="font-size: clamp(1em, 3.8vw, 1.15em); color: #00ffcc; margin: 4px 0 20px;">
+    SATURDAY, FEBRUARY 14, 2026 • 09:10 AM
+  </p>
 
   <table>
-    <thead>
-      <tr>
-        <th>عيار / Karat</th>
-        <th>وحدة / Unit</th>
-        <th>سعر ر.ع / Price OMR</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="karat">24K</td>
-        <td class="unit">1 gm / جرام</td>
-        <td class="price">61.10 OMR</td>
-      </tr>
-      <tr>
-        <td class="karat">22K</td>
-        <td class="unit">1 gm / جرام</td>
-        <td class="price">57.05 OMR</td>
-      </tr>
-      <tr>
-        <td class="karat">21K</td>
-        <td class="unit">1 gm / جرام</td>
-        <td class="price">54.45 OMR</td>
-      </tr>
-      <tr>
-        <td class="karat">18K</td>
-        <td class="unit">1 gm / جرام</td>
-        <td class="price">45.80 OMR</td>
-      </tr>
-      <tr>
-        <td class="karat">21K</td>
-        <td class="unit">1 Tola / تولة (11.664 gm)</td>
-        <td class="price">635.00 OMR</td>
-      </tr>
-    </tbody>
+    <tr>
+      <th>KARAT</th>
+      <th>RATE</th>
+      <th>TREND</th>
+    </tr>
+    <tr>
+      <td class="karat">22K</td>
+      <td class="rate">1G 14,460<br>8G 1,15,680</td>
+      <td class="trend-up">▲ ₹240</td>
+    </tr>
+    <tr>
+      <td class="karat">18K</td>
+      <td class="rate">1G 11,880<br>8G 95,040</td>
+      <td class="trend-up">▲ ₹195</td>
+    </tr>
+    <tr>
+      <td class="karat">14K</td>
+      <td class="rate">1G 9,250<br>8G 74,000</td>
+      <td class="trend-up">▲ ₹150</td>
+    </tr>
+    <tr>
+      <td class="karat">9K</td>
+      <td class="rate">1G 5,965<br>8G 47,720</td>
+      <td class="trend-up">▲ ₹100</td>
+    </tr>
+    <tr>
+      <td class="karat">SILVER</td>
+      <td class="rate">1G 275<br>10G 2,750</td>
+      <td class="trend">-</td>
+    </tr>
   </table>
 
-  <p class="updated-time" id="time">Last updated: Manual — Please update prices manually</p>
-
-  <p class="note">
-    ملاحظة: أسعار الذهب قابلة للتغيير باستمرار – يرجى التحديث يدويًا
-  </p>
+  <p class="updated-time">Last updated: February 14, 2026 09:10 AM</p>
 
   <div class="social">
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
@@ -222,14 +91,5 @@
     WHATSAPP: 71171790
   </div>
 
-  <script>
-    const now = new Date();
-    const muscatTime = now.toLocaleString('en-US', { 
-      timeZone: 'Asia/Muscat', 
-      dateStyle: 'medium', 
-      timeStyle: 'short' 
-    });
-    document.getElementById("time").innerText = `Last updated: ${muscatTime} (manual)`;
-  </script>
 </body>
 </html>
