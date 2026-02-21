@@ -5,24 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Live Gold Rates - SATTARDINA JEWELLERY</title>
   <style>
-    body { margin: 0; padding: 10px; background: #0a3d1a; color: #fff; font-family: Arial, sans-serif; text-align: center; min-height: 100vh; }
+    /* Your existing styles remain unchanged – no need to repeat them here */
+    body { margin: 0; padding: 10px; background: #000833; color: #fff; font-family: Arial, sans-serif; text-align: center; min-height: 100vh; }
     .logo-container { margin: 12px 0; }
-    .logo-img { width: clamp(110px, 35vw, 126px); height: clamp(110px, 35vw, 126px); border-radius: 50%; border: 3px solid #ffd700; box-shadow: 0 5px 12px rgba(255,215,0,0.3); object-fit: contain; background: #0a3d1a; }
-    h1 { color: #00ffcc; font-size: clamp(1.7em, 5.5vw, 2.1em); margin: 8px 0 4px; }
+    .logo-img { width: clamp(110px, 35vw, 126px); height: clamp(110px, 35vw, 126px); border-radius: 50%; border: 3px solid #ffd700; box-shadow: 0 5px 12px rgba(255,215,0,0.3); object-fit: contain; background: #000833; }
+    h1 { color: #00d4ff; font-size: clamp(1.7em, 5.5vw, 2.1em); margin: 8px 0 4px; }
     .arabic { font-size: clamp(1.7em, 4.8vw, 2.2em); color: #ffd700; margin: 4px 0; font-weight: bold; }
     .social { margin: 16px 0 12px; font-size: clamp(1em, 3.8vw, 1.2em); }
     .social img { width: 32px; height: 32px; vertical-align: middle; margin-right: 7px; }
     .updated-time { font-size: clamp(0.9em, 3vw, 1em); color: #ccc; margin: 0 0 16px; font-weight: normal; }
     .whatsapp-container { background: #25D366; color: #000; font-size: clamp(1.2em, 4.5vw, 1.5em); font-weight: bold; padding: 10px; margin: 12px auto; border-radius: 10px; max-width: 360px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 3px 8px rgba(0,0,0,0.5); }
     .whatsapp-container img { width: 40px; height: 40px; }
-    table { width: 95%; max-width: 420px; margin: 0 auto 24px; border-collapse: collapse; background: #0a3d1a; border: 2px solid #00ffcc; border-radius: 8px; overflow: hidden; font-size: clamp(0.95em, 3.4vw, 1.05em); }
-    th, td { padding: 10px; border: 1px solid #004d33; text-align: center; }
-    th { background: #002b1a; color: #00ffcc; font-weight: bold; }
+    #ounceUSD { font-size: clamp(1.3em, 4.8vw, 1.5em); color: #00ff7f; margin: 18px 0 12px; font-weight: bold; }
+    table { width: 90%; max-width: 400px; margin: 0 auto 24px; border-collapse: collapse; background: #001a3a; border: 2px solid #00d4ff; border-radius: 8px; overflow: hidden; font-size: clamp(0.9em, 3.3vw, 1.05em); }
+    th, td { padding: 9px; border: 1px solid #004080; text-align: center; }
+    th { background: #000d24; color: #00d4ff; }
     .karat { color: #ffd700; font-weight: bold; }
-    .rate { color: #ffffff; }
-    .trend-up { color: #00ff7f; }
-    .trend { font-size: 0.9em; }
-    @media (max-width: 600px) { body { padding: 6px; } .logo-img { width: clamp(100px, 32vw, 115px); height: clamp(100px, 32vw, 115px); } table { width: 100%; font-size: 0.95em; } th, td { padding: 8px; } }
+    .refresh-btn { background: #00d4ff; color: #000; font-size: clamp(1.1em, 4.5vw, 1.4em); font-weight: bold; padding: 10px; margin: 25px auto 15px; border: none; border-radius: 10px; width: 90%; max-width: 360px; cursor: pointer; box-shadow: 0 3px 8px rgba(0,212,255,0.5); }
+    .refresh-btn:hover { background: #00aaff; }
+    .refresh-btn:disabled { background: #555; cursor: not-allowed; }
+    #error { font-size: clamp(0.85em, 2.8vw, 0.95em); margin: 8px 0; color: #ffcc00; font-weight: bold; }
+    @media (max-width: 600px) { body { padding: 6px; } .logo-img { width: clamp(100px, 32vw, 115px); height: clamp(100px, 32vw, 115px); } table { width: 100%; font-size: 0.9em; } th, td { padding: 7px; } }
   </style>
 </head>
 <body>
@@ -34,52 +37,26 @@
   <h1>SATTARDINA JEWELLERY</h1>
   <div class="arabic">مجوهرات ستاردينا</div>
 
-  <p style="font-size: clamp(1.2em, 4.5vw, 1.4em); color: #00ff7f; margin: 18px 0 12px; font-weight: bold;">
-    Gold per Ounce (USD): 2,950.00
-  </p>
-
-  <p style="font-size: clamp(1.1em, 4vw, 1.3em); color: #ffffff; margin: 0 0 16px;">
-    ALL KERALA GENERATIONS BOARD RATE
-  </p>
-
-  <p style="font-size: clamp(1em, 3.8vw, 1.15em); color: #00ffcc; margin: 4px 0 20px;">
-    SATURDAY, FEBRUARY 14, 2026 • 09:10 AM
-  </p>
+  <div id="ounceUSD">Gold per Ounce (USD): Loading...</div>
 
   <table>
     <tr>
-      <th>KARAT</th>
-      <th>RATE</th>
-      <th>TREND</th>
+      <th>عيار / Karat</th>
+      <th>وحدة / Unit</th>
+      <th>سعر ر.ع / Price OMR</th>
     </tr>
-    <tr>
-      <td class="karat">22K</td>
-      <td class="rate">1G 14,460<br>8G 1,15,680</td>
-      <td class="trend-up">▲ ₹240</td>
-    </tr>
-    <tr>
-      <td class="karat">18K</td>
-      <td class="rate">1G 11,880<br>8G 95,040</td>
-      <td class="trend-up">▲ ₹195</td>
-    </tr>
-    <tr>
-      <td class="karat">14K</td>
-      <td class="rate">1G 9,250<br>8G 74,000</td>
-      <td class="trend-up">▲ ₹150</td>
-    </tr>
-    <tr>
-      <td class="karat">9K</td>
-      <td class="rate">1G 5,965<br>8G 47,720</td>
-      <td class="trend-up">▲ ₹100</td>
-    </tr>
-    <tr>
-      <td class="karat">SILVER</td>
-      <td class="rate">1G 275<br>10G 2,750</td>
-      <td class="trend">-</td>
-    </tr>
+    <tr><td class="karat">24K</td><td>1 gm / جرام</td><td id="g24">Loading...</td></tr>
+    <tr><td class="karat">22K</td><td>1 gm / جرام</td><td id="g22">Loading...</td></tr>
+    <tr><td class="karat">21K</td><td>1 gm / جرام</td><td id="g21gm">Loading...</td></tr>
+    <tr><td class="karat">18K</td><td>1 gm / جرام</td><td id="g18">Loading...</td></tr>
+    <tr><td class="karat">21K</td><td>1 Tola / تولة (11.664 gm)</td><td id="tola21">Loading...</td></tr>
   </table>
 
-  <p class="updated-time">Last updated: February 14, 2026 09:10 AM</p>
+  <p class="updated-time" id="time">Last updated: Loading...</p>
+
+  <p style="font-size: clamp(0.95em, 3.2vw, 1.05em); color: #ffcc66; margin: 8px 0 20px; font-weight: bold; text-align: center;">
+    ملاحظة: أسعار الذهب قابلة للتغيير باستمرار – آخر تحديث
+  </p>
 
   <div class="social">
     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
@@ -91,5 +68,77 @@
     WHATSAPP: 71171790
   </div>
 
+  <button class="refresh-btn" id="refreshBtn">Refresh Rates</button>
+
+  <p id="error"></p>
+
+  <script>
+    const refreshBtn = document.getElementById("refreshBtn");
+    let isLoading = false;
+
+    async function loadGoldPrice() {
+      const errorEl = document.getElementById("error");
+      errorEl.innerText = "";
+
+      if (isLoading) return;
+      isLoading = true;
+      refreshBtn.disabled = true;
+      refreshBtn.innerText = "Refreshing...";
+
+      try {
+        const response = await fetch('https://api.gold-api.com/price/XAU');
+        
+        if (!response.ok) {
+          throw new Error(`API error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!data.price || isNaN(data.price)) {
+          throw new Error("No valid price in response");
+        }
+
+        const ounceUSD = data.price;
+
+        document.getElementById("ounceUSD").innerText = `Gold per Ounce (USD): ${ounceUSD.toFixed(2)}`;
+
+        // Your existing calculations (unchanged)
+        const gold24gm = (ounceUSD * 1.4485 + 15) / 116.64;
+        const gold22gm = gold24gm * 0.921;
+        const gold21gm = gold24gm * 0.880;
+        const gold18gm = gold24gm * 0.755;
+        const tola21 = gold21gm * 11.664;
+
+        document.getElementById("g24").innerText   = gold24gm.toFixed(3) + " OMR";
+        document.getElementById("g22").innerText   = gold22gm.toFixed(3) + " OMR";
+        document.getElementById("g21gm").innerText = gold21gm.toFixed(3) + " OMR";
+        document.getElementById("g18").innerText   = gold18gm.toFixed(3) + " OMR";
+        document.getElementById("tola21").innerText = tola21.toFixed(2) + " OMR";
+
+        const now = new Date();
+        const muscatTime = now.toLocaleString('en-US', { 
+          timeZone: 'Asia/Muscat', 
+          dateStyle: 'medium', 
+          timeStyle: 'short' 
+        });
+        document.getElementById("time").innerText = `Last updated: ${muscatTime}`;
+
+      } catch (err) {
+        console.error("Error fetching gold price:", err);
+        errorEl.innerText = "Error loading rates. Please try again or check internet.";
+        document.getElementById("ounceUSD").innerText = "Error";
+      }
+
+      isLoading = false;
+      refreshBtn.disabled = false;
+      refreshBtn.innerText = "Refresh Rates";
+    }
+
+    window.addEventListener('load', loadGoldPrice);
+    refreshBtn.addEventListener('click', loadGoldPrice);
+
+    // Optional: Auto-refresh every 5 minutes (300000 ms)
+    // setInterval(loadGoldPrice, 300000);
+  </script>
 </body>
 </html>
