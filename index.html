@@ -11,10 +11,20 @@ body{
   background:#000 url('https://i.ibb.co/jF6Fwxq/1772224958978.png') no-repeat center center;
   background-size:contain;
   background-attachment:fixed;
-  color:#66ffcc;
   font-family:Arial,sans-serif;
   text-align:center;
+  color:#66ffcc;
+  position:relative;
 }
+/* dark overlay on background logo */
+body::before{
+  content:"";
+  position:fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.5);
+  z-index:-1;
+}
+
 h1{
   font-size:2em;
   font-weight:bold;
@@ -39,7 +49,7 @@ h2{
   border-radius:12px;
   padding:5px 10px;
   max-width:350px;
-  margin:0 auto 15px;
+  margin:0 auto 10px;
   box-shadow:0 0 10px rgba(0,255,204,0.3);
 }
 .rate-row{
@@ -100,9 +110,10 @@ h2{
 <div class="rate-row"><span class="karat">116.64 غرام</span><span class="price" id="g116_64">Loading...</span></div>
 </div>
 
-<p class="note">ملاحظه : اسعار الذهب متغيره</p>
+<!-- Time below the table -->
 <p class="updated-time" id="time">آخر تحديث: --</p>
 
+<p class="note">ملاحظه : اسعار الذهب متغيره</p>
 <p class="footer">
 شركة الصائغ المعروف ش.م.م<br>
 رقم التواصل: 92480599<br>
@@ -130,7 +141,7 @@ const g=(p*1.4485+15)/116.64,
       m=g*50+25,
       n=g*100+32,
       q=g*116.64+40;
-function fmt(x){return x.toFixed(1)+"000"} // point ke baad 3 digits
+function fmt(x){return x.toFixed(1)+"00"} // 3 digits after decimal
 document.getElementById("g1").innerText=fmt(d)+" OMR";
 document.getElementById("g2_5").innerText=fmt(f)+" OMR";
 document.getElementById("g5").innerText=fmt(h)+" OMR";
@@ -146,6 +157,14 @@ document.getElementById("time").innerText="آخر تحديث: "+tm;
 document.getElementById("ounceUSD").innerText="خطأ في تحميل السعر";
 }
 l.loading=!1;r.disabled=!1;r.innerText="تحديث الأسعار";
+}
+window.addEventListener("load",u);
+r.addEventListener("click",u);
+setInterval(u,3e5);
+</script>
+
+</body>
+</html>l.loading=!1;r.disabled=!1;r.innerText="تحديث الأسعار";
 }
 window.addEventListener("load",u);
 r.addEventListener("click",u);
