@@ -1,31 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Al Saigh Al Marouf Jewellery - Live Gold Rates</title>
+<title>متجر الصايغ المعروف - أسعار الذهب 24</title>
 <style>
-body{margin:0;padding:15px;background:#000;color:#fff;font-family:Arial;text-align:center;}
-h1{color:#d4af37;font-size:2em;margin-bottom:5px;}
-.subtitle{color:#aaa;margin-bottom:20px;}
-#ounceUSD{font-size:1.4em;color:#00ff99;margin:20px 0;font-weight:bold;}
-.rates-card{background:#111;border-radius:15px;padding:15px;max-width:500px;margin:0 auto 25px;box-shadow:0 0 15px rgba(212,175,55,0.4);}
+body{margin:0;padding:15px;background:#000;color:#ffd700;font-family:Arial, sans-serif;text-align:center;}
+h1,h2{color:#ffd700;margin:5px 0;}
+h2{font-size:1.8em;}
+.subtitle{color:#ffdd66;margin-bottom:20px;font-weight:bold;}
+#ounceUSD{font-size:1.4em;color:#ffdd66;margin:20px 0;font-weight:bold;}
+.rates-card{background:#111;border-radius:15px;padding:15px;max-width:500px;margin:0 auto 20px;box-shadow:0 0 15px rgba(255,215,0,0.4);}
 .rate-row{display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid #333;font-size:1.1em;}
 .rate-row:last-child{border-bottom:none;}
-.karat{color:#d4af37;font-weight:bold;}
-.price{color:#00ffcc;}
-.updated-time{color:#888;font-size:0.9em;margin-top:15px;}
-.refresh-btn{background:#d4af37;color:#000;font-weight:bold;padding:12px;border:none;border-radius:10px;width:90%;max-width:400px;cursor:pointer;font-size:1.1em;}
+.karat{color:#ffd700;font-weight:bold;}
+.price{color:#00ffcc;font-weight:bold;}
+.table-header{display:flex;justify-content:space-between;padding:12px;font-weight:bold;border-bottom:2px solid #ffd700;}
+.refresh-btn{background:#ffd700;color:#000;font-weight:bold;padding:12px;border:none;border-radius:10px;width:90%;max-width:400px;cursor:pointer;font-size:1.1em;margin:15px auto;display:block;}
 .refresh-btn:hover{background:#f1c232;}
-.whatsapp{margin-top:20px;font-size:1.2em;color:#25D366;font-weight:bold;}
+.updated-time{color:#ffdd66;font-size:0.9em;margin-top:15px;}
+.note{color:#ffd700;font-weight:bold;margin:10px 0;}
+.footer{color:#ffd700;font-weight:bold;margin-top:20px;}
 </style>
 </head>
 <body>
-<h1>AL SAIGH AL MAROUF JEWELLERY</h1>
-<div class="subtitle">Premium 24K Gold Rates - Oman</div>
-<div id="ounceUSD">Loading Gold Price...</div>
+
+<h2>أسعار سبائك الذهب عيار 24</h2>
+<div id="ounceUSD">جارٍ تحميل السعر...</div>
 
 <div class="rates-card">
+<div class="table-header"><span>الوحدة / Unit</span><span>السعر / Rate (OMR)</span></div>
 <div class="rate-row"><span class="karat">1 gm</span><span class="price" id="g1">Loading...</span></div>
 <div class="rate-row"><span class="karat">2.5 gm</span><span class="price" id="g2_5">Loading...</span></div>
 <div class="rate-row"><span class="karat">5 gm</span><span class="price" id="g5">Loading...</span></div>
@@ -37,13 +41,21 @@ h1{color:#d4af37;font-size:2em;margin-bottom:5px;}
 <div class="rate-row"><span class="karat">1 Ounce (116.64 gm)</span><span class="price" id="g116_64">Loading...</span></div>
 </div>
 
-<p class="updated-time" id="time">Last updated: --</p>
-<div class="whatsapp">📞 WhatsApp: 71171790</div>
-<button class="refresh-btn" id="refreshBtn">Refresh Rates</button>
+<p class="note">ملاحظه : اسعار الذهب متغيره</p>
+<p class="updated-time" id="time">آخر تحديث: --</p>
+
+<p class="footer">
+متجر الصايغ المعروف<br>
+رقم التواصل: 92480599<br>
+أخوكم تمجيد الصايغ
+</p>
+
+<button class="refresh-btn" id="refreshBtn">تحديث الأسعار</button>
 
 <script>
 // ==== Obfuscated & Secure 24K Gold + Premiums ====
-const r=document.getElementById("refreshBtn"),l={loading:!1};async function u(){if(l.loading)return;l.loading=!0,r.disabled=!0,r.innerText="Refreshing...";try{const t=await fetch("https://api.gold-api.com/price/XAU"),o=await t.json(),p=o.price;document.getElementById("ounceUSD").innerText="Gold per Ounce (USD): "+p.toFixed(2);const g=(p*1.4485+15)/116.64,d=g+4.5,f=g*2.5+12,h=g*5+15,i=g*10+15,j=g*11.664+15,k=g*20+20,m=g*50+25,n=g*100+32,q=g*116.64+40;document.getElementById("g1").innerText=d.toFixed(3)+" OMR",document.getElementById("g2_5").innerText=f.toFixed(3)+" OMR",document.getElementById("g5").innerText=h.toFixed(3)+" OMR",document.getElementById("g10").innerText=i.toFixed(3)+" OMR",document.getElementById("tola").innerText=j.toFixed(3)+" OMR",document.getElementById("g20").innerText=k.toFixed(3)+" OMR",document.getElementById("g50").innerText=m.toFixed(3)+" OMR",document.getElementById("g100").innerText=n.toFixed(3)+" OMR",document.getElementById("g116_64").innerText=q.toFixed(3)+" OMR";const s=new Date,tm=s.toLocaleString("en-US",{timeZone:"Asia/Muscat",dateStyle:"medium",timeStyle:"short"});document.getElementById("time").innerText="Last updated: "+tm}catch(e){document.getElementById("ounceUSD").innerText="Error loading price"}l.loading=!1,r.disabled=!1,r.innerText="Refresh Rates"}window.addEventListener("load",u),r.addEventListener("click",u),setInterval(u,3e5);
+const r=document.getElementById("refreshBtn"),l={loading:!1};async function u(){if(l.loading)return;l.loading=!0,r.disabled=!0,r.innerText="جارٍ التحديث...";try{const t=await fetch("https://api.gold-api.com/price/XAU"),o=await t.json(),p=o.price;document.getElementById("ounceUSD").innerText="سعر الأونصة (USD): "+p.toFixed(2);const g=(p*1.4485+15)/116.64,d=g+4.5,f=g*2.5+12,h=g*5+15,i=g*10+15,j=g*11.664+15,k=g*20+20,m=g*50+25,n=g*100+32,q=g*116.64+40;document.getElementById("g1").innerText=d.toFixed(3)+" OMR",document.getElementById("g2_5").innerText=f.toFixed(3)+" OMR",document.getElementById("g5").innerText=h.toFixed(3)+" OMR",document.getElementById("g10").innerText=i.toFixed(3)+" OMR",document.getElementById("tola").innerText=j.toFixed(3)+" OMR",document.getElementById("g20").innerText=k.toFixed(3)+" OMR",document.getElementById("g50").innerText=m.toFixed(3)+" OMR",document.getElementById("g100").innerText=n.toFixed(3)+" OMR",document.getElementById("g116_64").innerText=q.toFixed(3)+" OMR";const s=new Date,tm=s.toLocaleString("en-US",{timeZone:"Asia/Muscat",dateStyle:"medium",timeStyle:"short"});document.getElementById("time").innerText="آخر تحديث: "+tm}catch(e){document.getElementById("ounceUSD").innerText="خطأ في تحميل السعر"}l.loading=!1,r.disabled=!1,r.innerText="تحديث الأسعار"}window.addEventListener("load",u),r.addEventListener("click",u),setInterval(u,3e5);
 </script>
+
 </body>
 </html>
