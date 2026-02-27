@@ -11,7 +11,7 @@ body{
   font-family:Arial,sans-serif;
   text-align:center;
   color:#FFD700;
-  background:#000; /* pure black */
+  background:#000; /* black */
   position:relative;
   overflow-x:hidden;
 }
@@ -23,10 +23,11 @@ body::before{
   background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center center;
   background-size: contain;
   background-attachment: fixed;
-  opacity:0.3;
+  opacity:0.25;
   z-index:-1;
 }
 
+/* Header */
 h1{
   font-size:2.2em;
   font-weight:bold;
@@ -38,14 +39,19 @@ h2{
   font-size:1em;
   font-weight:bold;
   color:#FFD700;
+  text-shadow:1px 1px 3px #aa8800;
   margin:5px 0 10px;
 }
+
+/* Ounce price */
 #ounceUSD{
   font-size:1em;
-  color:#FFD700;
+  color:#E6C200; /* slightly darker golden */
   margin:10px 0;
   font-weight:bold;
 }
+
+/* Table / rates */
 .rates-card{
   background: rgba(0,0,0,0.6);
   border-radius:10px;
@@ -54,17 +60,6 @@ h2{
   margin:0 auto 10px;
   box-shadow:0 0 10px rgba(255,215,0,0.3);
 }
-.rate-row{
-  display:flex;
-  justify-content:space-between;
-  padding:5px 10px;
-  border-bottom:1px solid #333;
-  font-size:0.95em;
-  color:#FFD700;
-}
-.rate-row:last-child{border-bottom:none;}
-.karat{color:#FFD700;font-weight:bold;}
-.price{color:#FFD700;font-weight:bold;}
 .table-header{
   display:flex;
   justify-content:space-between;
@@ -74,6 +69,19 @@ h2{
   font-size:0.95em;
   color:#FFD700;
 }
+.rate-row{
+  display:flex;
+  justify-content:space-between;
+  padding:5px 10px;
+  border-bottom:1px solid #333;
+  font-size:0.95em;
+  color:#FFD700; /* table font bright golden */
+}
+.rate-row:last-child{border-bottom:none;}
+.karat{color:#FFD700;font-weight:bold;}
+.price{color:#FFD700;font-weight:bold;}
+
+/* Refresh button */
 .refresh-btn{
   background:#FFD700;
   color:#000;
@@ -89,12 +97,16 @@ h2{
   display:block;
 }
 .refresh-btn:hover{background:#FFCC33;}
+
+/* Note / other text */
 .note{
-  color:#FFD700;
+  color:#E6C200; /* slightly darker golden */
   font-weight:bold;
   margin:8px 0;
   font-size:0.9em;
 }
+
+/* Footer */
 .footer{
   color:#FFD700;
   font-weight:bold;
@@ -122,9 +134,7 @@ h2{
   <div class="rate-row"><span class="karat">116.64 غرام</span><span class="price" id="g116_64">Loading...</span></div>
 </div>
 
-<!-- Time below table -->
 <p class="updated-time" id="time">آخر تحديث: --</p>
-
 <p class="note">ملاحظه : اسعار الذهب متغيره</p>
 
 <p class="footer">
