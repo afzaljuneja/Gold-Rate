@@ -8,49 +8,50 @@
 body{
   margin:0;
   padding:15px;
-  background:#000 url('https://i.ibb.co/jF6Fwxq/1772224958978.png') no-repeat center center;
-  background-size:contain;
-  background-attachment:fixed;
   font-family:Arial,sans-serif;
   text-align:center;
-  color:#66ffcc;
+  color:#FFD700;
   position:relative;
+  overflow-x:hidden;
 }
-/* dark overlay on background logo */
+/* Background logo fixed behind table, dark overlay */
 body::before{
   content:"";
   position:fixed;
   top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.5);
+  background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center center;
+  background-size: contain;
+  background-attachment: fixed;
+  opacity:0.3;
   z-index:-1;
 }
 
 h1{
-  font-size:2em;
+  font-size:2.2em;
   font-weight:bold;
-  color:#00ffff;
-  text-shadow:2px 2px 5px #008888;
-  margin:5px 0;
+  color:#FFD700;
+  text-shadow:2px 2px 5px #aa8800;
+  margin:5px 0 15px;
 }
 h2{
   font-size:1em;
   font-weight:bold;
-  color:#00ccaa;
+  color:#FFD700;
   margin:5px 0 10px;
 }
 #ounceUSD{
   font-size:1em;
-  color:#00ffaa;
+  color:#FFD700;
   margin:10px 0;
   font-weight:bold;
 }
 .rates-card{
-  background:rgba(0,0,0,0.7);
-  border-radius:12px;
+  background: rgba(0,0,0,0.6);
+  border-radius:10px;
   padding:5px 10px;
-  max-width:350px;
+  max-width:340px;
   margin:0 auto 10px;
-  box-shadow:0 0 10px rgba(0,255,204,0.3);
+  box-shadow:0 0 10px rgba(255,215,0,0.3);
 }
 .rate-row{
   display:flex;
@@ -58,22 +59,22 @@ h2{
   padding:5px 10px;
   border-bottom:1px solid #333;
   font-size:0.95em;
-  color:#66ffcc;
+  color:#FFD700;
 }
 .rate-row:last-child{border-bottom:none;}
-.karat{color:#66ffcc;font-weight:bold;}
-.price{color:#00ffaa;font-weight:bold;}
+.karat{color:#FFD700;font-weight:bold;}
+.price{color:#FFD700;font-weight:bold;}
 .table-header{
   display:flex;
   justify-content:space-between;
   padding:5px 10px;
   font-weight:bold;
-  border-bottom:2px solid #00cccc;
+  border-bottom:2px solid #FFD700;
   font-size:0.95em;
-  color:#00ccaa;
+  color:#FFD700;
 }
 .refresh-btn{
-  background:#00cccc;
+  background:#FFD700;
   color:#000;
   font-weight:bold;
   padding:8px;
@@ -86,9 +87,19 @@ h2{
   margin:12px auto;
   display:block;
 }
-.refresh-btn:hover{background:#00ffaa;}
-.note{color:#66ffcc;font-weight:bold;margin:8px 0;font-size:0.9em;}
-.footer{color:#66ffcc;font-weight:bold;margin-top:15px;font-size:0.9em;}
+.refresh-btn:hover{background:#FFCC33;}
+.note{
+  color:#FFD700;
+  font-weight:bold;
+  margin:8px 0;
+  font-size:0.9em;
+}
+.footer{
+  color:#FFD700;
+  font-weight:bold;
+  font-size:0.8em;
+  margin-top:15px;
+}
 </style>
 </head>
 <body>
@@ -98,24 +109,24 @@ h2{
 <div id="ounceUSD">جارٍ تحميل السعر...</div>
 
 <div class="rates-card">
-<div class="table-header"><span>الوحدة / Unit</span><span>السعر / Rate (OMR)</span></div>
-<div class="rate-row"><span class="karat">1 غرام</span><span class="price" id="g1">Loading...</span></div>
-<div class="rate-row"><span class="karat">2.5 غرام</span><span class="price" id="g2_5">Loading...</span></div>
-<div class="rate-row"><span class="karat">5 غرام</span><span class="price" id="g5">Loading...</span></div>
-<div class="rate-row"><span class="karat">10 غرام</span><span class="price" id="g10">Loading...</span></div>
-<div class="rate-row"><span class="karat">1 تولة</span><span class="price" id="tola">Loading...</span></div>
-<div class="rate-row"><span class="karat">20 غرام</span><span class="price" id="g20">Loading...</span></div>
-<div class="rate-row"><span class="karat">50 غرام</span><span class="price" id="g50">Loading...</span></div>
-<div class="rate-row"><span class="karat">100 غرام</span><span class="price" id="g100">Loading...</span></div>
-<div class="rate-row"><span class="karat">116.64 غرام</span><span class="price" id="g116_64">Loading...</span></div>
+  <div class="table-header"><span>الوحدة / Unit</span><span>السعر / Rate (OMR)</span></div>
+  <div class="rate-row"><span class="karat">1 غرام</span><span class="price" id="g1">Loading...</span></div>
+  <div class="rate-row"><span class="karat">2.5 غرام</span><span class="price" id="g2_5">Loading...</span></div>
+  <div class="rate-row"><span class="karat">5 غرام</span><span class="price" id="g5">Loading...</span></div>
+  <div class="rate-row"><span class="karat">10 غرام</span><span class="price" id="g10">Loading...</span></div>
+  <div class="rate-row"><span class="karat">1 تولة</span><span class="price" id="tola">Loading...</span></div>
+  <div class="rate-row"><span class="karat">20 غرام</span><span class="price" id="g20">Loading...</span></div>
+  <div class="rate-row"><span class="karat">50 غرام</span><span class="price" id="g50">Loading...</span></div>
+  <div class="rate-row"><span class="karat">100 غرام</span><span class="price" id="g100">Loading...</span></div>
+  <div class="rate-row"><span class="karat">116.64 غرام</span><span class="price" id="g116_64">Loading...</span></div>
 </div>
 
-<!-- Time below the table -->
+<!-- Time below table -->
 <p class="updated-time" id="time">آخر تحديث: --</p>
 
 <p class="note">ملاحظه : اسعار الذهب متغيره</p>
+
 <p class="footer">
-شركة الصائغ المعروف ش.م.م<br>
 رقم التواصل: 92480599<br>
 أخوكم تمجيد الصائغ
 </p>
@@ -123,13 +134,16 @@ h2{
 <button class="refresh-btn" id="refreshBtn">تحديث الأسعار</button>
 
 <script>
-// ==== Obfuscated & Secure 24K Gold + Premiums ====
+// ==== Secure 24K Gold + Premiums ====
 const r=document.getElementById("refreshBtn"),l={loading:!1};
 async function u(){
-if(l.loading)return;
-l.loading=!0;r.disabled=!0;r.innerText="جارٍ التحديث...";
+if(l.loading) return;
+l.loading=!0;
+r.disabled=!0;
+r.innerText="جارٍ التحديث...";
 try{
-const t=await fetch("https://api.gold-api.com/price/XAU"),o=await t.json(),p=o.price;
+const t=await fetch("https://api.gold-api.com/price/XAU");
+const o=await t.json(),p=o.price;
 document.getElementById("ounceUSD").innerText="سعر الأونصة (USD): "+Math.floor(p);
 const g=(p*1.4485+15)/116.64,
       d=g+4.5,
@@ -151,24 +165,19 @@ document.getElementById("g20").innerText=fmt(k)+" OMR";
 document.getElementById("g50").innerText=fmt(m)+" OMR";
 document.getElementById("g100").innerText=fmt(n)+" OMR";
 document.getElementById("g116_64").innerText=fmt(q)+" OMR";
-const s=new Date,tm=s.toLocaleString("en-US",{timeZone:"Asia/Muscat",dateStyle:"medium",timeStyle:"short"});
+const s=new Date();
+const tm=s.toLocaleString("en-US",{timeZone:"Asia/Muscat",dateStyle:"medium",timeStyle:"short"});
 document.getElementById("time").innerText="آخر تحديث: "+tm;
 }catch(e){
 document.getElementById("ounceUSD").innerText="خطأ في تحميل السعر";
 }
-l.loading=!1;r.disabled=!1;r.innerText="تحديث الأسعار";
+l.loading=!1;
+r.disabled=!1;
+r.innerText="تحديث الأسعار";
 }
 window.addEventListener("load",u);
 r.addEventListener("click",u);
-setInterval(u,3e5);
-</script>
-
-</body>
-</html>l.loading=!1;r.disabled=!1;r.innerText="تحديث الأسعار";
-}
-window.addEventListener("load",u);
-r.addEventListener("click",u);
-setInterval(u,3e5);
+setInterval(u,300000);
 </script>
 
 </body>
