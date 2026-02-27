@@ -7,38 +7,38 @@
 <style>
 body{margin:0;padding:15px;background:#000;color:#ffd700;font-family:Arial, sans-serif;text-align:center;}
 h1,h2{color:#ffd700;margin:5px 0;}
-h2{font-size:1.8em;}
-.subtitle{color:#ffdd66;margin-bottom:20px;font-weight:bold;}
-#ounceUSD{font-size:1.4em;color:#ffdd66;margin:20px 0;font-weight:bold;}
-.rates-card{background:#111;border-radius:15px;padding:15px;max-width:500px;margin:0 auto 20px;box-shadow:0 0 15px rgba(255,215,0,0.4);}
-.rate-row{display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid #333;font-size:1.1em;}
+h1{font-size:1.8em;font-weight:bold;}
+h2{font-size:1.3em;font-weight:bold;margin-bottom:10px;}
+#ounceUSD{font-size:1em;color:#ffdd66;margin:10px 0;font-weight:bold;}
+.rates-card{background:#111;border-radius:12px;padding:10px;max-width:400px;margin:0 auto 15px;box-shadow:0 0 10px rgba(255,215,0,0.3);}
+.rate-row{display:flex;justify-content:space-between;padding:8px 10px;border-bottom:1px solid #333;font-size:1em;}
 .rate-row:last-child{border-bottom:none;}
 .karat{color:#ffd700;font-weight:bold;}
-.price{color:#00ffcc;font-weight:bold;}
-.table-header{display:flex;justify-content:space-between;padding:12px;font-weight:bold;border-bottom:2px solid #ffd700;}
-.refresh-btn{background:#ffd700;color:#000;font-weight:bold;padding:12px;border:none;border-radius:10px;width:90%;max-width:400px;cursor:pointer;font-size:1.1em;margin:15px auto;display:block;}
+.price{color:#ffd700;font-weight:bold;}
+.table-header{display:flex;justify-content:space-between;padding:8px 10px;font-weight:bold;border-bottom:2px solid #ffd700;font-size:1em;}
+.refresh-btn{background:#ffd700;color:#000;font-weight:bold;padding:10px;border:none;border-radius:8px;width:85%;max-width:350px;cursor:pointer;font-size:1em;margin:12px auto;display:block;}
 .refresh-btn:hover{background:#f1c232;}
-.updated-time{color:#ffdd66;font-size:0.9em;margin-top:15px;}
-.note{color:#ffd700;font-weight:bold;margin:10px 0;}
-.footer{color:#ffd700;font-weight:bold;margin-top:20px;}
+.note{color:#ffd700;font-weight:bold;margin:8px 0;font-size:0.95em;}
+.footer{color:#ffd700;font-weight:bold;margin-top:15px;font-size:0.95em;}
 </style>
 </head>
 <body>
 
+<h1>متجر الصايغ المعروف</h1>
 <h2>أسعار سبائك الذهب عيار 24</h2>
 <div id="ounceUSD">جارٍ تحميل السعر...</div>
 
 <div class="rates-card">
 <div class="table-header"><span>الوحدة / Unit</span><span>السعر / Rate (OMR)</span></div>
-<div class="rate-row"><span class="karat">1 gm</span><span class="price" id="g1">Loading...</span></div>
-<div class="rate-row"><span class="karat">2.5 gm</span><span class="price" id="g2_5">Loading...</span></div>
-<div class="rate-row"><span class="karat">5 gm</span><span class="price" id="g5">Loading...</span></div>
-<div class="rate-row"><span class="karat">10 gm</span><span class="price" id="g10">Loading...</span></div>
-<div class="rate-row"><span class="karat">1 Tola</span><span class="price" id="tola">Loading...</span></div>
-<div class="rate-row"><span class="karat">20 gm</span><span class="price" id="g20">Loading...</span></div>
-<div class="rate-row"><span class="karat">50 gm</span><span class="price" id="g50">Loading...</span></div>
-<div class="rate-row"><span class="karat">100 gm</span><span class="price" id="g100">Loading...</span></div>
-<div class="rate-row"><span class="karat">1 Ounce (116.64 gm)</span><span class="price" id="g116_64">Loading...</span></div>
+<div class="rate-row"><span class="karat">1 غرام</span><span class="price" id="g1">Loading...</span></div>
+<div class="rate-row"><span class="karat">2.5 غرام</span><span class="price" id="g2_5">Loading...</span></div>
+<div class="rate-row"><span class="karat">5 غرام</span><span class="price" id="g5">Loading...</span></div>
+<div class="rate-row"><span class="karat">10 غرام</span><span class="price" id="g10">Loading...</span></div>
+<div class="rate-row"><span class="karat">1 تولة</span><span class="price" id="tola">Loading...</span></div>
+<div class="rate-row"><span class="karat">20 غرام</span><span class="price" id="g20">Loading...</span></div>
+<div class="rate-row"><span class="karat">50 غرام</span><span class="price" id="g50">Loading...</span></div>
+<div class="rate-row"><span class="karat">100 غرام</span><span class="price" id="g100">Loading...</span></div>
+<div class="rate-row"><span class="karat">116.64 غرام</span><span class="price" id="g116_64">Loading...</span></div>
 </div>
 
 <p class="note">ملاحظه : اسعار الذهب متغيره</p>
