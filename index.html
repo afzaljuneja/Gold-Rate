@@ -5,113 +5,151 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>شركة الصائغ المعروف ش.م.م - أسعار الذهب 24</title>
 <style>
-body{
-  margin:0;
-  padding:15px;
-  font-family:Arial,sans-serif;
-  text-align:center;
-  color:#FFD700;
-  background:#000; /* black */
-  position:relative;
-  overflow-x:hidden;
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+  text-align: center;
+  color: #FFEB3B; /* brighter gold */
+  background: linear-gradient(135deg, #0a0a0a, #111111); /* deep black gradient */
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
-/* Background logo fixed behind table, dark overlay */
-body::before{
-  content:"";
-  position:fixed;
-  top:0; left:0; right:0; bottom:0;
+
+/* Background logo with overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
   background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center center;
   background-size: contain;
-  background-attachment: fixed;
-  opacity:0.25;
-  z-index:-1;
+  opacity: 0.15; /* lighter opacity for elegance */
+  z-index: -2;
+  pointer-events: none;
 }
 
-/* Header */
-h1{
-  font-size:2.2em;
-  font-weight:bold;
-  color:#FFD700;
-  text-shadow:2px 2px 5px #aa8800;
-  margin:5px 0 15px;
-}
-h2{
-  font-size:1em;
-  font-weight:bold;
-  color:#FFD700;
-  text-shadow:1px 1px 3px #aa8800;
-  margin:5px 0 10px;
+/* Golden overlay subtle */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,215,0,0.08) 0%, transparent 70%);
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* Ounce price */
-#ounceUSD{
-  font-size:1em;
-  color:#E6C200; /* slightly darker golden */
-  margin:10px 0;
-  font-weight:bold;
+h1 {
+  font-size: 2.6em;
+  font-weight: 900;
+  color: #FFEB3B;
+  text-shadow: 0 0 15px rgba(255,235,59,0.7), 3px 3px 10px #aa8800;
+  margin: 10px 0 20px;
+  letter-spacing: 1px;
 }
 
-/* Table / rates */
-.rates-card{
-  background: rgba(0,0,0,0.6);
-  border-radius:10px;
-  padding:5px 10px;
-  max-width:340px;
-  margin:0 auto 10px;
-  box-shadow:0 0 10px rgba(255,215,0,0.3);
-}
-.table-header{
-  display:flex;
-  justify-content:space-between;
-  padding:5px 10px;
-  font-weight:bold;
-  border-bottom:2px solid #FFD700;
-  font-size:0.95em;
-  color:#FFD700;
-}
-.rate-row{
-  display:flex;
-  justify-content:space-between;
-  padding:5px 10px;
-  border-bottom:1px solid #333;
-  font-size:0.95em;
-  color:#FFD700; /* table font bright golden */
-}
-.rate-row:last-child{border-bottom:none;}
-.karat{color:#FFD700;font-weight:bold;}
-.price{color:#FFD700;font-weight:bold;}
-
-/* Refresh button */
-.refresh-btn{
-  background:#FFD700;
-  color:#000;
-  font-weight:bold;
-  padding:8px;
-  border:none;
-  border-radius:8px;
-  width:80%;
-  max-width:300px;
-  cursor:pointer;
-  font-size:1em;
-  margin:12px auto;
-  display:block;
-}
-.refresh-btn:hover{background:#FFCC33;}
-
-/* Note / other text */
-.note{
-  color:#E6C200; /* slightly darker golden */
-  font-weight:bold;
-  margin:8px 0;
-  font-size:0.9em;
+h2 {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #FFD54F;
+  text-shadow: 0 0 10px rgba(255,215,79,0.6);
+  margin: 0 0 15px;
 }
 
-/* Footer */
-.footer{
-  color:#FFD700;
-  font-weight:bold;
-  font-size:0.8em;
-  margin-top:15px;
+#ounceUSD {
+  font-size: 1.2em;
+  color: #FFCA28;
+  margin: 15px 0;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(255,202,40,0.5);
+}
+
+.rates-card {
+  background: rgba(20,20,20,0.75);
+  border: 1px solid #D4AF37;
+  border-radius: 16px;
+  padding: 15px;
+  max-width: 380px;
+  margin: 0 auto 20px;
+  box-shadow: 0 10px 30px rgba(212,175,55,0.25), inset 0 0 15px rgba(255,215,0,0.1);
+  backdrop-filter: blur(5px);
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 15px;
+  font-weight: bold;
+  border-bottom: 2px solid #D4AF37;
+  font-size: 1.05em;
+  color: #FFEB3B;
+  background: rgba(40,40,40,0.4);
+  border-radius: 10px 10px 0 0;
+}
+
+.rate-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 15px;
+  border-bottom: 1px solid #333;
+  font-size: 1.05em;
+  transition: all 0.2s;
+}
+
+.rate-row:hover {
+  background: rgba(255,215,0,0.08);
+  transform: translateX(-5px);
+}
+
+.rate-row:last-child { border-bottom: none; }
+
+.karat { color: #FFEB3B; font-weight: bold; }
+.price { color: #FFF176; font-weight: bold; }
+
+.refresh-btn {
+  background: linear-gradient(90deg, #FFD54F, #FFCA28, #FFD54F);
+  color: #111;
+  font-weight: bold;
+  padding: 12px;
+  border: none;
+  border-radius: 50px;
+  width: 85%;
+  max-width: 320px;
+  cursor: pointer;
+  font-size: 1.1em;
+  margin: 20px auto;
+  display: block;
+  box-shadow: 0 5px 15px rgba(255,215,0,0.4);
+  transition: all 0.3s;
+}
+
+.refresh-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255,215,0,0.6);
+  background: linear-gradient(90deg, #FFEB3B, #FFD54F, #FFEB3B);
+}
+
+.note {
+  color: #FFCA28;
+  font-weight: bold;
+  margin: 10px 0;
+  font-size: 0.95em;
+  text-shadow: 0 0 5px rgba(255,202,40,0.4);
+}
+
+.updated-time {
+  font-size: 1em;
+  color: #FFF176;
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+.footer {
+  color: #FFD54F;
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-top: 25px;
+  line-height: 1.6;
 }
 </style>
 </head>
@@ -145,7 +183,7 @@ h2{
 <button class="refresh-btn" id="refreshBtn">تحديث الأسعار</button>
 
 <script>
-// ==== Secure 24K Gold + Premiums ====
+// ==== Yeh script bilkul same rakha hai, sirf design change kiya ====
 const r=document.getElementById("refreshBtn"),l={loading:!1};
 async function u(){
 if(l.loading) return;
@@ -166,7 +204,7 @@ const g=(p*1.4485+15)/116.64,
       m=g*50+25,
       n=g*100+32,
       q=g*116.64+40;
-function fmt(x){return x.toFixed(1)+"00"} // 3 digits after decimal
+function fmt(x){return x.toFixed(1)+"00"}
 document.getElementById("g1").innerText=fmt(d)+" OMR";
 document.getElementById("g2_5").innerText=fmt(f)+" OMR";
 document.getElementById("g5").innerText=fmt(h)+" OMR";
