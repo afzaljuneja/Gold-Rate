@@ -17,14 +17,15 @@ body {
   overflow-x: hidden;
 }
 
-/* Background logo - fixed center mein lock, table ke saath aligned rahega */
+/* Background logo - table ke center mein locked feel ke liye */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center center / contain;
+  background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center center;
+  background-size: auto 80%;  /* table ke around better fit aur center lock */
   background-attachment: fixed;
-  opacity: 0.28;
+  opacity: 0.25;  /* thoda halka taaki table clear rahe */
   z-index: -2;
   pointer-events: none;
 }
@@ -40,17 +41,17 @@ body::after {
 }
 
 .logo-container {
-  margin: 15px 0 12px;
+  margin: 12px 0 10px;  /* thoda tight kiya */
 }
 
 .logo-img {
-  width: 180px;             /* chhota kiya */
-  height: 180px;
+  width: 126px;             /* 30% chhota (180px se \~126px) */
+  height: 126px;
   object-fit: contain;
-  border-radius: 50%;       /* fully round */
-  box-shadow: 0 8px 25px rgba(212,175,55,0.4);
+  border-radius: 50%;
+  box-shadow: 0 6px 20px rgba(212,175,55,0.35);
   border: 3px solid #D4AF37;
-  background: rgba(0,0,0,0.3); /* thoda dark base taaki shine kare */
+  background: rgba(0,0,0,0.4);
 }
 
 h2 {
@@ -75,6 +76,7 @@ h2 {
   max-width: 300px;
   margin: 0 auto 12px;
   box-shadow: 0 6px 15px rgba(212,175,55,0.15);
+  position: relative;  /* table relative rakha taaki background center feel de */
 }
 
 .table-header {
@@ -184,7 +186,7 @@ h2 {
 <button class="refresh-btn" id="refreshBtn">تحديث الأسعار</button>
 
 <script>
-// Script same rakha
+// Script same
 const r=document.getElementById("refreshBtn"),l={loading:!1};
 async function u(){
 if(l.loading) return;
