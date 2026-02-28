@@ -7,98 +7,93 @@
 <style>
 body {
   margin: 0;
-  padding: 20px;
+  padding: 15px;
   font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
   text-align: center;
   color: #FFEB3B; /* brighter gold */
-  background: linear-gradient(135deg, #0a0a0a, #111111); /* deep black gradient */
+  background: linear-gradient(135deg, #0a0a0a, #111111);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
-/* Background logo with overlay */
+/* Background logo - opacity badha di taaki dikhe */
 body::before {
   content: "";
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center center;
   background-size: contain;
-  opacity: 0.15; /* lighter opacity for elegance */
+  opacity: 0.30; /* ab clearly dikhega */
   z-index: -2;
   pointer-events: none;
 }
 
-/* Golden overlay subtle */
+/* Subtle golden overlay */
 body::after {
   content: "";
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at center, rgba(255,215,0,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(255,215,0,0.06) 0%, transparent 70%);
   z-index: -1;
   pointer-events: none;
 }
 
 h1 {
-  font-size: 2.6em;
+  font-size: 2.4em;
   font-weight: 900;
   color: #FFEB3B;
-  text-shadow: 0 0 15px rgba(255,235,59,0.7), 3px 3px 10px #aa8800;
-  margin: 10px 0 20px;
-  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(255,235,59,0.7);
+  margin: 10px 0 15px;
 }
 
 h2 {
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: bold;
   color: #FFD54F;
-  text-shadow: 0 0 10px rgba(255,215,79,0.6);
-  margin: 0 0 15px;
+  margin: 0 0 10px;
 }
 
 #ounceUSD {
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: #FFCA28;
-  margin: 15px 0;
+  margin: 10px 0;
   font-weight: bold;
-  text-shadow: 0 0 8px rgba(255,202,40,0.5);
 }
 
 .rates-card {
   background: rgba(20,20,20,0.75);
   border: 1px solid #D4AF37;
-  border-radius: 16px;
-  padding: 15px;
-  max-width: 380px;
-  margin: 0 auto 20px;
-  box-shadow: 0 10px 30px rgba(212,175,55,0.25), inset 0 0 15px rgba(255,215,0,0.1);
-  backdrop-filter: blur(5px);
+  border-radius: 12px;
+  padding: 10px; /* kam padding */
+  max-width: 320px; /* chhota kiya */
+  margin: 0 auto 15px;
+  box-shadow: 0 8px 20px rgba(212,175,55,0.2);
 }
 
 .table-header {
   display: flex;
   justify-content: space-between;
-  padding: 12px 15px;
+  padding: 10px 12px;
   font-weight: bold;
   border-bottom: 2px solid #D4AF37;
-  font-size: 1.05em;
+  font-size: 0.95em;
   color: #FFEB3B;
   background: rgba(40,40,40,0.4);
-  border-radius: 10px 10px 0 0;
+  border-radius: 8px 8px 0 0;
 }
 
 .rate-row {
   display: flex;
   justify-content: space-between;
-  padding: 12px 15px;
+  padding: 8px 12px; /* chhota padding */
   border-bottom: 1px solid #333;
-  font-size: 1.05em;
+  font-size: 0.95em;
   transition: all 0.2s;
 }
 
 .rate-row:hover {
-  background: rgba(255,215,0,0.08);
-  transform: translateX(-5px);
+  background: rgba(255,215,0,0.07);
 }
 
 .rate-row:last-child { border-bottom: none; }
@@ -107,49 +102,46 @@ h2 {
 .price { color: #FFF176; font-weight: bold; }
 
 .refresh-btn {
-  background: linear-gradient(90deg, #FFD54F, #FFCA28, #FFD54F);
+  background: linear-gradient(90deg, #FFD54F, #FFCA28);
   color: #111;
   font-weight: bold;
-  padding: 12px;
+  padding: 10px;
   border: none;
   border-radius: 50px;
-  width: 85%;
-  max-width: 320px;
+  width: 80%;
+  max-width: 280px;
   cursor: pointer;
-  font-size: 1.1em;
-  margin: 20px auto;
+  font-size: 1em;
+  margin: 15px auto;
   display: block;
-  box-shadow: 0 5px 15px rgba(255,215,0,0.4);
+  box-shadow: 0 4px 12px rgba(255,215,0,0.4);
   transition: all 0.3s;
 }
 
 .refresh-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(255,215,0,0.6);
-  background: linear-gradient(90deg, #FFEB3B, #FFD54F, #FFEB3B);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255,215,0,0.6);
 }
 
 .note {
   color: #FFCA28;
   font-weight: bold;
-  margin: 10px 0;
-  font-size: 0.95em;
-  text-shadow: 0 0 5px rgba(255,202,40,0.4);
+  margin: 8px 0;
+  font-size: 0.9em;
 }
 
 .updated-time {
-  font-size: 1em;
+  font-size: 0.95em;
   color: #FFF176;
-  margin: 15px 0;
-  font-weight: 500;
+  margin: 10px 0;
 }
 
 .footer {
   color: #FFD54F;
   font-weight: bold;
-  font-size: 0.9em;
-  margin-top: 25px;
-  line-height: 1.6;
+  font-size: 0.85em;
+  margin-top: 20px;
+  line-height: 1.5;
 }
 </style>
 </head>
@@ -183,7 +175,7 @@ h2 {
 <button class="refresh-btn" id="refreshBtn">تحديث الأسعار</button>
 
 <script>
-// ==== Yeh script bilkul same rakha hai, sirf design change kiya ====
+// Script bilkul same (formulas nahi badle)
 const r=document.getElementById("refreshBtn"),l={loading:!1};
 async function u(){
 if(l.loading) return;
