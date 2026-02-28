@@ -17,12 +17,13 @@ body {
   overflow-x: hidden;
 }
 
-/* Logo background - center lock kiya + opacity adjust */
+/* Background logo - fixed center mein lock, table ke saath aligned rahega */
 body::before {
   content: "";
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center center / contain fixed;
+  inset: 0;
+  background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center center / contain;
+  background-attachment: fixed;
   opacity: 0.28;
   z-index: -2;
   pointer-events: none;
@@ -39,16 +40,17 @@ body::after {
 }
 
 .logo-container {
-  margin: 15px 0 10px;
+  margin: 15px 0 12px;
 }
 
 .logo-img {
-  max-width: 85%;          /* mobile pe fit rahe */
-  width: 280px;            /* max size control */
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(212,175,55,0.3);
-  border: 2px solid #D4AF37;
+  width: 180px;             /* chhota kiya */
+  height: 180px;
+  object-fit: contain;
+  border-radius: 50%;       /* fully round */
+  box-shadow: 0 8px 25px rgba(212,175,55,0.4);
+  border: 3px solid #D4AF37;
+  background: rgba(0,0,0,0.3); /* thoda dark base taaki shine kare */
 }
 
 h2 {
@@ -182,7 +184,7 @@ h2 {
 <button class="refresh-btn" id="refreshBtn">تحديث الأسعار</button>
 
 <script>
-// Script same (formulas unchanged)
+// Script same rakha
 const r=document.getElementById("refreshBtn"),l={loading:!1};
 async function u(){
 if(l.loading) return;
