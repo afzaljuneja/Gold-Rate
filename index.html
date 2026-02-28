@@ -13,39 +13,15 @@ body {
   color: #FFEB3B;
   background: linear-gradient(135deg, #0a0a0a, #111111);
   min-height: 100vh;
-  position: relative;
   overflow-x: hidden;
 }
 
-/* Background logo - table ke center mein locked feel ke liye */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center center;
-  background-size: auto 80%;  /* table ke around better fit aur center lock */
-  background-attachment: fixed;
-  opacity: 0.25;  /* thoda halka taaki table clear rahe */
-  z-index: -2;
-  pointer-events: none;
-}
-
-/* Golden subtle overlay */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(255,215,0,0.05) 0%, transparent 70%);
-  z-index: -1;
-  pointer-events: none;
-}
-
 .logo-container {
-  margin: 12px 0 10px;  /* thoda tight kiya */
+  margin: 12px 0 10px;
 }
 
 .logo-img {
-  width: 126px;             /* 30% chhota (180px se \~126px) */
+  width: 126px;
   height: 126px;
   object-fit: contain;
   border-radius: 50%;
@@ -68,6 +44,7 @@ h2 {
   font-weight: bold;
 }
 
+/* Yeh card ab background logo ka parent ban gaya */
 .rates-card {
   background: rgba(20,20,20,0.8);
   border: 1px solid #D4AF37;
@@ -76,7 +53,26 @@ h2 {
   max-width: 300px;
   margin: 0 auto 12px;
   box-shadow: 0 6px 15px rgba(212,175,55,0.15);
-  position: relative;  /* table relative rakha taaki background center feel de */
+  position: relative;           /* important - iske andar logo position karega */
+  overflow: hidden;             /* logo card ke bahar na jaaye */
+}
+
+/* Background logo ab table/card ke andar center locked */
+.rates-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center center;
+  background-size: auto 70%;    /* table ke andar fit, adjust kar sakte ho 60% ya 80% */
+  opacity: 0.20;                /* halka rakha taaki text clear dikhe */
+  z-index: 0;                   /* content ke peeche */
+  pointer-events: none;
+}
+
+/* Table content ko logo ke upar rakhne ke liye */
+.rates-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .table-header {
@@ -87,7 +83,7 @@ h2 {
   border-bottom: 2px solid #D4AF37;
   font-size: 0.9em;
   color: #FFEB3B;
-  background: rgba(40,40,40,0.5);
+  background: rgba(40,40,40,0.6); /* thoda zyada solid taaki logo pe clear dikhe */
   border-radius: 6px 6px 0 0;
 }
 
@@ -98,10 +94,11 @@ h2 {
   border-bottom: 1px solid #444;
   font-size: 0.9em;
   transition: background 0.2s;
+  background: rgba(30,30,30,0.4); /* halka background taaki logo mix na ho */
 }
 
 .rate-row:hover {
-  background: rgba(255,215,0,0.06);
+  background: rgba(255,215,0,0.08);
 }
 
 .rate-row:last-child { border-bottom: none; }
@@ -124,11 +121,18 @@ h2 {
   display: block;
   box-shadow: 0 4px 10px rgba(255,215,0,0.3);
   transition: all 0.3s;
+  position: relative;
+  z-index: 1;
 }
 
 .refresh-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(255,215,0,0.5);
+}
+
+.note, .updated-time, .footer {
+  position: relative;
+  z-index: 1;
 }
 
 .note {
@@ -186,7 +190,7 @@ h2 {
 <button class="refresh-btn" id="refreshBtn">تحديث الأسعار</button>
 
 <script>
-// Script same
+// script same rakha
 const r=document.getElementById("refreshBtn"),l={loading:!1};
 async function u(){
 if(l.loading) return;
