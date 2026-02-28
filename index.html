@@ -21,9 +21,10 @@ body {
 }
 
 .logo-img {
-  width: 126px;
-  height: 126px;
-  object-fit: contain;
+  width: 100px;               /* aur chhota kiya */
+  height: 100px;
+  object-fit: cover;          /* zoom in feel ke liye */
+  object-position: center;    /* center se zoom karega */
   border-radius: 50%;
   box-shadow: 0 6px 20px rgba(212,175,55,0.35);
   border: 3px solid #D4AF37;
@@ -44,7 +45,6 @@ h2 {
   font-weight: bold;
 }
 
-/* Yeh card ab background logo ka parent ban gaya */
 .rates-card {
   background: rgba(20,20,20,0.8);
   border: 1px solid #D4AF37;
@@ -53,23 +53,21 @@ h2 {
   max-width: 300px;
   margin: 0 auto 12px;
   box-shadow: 0 6px 15px rgba(212,175,55,0.15);
-  position: relative;           /* important - iske andar logo position karega */
-  overflow: hidden;             /* logo card ke bahar na jaaye */
+  position: relative;
+  overflow: hidden;
 }
 
-/* Background logo ab table/card ke andar center locked */
 .rates-card::before {
   content: "";
   position: absolute;
   inset: 0;
   background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center center;
-  background-size: auto 70%;    /* table ke andar fit, adjust kar sakte ho 60% ya 80% */
-  opacity: 0.20;                /* halka rakha taaki text clear dikhe */
-  z-index: 0;                   /* content ke peeche */
+  background-size: auto 70%;
+  opacity: 0.20;
+  z-index: 0;
   pointer-events: none;
 }
 
-/* Table content ko logo ke upar rakhne ke liye */
 .rates-card > * {
   position: relative;
   z-index: 1;
@@ -83,7 +81,7 @@ h2 {
   border-bottom: 2px solid #D4AF37;
   font-size: 0.9em;
   color: #FFEB3B;
-  background: rgba(40,40,40,0.6); /* thoda zyada solid taaki logo pe clear dikhe */
+  background: rgba(40,40,40,0.6);
   border-radius: 6px 6px 0 0;
 }
 
@@ -94,7 +92,7 @@ h2 {
   border-bottom: 1px solid #444;
   font-size: 0.9em;
   transition: background 0.2s;
-  background: rgba(30,30,30,0.4); /* halka background taaki logo mix na ho */
+  background: rgba(30,30,30,0.4);
 }
 
 .rate-row:hover {
@@ -190,7 +188,7 @@ h2 {
 <button class="refresh-btn" id="refreshBtn">تحديث الأسعار</button>
 
 <script>
-// script same rakha
+// script same
 const r=document.getElementById("refreshBtn"),l={loading:!1};
 async function u(){
 if(l.loading) return;
