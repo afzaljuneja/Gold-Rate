@@ -32,21 +32,22 @@ body {
   background: rgba(0,0,0,0.4);
 }
 
+/* Instagram section updated */
 .insta-container {
   margin: 0 0 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
+  flex-direction: row; /* icon left, text right */
 }
 
 .insta-icon {
-  font-size: 1.5em;
+  font-size: 1.6em;
   background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-fill-color: transparent;
 }
 
 .insta-text {
@@ -184,6 +185,7 @@ h2 {
   <img src="https://i.ibb.co/CF2bDdM/1772224958978.png" alt="شركة الصائغ المعروف ش.م.م" class="logo-img">
 </div>
 
+<!-- Instagram Section -->
 <div class="insta-container">
   <i class="fab fa-instagram insta-icon"></i>
   <span class="insta-text">@alsaighalmarouf</span>
@@ -216,7 +218,6 @@ h2 {
 <button class="refresh-btn" id="refreshBtn">Refresh Prices</button>
 
 <script>
-// script same rakha
 const r=document.getElementById("refreshBtn"),l={loading:!1};
 async function u(){
 if(l.loading) return;
