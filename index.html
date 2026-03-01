@@ -31,6 +31,13 @@ body {
   background: rgba(0,0,0,0.4);
 }
 
+.insta-text {
+  color: #E1306C; /* Instagram pink-purple */
+  font-weight: bold;
+  font-size: 0.95em;
+  margin: 5px 0 10px;
+}
+
 h2 {
   font-size: 1.05em;
   font-weight: bold;
@@ -105,7 +112,7 @@ h2 {
 .price { color: #FFF176; font-weight: bold; }
 
 .refresh-btn {
-  background: linear-gradient(90deg, #25D366, #128C7E); /* WhatsApp green-blue gradient */
+  background: linear-gradient(90deg, #25D366, #128C7E);
   color: white;
   font-weight: bold;
   padding: 10px;
@@ -161,6 +168,8 @@ h2 {
   <img src="https://i.ibb.co/CF2bDdM/1772224958978.png" alt="شركة الصائغ المعروف ش.م.م" class="logo-img">
 </div>
 
+<p class="insta-text">@alsaighalmarouf</p>
+
 <h2>أسعار سبائك الذهب عيار 24</h2>
 <div id="ounceUSD">جارٍ تحميل السعر...</div>
 
@@ -188,7 +197,7 @@ h2 {
 <button class="refresh-btn" id="refreshBtn">Refresh Prices</button>
 
 <script>
-// script same rakha (116.64 premium 0)
+// script same rakha
 const r=document.getElementById("refreshBtn"),l={loading:!1};
 async function u(){
 if(l.loading) return;
@@ -208,7 +217,7 @@ const g=(p*1.4485+15)/116.64,
       k=g*20+20,
       m=g*50+25,
       n=g*100+32,
-      q=g*116.64; // premium 0
+      q=g*116.64;
 function fmt(x){return x.toFixed(1)+"00"}
 document.getElementById("g1").innerText=fmt(d)+" OMR";
 document.getElementById("g2_5").innerText=fmt(f)+" OMR";
