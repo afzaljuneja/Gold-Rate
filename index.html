@@ -3,266 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>شركة الصائغ المعروف ش.م.م - أسعار الذهب 24</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>أسعار الذهب - شركه الصائغ المعروف</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <style>
-body {
-  margin: 0;
-  padding: 8px;
-  font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
-  text-align: center;
-  color: #FFEB3B;
-  background: linear-gradient(135deg, #0a0a0a, #111111);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+body {margin:0; padding:5px; font-family:'Segoe UI', sans-serif; text-align:center; color:#FFEB3B; background:#000; min-height: 100vh; overflow-x: hidden;}
 
-.logo-container {
-  margin: 8px 0 4px;
-}
+/* Top Shop Logo - Original Small Size with Zoomed Content */
+.logo-container {margin:8px 0 2px;}
+.logo-img {width:95px; height:95px; border-radius:50%; border:2px solid #D4AF37; object-fit: cover; transform: scale(1.1);}
 
-.logo-img {
-  width: 85px;
-  height: 85px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-  box-shadow: 0 6px 20px rgba(212,175,55,0.35);
-  border: 3px solid #D4AF37;
-  background: rgba(0,0,0,0.4);
-}
+.insta-box {margin: 2px auto 8px; font-size: 1.1em; color: #f09433; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 6px; direction: ltr;}
+.insta-box i { color: #dc2743; }
 
-/* Instagram Section Fixed for LTR */
-.insta-container {
-  margin: 0 0 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  flex-direction: row; /* icon left, text right */
-  direction: ltr; /* RTL page ke bawajood icon left rahega */
-}
+h2 {font-size: 1.1em; margin: 4px 0; color: #D4AF37;}
+#ounceUSD {font-size: 1.05em; font-weight: bold; color: #FFF176; margin-bottom: 8px;}
 
-.insta-icon {
-  font-size: 1.6em;
-  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+/* Carousel */
+.carousel {position:relative; width: 100%; max-width:360px; margin:0 auto; overflow:hidden;}
+.carousel-inner {display:flex; transition: transform 0.4s ease-out; width: 100%;}
+.carousel-slide {width: 100%; flex-shrink: 0; padding: 0 5px; box-sizing: border-box;}
 
-.insta-text {
-  color: #F56040;
-  font-weight: bold;
-  font-size: 0.95em;
-}
-
-h2 {
-  font-size: 1em;
-  font-weight: bold;
-  color: #FFD54F;
-  margin: 0 0 4px;
-}
-
-#ounceUSD {
-  font-size: 0.9em;
-  color: #FFCA28;
-  margin: 4px 0 8px;
-  font-weight: bold;
-}
-
+/* Table Card Base */
 .rates-card {
-  background: rgba(20,20,20,0.8);
-  border: 1px solid #D4AF37;
-  border-radius: 10px;
-  padding: 6px;
-  max-width: 320px;
-  margin: 0 auto 8px;
-  box-shadow: 0 6px 15px rgba(212,175,55,0.15);
-  position: relative;
-  overflow: hidden;
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid #D4AF37;
+    border-radius: 10px;
+    padding: 2px;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Watermark Logo - Locked & Large */
 .rates-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center center;
-  background-size: auto 70%;
-  opacity: 0.20;
-  z-index: 0;
-  pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 260px; 
+    height: 260px;
+    background: url('https://i.ibb.co/CF2bDdM/1772224958978.png') no-repeat center;
+    background-size: contain;
+    opacity: 0.12;
+    z-index: 0;
+    pointer-events: none;
 }
 
-.rates-card > * {
-  position: relative;
-  z-index: 1;
-}
+.table-header {position: relative; z-index: 1; display:grid; grid-template-columns: 1fr 1fr 1fr; padding:8px 2px; font-weight:bold; border-bottom:1px solid #D4AF37; font-size:0.8em; color:#FFEB3B; background:rgba(40,40,40,0.9);}
+.rows-container {position: relative; z-index: 1;}
 
-.table-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 8px;
-  font-weight: bold;
-  border-bottom: 2px solid #D4AF37;
-  font-size: 0.85em;
-  color: #FFEB3B;
-  background: rgba(40,40,40,0.6);
-  border-radius: 6px 6px 0 0;
-}
+/* Row Styling - 1st Table (Bullion) stays compact */
+.rate-row {display:grid; grid-template-columns: 1fr 1fr 1fr; padding:5px 2px; border-bottom:1px solid #222; font-size:0.82em; text-align: center; align-items: center; color: #FFF176;}
+.rate-row:last-child {border-bottom:none;}
 
-.rate-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 8px;
-  border-bottom: 1px solid #444;
-  font-size: 0.85em;
-  transition: background 0.2s;
-  background: rgba(30,30,30,0.4);
-}
+/* 2nd Table (Karat) Adjustments for gap */
+#karatRows .rate-row { padding: 14px 2px; font-size: 0.9em; }
+#karatRows { min-height: 240px; display: flex; flex-direction: column; justify-content: space-around; }
 
-.rate-row:hover {
-  background: rgba(255,215,0,0.08);
-}
+.info-section {margin-top: 12px; padding: 0 5px;}
+.updated-time {font-size: 0.8em; color:#FFF176; margin: 2px 0;}
+.note {color:#ff4444; font-weight:bold; font-size: 0.75em; margin: 2px 0;}
+.footer-info {color:#FFD54F; font-weight:bold; font-size: 0.8em; margin: 4px 0; line-height: 1.2;}
 
-.rate-row:last-child { border-bottom: none; }
-
-.karat { color: #FFEB3B; font-weight: bold; }
-.price { color: #FFF176; font-weight: bold; }
-
-.refresh-btn {
-  background: linear-gradient(90deg, #25D366, #128C7E);
-  color: white;
-  font-weight: bold;
-  padding: 10px;
-  border: none;
-  border-radius: 40px;
-  width: 80%;
-  max-width: 240px;
-  cursor: pointer;
-  font-size: 1em;
-  margin: 10px auto;
-  display: block;
-  box-shadow: 0 4px 10px rgba(37,213,102,0.4);
-  transition: all 0.3s;
-  position: relative;
-  z-index: 1;
-}
-
-.refresh-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(37,213,102,0.6);
-}
-
-.note, .updated-time, .footer {
-  position: relative;
-  z-index: 1;
-  margin: 4px 0;
-}
-
-.note {
-  color: #FFCA28;
-  font-weight: bold;
-  font-size: 0.78em;
-}
-
-.updated-time {
-  font-size: 0.82em;
-  color: #FFF176;
-}
-
-.footer {
-  color: #FFD54F;
-  font-weight: bold;
-  font-size: 0.72em;
-  margin-top: 10px;
-  line-height: 1.3;
-}
+.footer-controls {margin-top: 15px; padding-bottom: 35px;}
+.controls-container {display: flex; align-items: center; justify-content: center; gap: 15px;}
+.arrow {font-size: 1.6em; color: #D4AF37; padding: 10px; cursor: pointer;}
+.refresh-btn {background: linear-gradient(90deg,#25D366,#128C7E); color:white; font-weight:bold; padding:11px 22px; border:none; border-radius:30px; min-width:150px; cursor:pointer; font-size:0.95em; box-shadow: 0 4px 15px rgba(0,0,0,0.5);}
 </style>
 </head>
 <body>
 
-<div class="logo-container">
-  <img src="https://i.ibb.co/CF2bDdM/1772224958978.png" alt="شركة الصائغ المعروف ش.م.م" class="logo-img">
+<div class="logo-container"><img src="https://i.ibb.co/CF2bDdM/1772224958978.png" class="logo-img"></div>
+<div class="insta-box"><i class="fab fa-instagram"></i><span>@alsaighalmarouf</span></div>
+
+<h2 id="mainHeading">أسعار سبائك الذهب</h2>
+<div id="ounceUSD">سعر الأونصة: ...</div>
+
+<div class="carousel" id="swipeArea">
+  <div class="carousel-inner" id="carouselInner">
+    <div class="carousel-slide">
+      <div class="rates-card">
+        <div class="table-header"><span>عيار / Karat</span><span>الوحدة / Unit</span><span>السعر / OMR</span></div>
+        <div class="rows-container" id="bullionRows"></div>
+      </div>
+    </div>
+    <div class="carousel-slide">
+      <div class="rates-card">
+        <div class="table-header"><span>عيار / Karat</span><span>الوحدة / Unit</span><span>السعر / OMR</span></div>
+        <div class="rows-container" id="karatRows"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- Instagram Section -->
-<div class="insta-container">
-  <i class="fab fa-instagram insta-icon"></i>
-  <span class="insta-text">@alsaighalmarouf</span>
+<div class="info-section">
+    <p class="updated-time" id="time">--</p>
+    <p class="note">ملاحظه : اسعار الذهب متغيره</p>
+    <p class="footer-info">92480599 | أخوكم تمجيد الصائغ</p>
 </div>
 
-<h2>أسعار سبائك الذهب عيار 24</h2>
-<div id="ounceUSD">جارٍ تحميل السعر...</div>
-
-<div class="rates-card">
-  <div class="table-header"><span>الوحدة / Unit</span><span>السعر / Rate (OMR)</span></div>
-  <div class="rate-row"><span class="karat">1 غرام</span><span class="price" id="g1">Loading...</span></div>
-  <div class="rate-row"><span class="karat">2.5 غرام</span><span class="price" id="g2_5">Loading...</span></div>
-  <div class="rate-row"><span class="karat">5 غرام</span><span class="price" id="g5">Loading...</span></div>
-  <div class="rate-row"><span class="karat">10 غرام</span><span class="price" id="g10">Loading...</span></div>
-  <div class="rate-row"><span class="karat">1 تولة</span><span class="price" id="tola">Loading...</span></div>
-  <div class="rate-row"><span class="karat">20 غرام</span><span class="price" id="g20">Loading...</span></div>
-  <div class="rate-row"><span class="karat">50 غرام</span><span class="price" id="g50">Loading...</span></div>
-  <div class="rate-row"><span class="karat">100 غرام</span><span class="price" id="g100">Loading...</span></div>
-  <div class="rate-row"><span class="karat">116.64 غرام</span><span class="price" id="g116_64">Loading...</span></div>
+<div class="footer-controls">
+    <div class="controls-container">
+        <div class="arrow" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></div>
+        <button class="refresh-btn" id="refreshBtn" onclick="loadPrices()">REFRESH PRICES</button>
+        <div class="arrow" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></div>
+    </div>
 </div>
-
-<p class="updated-time" id="time">آخر تحديث: --</p>
-<p class="note">ملاحظه : اسعار الذهب متغيره</p>
-
-<p class="footer">
-رقم التواصل: 92480599<br>
-أخوكم تمجيد الصائغ
-</p>
-
-<button class="refresh-btn" id="refreshBtn">Refresh Prices</button>
 
 <script>
-const r=document.getElementById("refreshBtn"),l={loading:!1};
-async function u(){
-if(l.loading) return;
-l.loading=!0;
-r.disabled=!0;
-r.innerText="Refreshing...";
-try{
-const t=await fetch("https://api.gold-api.com/price/XAU");
-const o=await t.json(),p=o.price;
-document.getElementById("ounceUSD").innerText="سعر الأونصة (USD): "+Math.floor(p);
-const g=(p*1.4485+15)/116.64,
-      d=g+4.5,
-      f=g*2.5+12,
-      h=g*5+15,
-      i=g*10+15,
-      j=g*11.664+15,
-      k=g*20+20,
-      m=g*50+25,
-      n=g*100+32,
-      q=g*116.64;
-function fmt(x){return x.toFixed(1)+"00"}
-document.getElementById("g1").innerText=fmt(d)+" OMR";
-document.getElementById("g2_5").innerText=fmt(f)+" OMR";
-document.getElementById("g5").innerText=fmt(h)+" OMR";
-document.getElementById("g10").innerText=fmt(i)+" OMR";
-document.getElementById("tola").innerText=fmt(j)+" OMR";
-document.getElementById("g20").innerText=fmt(k)+" OMR";
-document.getElementById("g50").innerText=fmt(m)+" OMR";
-document.getElementById("g100").innerText=fmt(n)+" OMR";
-document.getElementById("g116_64").innerText=fmt(q)+" OMR";
-const s=new Date();
-const tm=s.toLocaleString("en-US",{timeZone:"Asia/Muscat",dateStyle:"medium",timeStyle:"short"});
-document.getElementById("time").innerText="آخر تحديث: "+tm;
-}catch(e){
-document.getElementById("ounceUSD").innerText="خطأ في تحميل السعر";
-}
-l.loading=!1;
-r.disabled=!1;
-r.innerText="Refresh Prices";
-}
-window.addEventListener("load",u);
-r.addEventListener("click",u);
-setInterval(u,300000);
-</script>
+let currentSlide = 0;
+const inner = document.getElementById("carouselInner");
+const mainHeading = document.getElementById("mainHeading");
 
+let startX = 0;
+const swipeArea = document.getElementById("swipeArea");
+swipeArea.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive: true});
+swipeArea.addEventListener('touchend', e => {
+    let diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) moveSlide(diff > 0 ? 1 : -1);
+}, {passive: true});
+
+function moveSlide(dir) {
+    currentSlide = (currentSlide + dir + 2) % 2;
+    inner.style.transform = `translateX(${currentSlide * 100}%)`;
+    mainHeading.innerText = currentSlide === 0 ? "أسعار سبائك الذهب" : "أسعار الذهب مباشر";
+}
+
+async function loadPrices() {
+    const btn = document.getElementById("refreshBtn");
+    btn.innerText = "REFRESHING...";
+    try {
+        const res = await fetch("https://api.gold-api.com/price/XAU");
+        const data = await res.json();
+        const p = data.price;
+        document.getElementById("ounceUSD").innerText = "سعر الأونصة (USD): " + Math.floor(p);
+        const p24k = (p * 1.4485 + 15) / 116.64;
+        const fmt = x => x.toFixed(3);
+        
+        const kRows = [["24K", "1 جرام", fmt(p24k)], ["22K", "1 جرام", fmt(p24k * 0.920)], ["21K", "1 جرام", fmt(p24k * 0.879)], ["18K", "1 جرام", fmt(p24k * 0.755)], ["21K", "1 تولة", fmt(p24k * 0.879 * 11.664)]];
+        document.getElementById("karatRows").innerHTML = kRows.map(r => `<div class="rate-row"><span>${r[0]}</span><span>${r[1]}</span><span>${r[2]}</span></div>`).join('');
+        
+        const bRows = [["24K", "1 جرام", fmt(p24k + 4.5)], ["24K", "2.5 جرام", fmt(p24k * 2.5 + 12)], ["24K", "5 جرام", fmt(p24k * 5 + 15)], ["24K", "10 جرام", fmt(p24k * 10 + 15)], ["24K", "1 تولة", fmt(p24k * 11.664 + 15)], ["24K", "20 جرام", fmt(p24k * 20 + 20)], ["24K", "50 جرام", fmt(p24k * 50 + 25)], ["24K", "100 جرام", fmt(p24k * 100 + 32)], ["24K", "116.64 جرام", fmt(p24k * 116.64)]];
+        document.getElementById("bullionRows").innerHTML = bRows.map(r => `<div class="rate-row"><span>${r[0]}</span><span>${r[1]}</span><span>${r[2]}</span></div>`).join('');
+        
+        const now = new Date();
+        document.getElementById("time").innerText = "التحديث: " + now.toLocaleString('en-US', { month: 'short', day: '2-digit', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+    } catch (e) { console.error(e); }
+    btn.innerText = "REFRESH PRICES";
+}
+window.onload = loadPrices;
+</script>
 </body>
 </html>
+
