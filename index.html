@@ -8,11 +8,10 @@
 <style>
 body {margin:0; padding:5px; font-family:'Segoe UI', sans-serif; text-align:center; color:#FFEB3B; background:#000; min-height: 100vh; overflow-x: hidden;}
 
-/* إزالة الفراغات تماماً */
+/* Logo container with normal gap */
 .logo-container {
-  margin: 0;
+  margin: 15px 0 10px; /* Thoda sa normal gap upar aur niche */
   padding: 0;
-  line-height: 0;
 }
 
 .logo-img {
@@ -20,16 +19,13 @@ body {margin:0; padding:5px; font-family:'Segoe UI', sans-serif; text-align:cent
   height:auto;
   border:none;
   object-fit: contain;
-  /* المارجن السالب لضمان الالتصاق التام مع الانستجرام */
   transform: scale(1.15);
-  margin-top: 5px;
-  margin-bottom: -5px; 
-  filter: none !important; 
+  filter: none !important; /* No Glow anymore */
 }
 
+/* Instagram box style */
 .insta-box {
-  margin: 0 auto 10px; 
-  padding: 0;
+  margin: 5px auto 15px; 
   font-size: 1.1em; 
   color: #f09433; 
   font-weight: bold; 
@@ -179,3 +175,4 @@ window.onload = loadPrices;
 </script>
 </body>
 </html>
+
