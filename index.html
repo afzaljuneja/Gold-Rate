@@ -151,10 +151,10 @@ async function loadPrices() {
         const fmt = x => x.toFixed(3);
         
         const kRows = [["24K", "1 جرام", fmt(p24k)], ["22K", "1 جرام", fmt(p24k * 0.920)], ["21K", "1 جرام", fmt(p24k * 0.879)], ["18K", "1 جرام", fmt(p24k * 0.755)], ["21K", "1 تولة", fmt(p24k * 0.879 * 11.664)]];
-        document.getElementById("karatRows").innerHTML = kRows.map(r => `<div class="rate-row"><span>\( {r[0]}</span><span> \){r[1]}</span><span>${r[2]}</span></div>`).join('');
+        document.getElementById("karatRows").innerHTML = kRows.map(r => `<div class="rate-row"><span>${r[0]}</span><span>${r[1]}</span><span>${r[2]}</span></div>`).join('');
         
         const bRows = [["24K", "1 جرام", fmt(p24k + 4.5)], ["24K", "2.5 جرام", fmt(p24k * 2.5 + 12)], ["24K", "5 جرام", fmt(p24k * 5 + 15)], ["24K", "10 جرام", fmt(p24k * 10 + 15)], ["24K", "1 تولة", fmt(p24k * 11.664 + 15)], ["24K", "20 جرام", fmt(p24k * 20 + 20)], ["24K", "50 جرام", fmt(p24k * 50 + 25)], ["24K", "100 جرام", fmt(p24k * 100 + 32)], ["24K", "116.64 جرام", fmt(p24k * 116.64)]];
-        document.getElementById("bullionRows").innerHTML = bRows.map(r => `<div class="rate-row"><span>\( {r[0]}</span><span> \){r[1]}</span><span>${r[2]}</span></div>`).join('');
+        document.getElementById("bullionRows").innerHTML = bRows.map(r => `<div class="rate-row"><span>${r[0]}</span><span>${r[1]}</span><span>${r[2]}</span></div>`).join('');
         
         const now = new Date();
         document.getElementById("time").innerText = "التحديث: " + now.toLocaleString('en-US', { month: 'short', day: '2-digit', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
