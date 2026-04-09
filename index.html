@@ -8,20 +8,13 @@
 <style>
 body {margin:0; padding:5px; font-family:'Segoe UI', sans-serif; text-align:center; color:#FFEB3B; background:#000; min-height: 100vh; overflow-x: hidden;}
 
-.logo-container {margin:8px 0 2px;}
+.logo-container {margin:5px 0 3px;}
 .logo-img {
   width:150px;
   height:auto;
   border:none;
   object-fit: contain;
   transform: scale(1.15);
-
-  /* 3D Gold Glow */
-  filter: 
-    drop-shadow(0 0 5px #D4AF37)
-    drop-shadow(0 0 10px #FFD700)
-    drop-shadow(0 0 15px #FFC107)
-    drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
 }
 
 .insta-box {margin: 2px auto 8px; font-size: 1.1em; color: #f09433; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 6px; direction: ltr;}
@@ -151,10 +144,10 @@ async function loadPrices() {
         const fmt = x => x.toFixed(3);
         
         const kRows = [["24K", "1 جرام", fmt(p24k)], ["22K", "1 جرام", fmt(p24k * 0.920)], ["21K", "1 جرام", fmt(p24k * 0.879)], ["18K", "1 جرام", fmt(p24k * 0.755)], ["21K", "1 تولة", fmt(p24k * 0.879 * 11.664)]];
-        document.getElementById("karatRows").innerHTML = kRows.map(r => `<div class="rate-row"><span>${r[0]}</span><span>${r[1]}</span><span>${r[2]}</span></div>`).join('');
+        document.getElementById("karatRows").innerHTML = kRows.map(r => `<div class="rate-row"><span>\( {r[0]}</span><span> \){r[1]}</span><span>${r[2]}</span></div>`).join('');
         
         const bRows = [["24K", "1 جرام", fmt(p24k + 4.5)], ["24K", "2.5 جرام", fmt(p24k * 2.5 + 12)], ["24K", "5 جرام", fmt(p24k * 5 + 15)], ["24K", "10 جرام", fmt(p24k * 10 + 15)], ["24K", "1 تولة", fmt(p24k * 11.664 + 15)], ["24K", "20 جرام", fmt(p24k * 20 + 20)], ["24K", "50 جرام", fmt(p24k * 50 + 25)], ["24K", "100 جرام", fmt(p24k * 100 + 32)], ["24K", "116.64 جرام", fmt(p24k * 116.64)]];
-        document.getElementById("bullionRows").innerHTML = bRows.map(r => `<div class="rate-row"><span>${r[0]}</span><span>${r[1]}</span><span>${r[2]}</span></div>`).join('');
+        document.getElementById("bullionRows").innerHTML = bRows.map(r => `<div class="rate-row"><span>\( {r[0]}</span><span> \){r[1]}</span><span>${r[2]}</span></div>`).join('');
         
         const now = new Date();
         document.getElementById("time").innerText = "التحديث: " + now.toLocaleString('en-US', { month: 'short', day: '2-digit', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
