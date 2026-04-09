@@ -8,7 +8,7 @@
 <style>
 body {margin:0; padding:5px; font-family:'Segoe UI', sans-serif; text-align:center; color:#FFEB3B; background:#000; min-height: 100vh; overflow-x: hidden;}
 
-.logo-container {margin: 6px 0 4px;}
+.logo-container {margin:6px 0 3px;}
 .logo-img {
   width:150px;
   height:auto;
@@ -17,7 +17,7 @@ body {margin:0; padding:5px; font-family:'Segoe UI', sans-serif; text-align:cent
   transform: scale(1.15);
 }
 
-.insta-box {margin: 1px auto 8px; font-size: 1.1em; color: #f09433; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 6px; direction: ltr;}
+.insta-box {margin: 2px auto 8px; font-size: 1.1em; color: #f09433; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 6px; direction: ltr;}
 .insta-box i { color: #dc2743; }
 
 h2 {font-size: 1.1em; margin: 4px 0; color: #D4AF37;}
@@ -135,63 +135,25 @@ function moveSlide(dir) {
 async function loadPrices() {
     const btn = document.getElementById("refreshBtn");
     btn.innerText = "REFRESHING...";
-
     try {
         const res = await fetch("https://api.gold-api.com/price/XAU");
         const data = await res.json();
-        
-        let p = data.price || data.value || data.XAU;
-        if (!p || isNaN(p)) throw new Error("Invalid price");
-
-        p = parseFloat(p);
+        const p = data.price;
         document.getElementById("ounceUSD").innerText = "سعر الأونصة (USD): " + Math.floor(p);
-
         const p24k = (p * 1.4485 + 15) / 116.64;
-        const fmt = x => Number(x).toFixed(3);
-
-        // Karat Table
-        const kRows = [
-            ["24K", "1 جرام", fmt(p24k)],
-            ["22K", "1 جرام", fmt(p24k * 0.920)],
-            ["21K", "1 جرام", fmt(p24k * 0.879)],
-            ["18K", "1 جرام", fmt(p24k * 0.755)],
-            ["21K", "1 تولة", fmt(p24k * 0.879 * 11.664)]
-        ];
-        document.getElementById("karatRows").innerHTML = kRows.map(r => 
-            `<div class="rate-row"><span>\( {r[0]}</span><span> \){r[1]}</span><span>${r[2]}</span></div>`
-        ).join('');
-
-        // Bullion Table
-        const bRows = [
-            ["24K", "1 جرام", fmt(p24k + 4.5)],
-            ["24K", "2.5 جرام", fmt(p24k * 2.5 + 12)],
-            ["24K", "5 جرام", fmt(p24k * 5 + 15)],
-            ["24K", "10 جرام", fmt(p24k * 10 + 15)],
-            ["24K", "1 تولة", fmt(p24k * 11.664 + 15)],
-            ["24K", "20 جرام", fmt(p24k * 20 + 20)],
-            ["24K", "50 جرام", fmt(p24k * 50 + 25)],
-            ["24K", "100 جرام", fmt(p24k * 100 + 32)],
-            ["24K", "116.64 جرام", fmt(p24k * 116.64)]
-        ];
-        document.getElementById("bullionRows").innerHTML = bRows.map(r => 
-            `<div class="rate-row"><span>\( {r[0]}</span><span> \){r[1]}</span><span>${r[2]}</span></div>`
-        ).join('');
-
+        const fmt = x => x.toFixed(3);
+        
+        const kRows = [["24K", "1 جرام", fmt(p24k)], ["22K", "1 جرام", fmt(p24k * 0.920)], ["21K", "1 جرام", fmt(p24k * 0.879)], ["18K", "1 جرام", fmt(p24k * 0.755)], ["21K", "1 تولة", fmt(p24k * 0.879 * 11.664)]];
+        document.getElementById("karatRows").innerHTML = kRows.map(r => `<div class="rate-row"><span>\( {r[0]}</span><span> \){r[1]}</span><span>${r[2]}</span></div>`).join('');
+        
+        const bRows = [["24K", "1 جرام", fmt(p24k + 4.5)], ["24K", "2.5 جرام", fmt(p24k * 2.5 + 12)], ["24K", "5 جرام", fmt(p24k * 5 + 15)], ["24K", "10 جرام", fmt(p24k * 10 + 15)], ["24K", "1 تولة", fmt(p24k * 11.664 + 15)], ["24K", "20 جرام", fmt(p24k * 20 + 20)], ["24K", "50 جرام", fmt(p24k * 50 + 25)], ["24K", "100 جرام", fmt(p24k * 100 + 32)], ["24K", "116.64 جرام", fmt(p24k * 116.64)]];
+        document.getElementById("bullionRows").innerHTML = bRows.map(r => `<div class="rate-row"><span>\( {r[0]}</span><span> \){r[1]}</span><span>${r[2]}</span></div>`).join('');
+        
         const now = new Date();
-        document.getElementById("time").innerText = "التحديث: " + now.toLocaleString('en-US', { 
-            month: 'short', day: '2-digit', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true 
-        });
-
-    } catch (e) {
-        console.error(e);
-        document.getElementById("ounceUSD").innerText = "سعر الأونصة: (جاري التحميل...)";
-        document.getElementById("bullionRows").innerHTML = `<div class="rate-row"><span colspan="3">خطأ في تحميل الأسعار - اضغط Refresh</span></div>`;
-        document.getElementById("karatRows").innerHTML = `<div class="rate-row"><span colspan="3">خطأ في تحميل الأسعار - اضغط Refresh</span></div>`;
-    }
-
+        document.getElementById("time").innerText = "التحديث: " + now.toLocaleString('en-US', { month: 'short', day: '2-digit', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+    } catch (e) { console.error(e); }
     btn.innerText = "REFRESH PRICES";
 }
-
 window.onload = loadPrices;
 </script>
 </body>
