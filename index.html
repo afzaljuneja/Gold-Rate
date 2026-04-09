@@ -8,11 +8,11 @@
 <style>
 body {margin:0; padding:5px; font-family:'Segoe UI', sans-serif; text-align:center; color:#FFEB3B; background:#000; min-height: 100vh; overflow-x: hidden;}
 
-/* إزالة أي مسافات من الحاوية */
+/* إزالة الفراغات تماماً */
 .logo-container {
   margin: 0;
   padding: 0;
-  line-height: 0; /* لمنع أي فراغ نصي أسفل الصورة */
+  line-height: 0;
 }
 
 .logo-img {
@@ -20,14 +20,13 @@ body {margin:0; padding:5px; font-family:'Segoe UI', sans-serif; text-align:cent
   height:auto;
   border:none;
   object-fit: contain;
-  /* استخدام مارجن سالب لإلغاء الفراغ الناتج عن التكبير (scale) */
+  /* المارجن السالب لضمان الالتصاق التام مع الانستجرام */
   transform: scale(1.15);
   margin-top: 5px;
   margin-bottom: -5px; 
-  filter: none !important; /* التأكيد على إلغاء أي توهج */
+  filter: none !important; 
 }
 
-/* صندوق الانستجرام ملتصق تماماً */
 .insta-box {
   margin: 0 auto 10px; 
   padding: 0;
@@ -96,7 +95,7 @@ h2 {font-size: 1.1em; margin: 4px 0; color: #D4AF37;}
 <body>
 
 <div class="logo-container">
-  <img src="https://i.ibb.co/XxxVmw10/1000751020-removebg-preview.png" class="logo-img">
+  <a href="https://imgbb.com/"><img src="https://i.ibb.co/gMrk55g4/1000751020-removebg-preview.png" alt="Logo" class="logo-img" border="0"></a>
 </div>
 
 <div class="insta-box"><i class="fab fa-instagram"></i><span>@alsaighalmarouf</span></div>
@@ -180,4 +179,3 @@ window.onload = loadPrices;
 </script>
 </body>
 </html>
-
