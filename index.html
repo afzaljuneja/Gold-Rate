@@ -8,19 +8,38 @@
 <style>
 body {margin:0; padding:5px; font-family:'Segoe UI', sans-serif; text-align:center; color:#FFEB3B; background:#000; min-height: 100vh; overflow-x: hidden;}
 
-/* تم إزالة التوهج وتقليل الهامش السفلي */
-.logo-container {margin: 5px 0 0px; padding: 0;}
+/* إزالة أي مسافات من الحاوية */
+.logo-container {
+  margin: 0;
+  padding: 0;
+  line-height: 0; /* لمنع أي فراغ نصي أسفل الصورة */
+}
+
 .logo-img {
   width:150px;
   height:auto;
   border:none;
   object-fit: contain;
+  /* استخدام مارجن سالب لإلغاء الفراغ الناتج عن التكبير (scale) */
   transform: scale(1.15);
-  /* تم حذف تأثير الفلتر (Glow) هنا */
+  margin-top: 5px;
+  margin-bottom: -5px; 
+  filter: none !important; /* التأكيد على إلغاء أي توهج */
 }
 
-/* تم تقليل الهامش العلوي ليلتصق باللوجو */
-.insta-box {margin: 0px auto 8px; font-size: 1.1em; color: #f09433; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 6px; direction: ltr;}
+/* صندوق الانستجرام ملتصق تماماً */
+.insta-box {
+  margin: 0 auto 10px; 
+  padding: 0;
+  font-size: 1.1em; 
+  color: #f09433; 
+  font-weight: bold; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 6px; 
+  direction: ltr;
+}
 .insta-box i { color: #dc2743; }
 
 h2 {font-size: 1.1em; margin: 4px 0; color: #D4AF37;}
