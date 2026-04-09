@@ -68,16 +68,14 @@ h2 {font-size: 1.1em; margin: 4px 0; color: #D4AF37;}
     pointer-events: none;
 }
 
-/* Table Header font size thoda bada */
-.table-header {position: relative; z-index: 1; display:grid; grid-template-columns: 1fr 1fr 1fr; padding:10px 2px; font-weight:bold; border-bottom:1px solid #D4AF37; font-size:0.9em; color:#FFEB3B; background:rgba(40,40,40,0.9);}
+/* Back to original small font size */
+.table-header {position: relative; z-index: 1; display:grid; grid-template-columns: 1fr 1fr 1fr; padding:8px 2px; font-weight:bold; border-bottom:1px solid #D4AF37; font-size:0.8em; color:#FFEB3B; background:rgba(40,40,40,0.9);}
 .rows-container {position: relative; z-index: 1;}
 
-/* Row font size thoda bada (0.82em -> 0.95em) */
-.rate-row {display:grid; grid-template-columns: 1fr 1fr 1fr; padding:7px 2px; border-bottom:1px solid #222; font-size:0.95em; text-align: center; align-items: center; color: #FFF176;}
+.rate-row {display:grid; grid-template-columns: 1fr 1fr 1fr; padding:5px 2px; border-bottom:1px solid #222; font-size:0.82em; text-align: center; align-items: center; color: #FFF176;}
 .rate-row:last-child {border-bottom:none;}
 
-/* Karat rows specific padding and size */
-#karatRows .rate-row { padding: 16px 2px; font-size: 1.05em; }
+#karatRows .rate-row { padding: 14px 2px; font-size: 0.9em; }
 #karatRows { min-height: 240px; display: flex; flex-direction: column; justify-content: space-around; }
 
 .info-section {margin-top: 12px; padding: 0 5px;}
@@ -178,4 +176,3 @@ window.onload = loadPrices;
 </script>
 </body>
 </html>
-
