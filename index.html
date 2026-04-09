@@ -10,11 +10,18 @@ body {margin:0; padding:5px; font-family:'Segoe UI', sans-serif; text-align:cent
 
 .logo-container {margin:8px 0 2px;}
 .logo-img {
-  width:120px;
+  width:150px;
   height:auto;
   border:none;
   object-fit: contain;
-  transform: scale(1.1);
+  transform: scale(1.15);
+
+  /* 3D Gold Glow */
+  filter: 
+    drop-shadow(0 0 5px #D4AF37)
+    drop-shadow(0 0 10px #FFD700)
+    drop-shadow(0 0 15px #FFC107)
+    drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
 }
 
 .insta-box {margin: 2px auto 8px; font-size: 1.1em; color: #f09433; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 6px; direction: ltr;}
