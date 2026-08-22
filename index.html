@@ -158,7 +158,7 @@ async function loadPrices() {
         const data = await res.json();
         const p = data.price;
         document.getElementById("ounceUSD").innerText = "سعر الأونصة (USD): " + Math.floor(p);
-        const p24k = (p * 1.4485 + 15) / 116.64;
+        const p24k = (p * 1.4485 + 25) / 116.64;
         const fmt = x => x.toFixed(3);
         
         const kRows = [["24K", "1 جرام", fmt(p24k)], ["22K", "1 جرام", fmt(p24k * 0.920)], ["21K", "1 جرام", fmt(p24k * 0.879)], ["18K", "1 جرام", fmt(p24k * 0.755)], ["21K", "1 تولة", fmt(p24k * 0.879 * 11.664)]];
